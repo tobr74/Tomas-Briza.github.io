@@ -1,0 +1,144 @@
+.box {
+    font-family: sans-serif;
+    max-width: 500px; 
+    padding: 20px; 
+    border-radius: 15px; 
+    background: rgb(255, 255, 235); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+    text-align: center; 
+    margin: auto;
+}
+.kruh {
+    width: 50px; 
+    height: 50px; 
+    background: #007bff; 
+    border-radius: 50%; 
+    margin: 0 auto 15px;
+}
+h3.TB {
+    margin: 0; 
+    margin-top: -50px; 
+    color: white;
+}
+h2.jmeno {
+    margin: 0; 
+    margin-top: 25px; 
+    color: #333;
+}
+p.programator {
+    color: #666; 
+    margin-top: 5px; 
+    text-decoration: underline;
+}
+button#kontaktovat {
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    border: 1px solid black;
+}
+button#zapni-barvu {
+    padding: 5px 5px; 
+    margin: 15px 5px 10px 5px; 
+    cursor: pointer;
+}
+/* Plynulý přechod pro celé tělo stránky */
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    display: flex;
+    justify-content: center;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+.container {
+    background: rgb(255, 255, 235);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    margin-top: -10px;
+}
+.pridprio {
+    margin-top: -20px;
+}
+#priorita {
+    padding: 7px; 
+    border-radius: 4px; 
+    border: 1px solid #ccc;
+}
+#novyUkol {
+    width: 60%; 
+    height: 14px;
+}
+.pridatSeznam {
+    margin: -5px 0px 0px 0px;
+    font-size: 12px;
+}
+h1.moudra {
+    font-size: 10px; 
+    color: #2ecc71; 
+    margin: 0 130px 0 0;
+}
+h1#pocitadlo {
+    font-size: 10px; 
+    color: #2ecc71; 
+    margin: 0 0 10px 85px;
+}
+input.email {
+    padding: 5px; 
+    border: 2px solid #ddd; 
+    border-radius: 5px;
+}
+button#odeslat {
+    margin-bottom: 9px;
+}
+h2 { text-align: center; }
+input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    padding: 4px 8px;
+    margin-left: 5px;
+    margin: 3px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover { background: #218838; }
+ul { list-style: none; padding: 0; }
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 0;
+    border-bottom: 1px solid #eee;
+}
+/* Efekt při najetí na úkol */
+li:hover {
+    background: rgba(0,0,0,0.02);
+    transform: scale(1.01);
+    transition: 0.2s;
+}
+/* Toto zajistí, že se přeškrtne celý text úkolu */
+li.done div {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    opacity: 0.5;
+}
+/* Animace přeškrtnutí */
+li.done div span {
+    position: relative;
+    display: inline-block;
+}
+/* Animace pro úkol */
+li div {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.delete {
+    background: #dc3545;
+}
+.delete:hover {
+    background: #c82333;
+}

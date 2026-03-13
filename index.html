@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomáš Bříza - programátor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<div class="box">
+  <div class="kruh"></div>
+  <h3 class="TB">TB</h3>
+  <h2 class="jmeno">Tomáš Bříza</h2>
+  <p class="programator">programátor</p>
+  <button type="text" name="kontaktovat" id="kontaktovat">Kontaktovat</button>
+  <div name="kontakt" id="kontakt"></div>
+  <div><button type="text" id="zapni-barvu">Zapni a nebo vypni barvu pozadí a úkolu</button></div>
+  <div class="container">
+    <h4>📝Přidat nový úkol📝</h4>
+    <div class="pridprio">
+      <select id="priorita">
+        <option value="green">🟢 Normální</option>
+        <option value="orange">🟡 Spěchá</option>
+        <option value="red">🔴 Důležité</option>
+      </select>
+      <input type="text" id="novyUkol" placeholder="Nový úkol...">
+      <button id="pridat">Přidat</button>
+    </div>
+    <div class="pridatSeznam">
+      <ul type="text" name="mujSeznam" id="mujSeznam"></ul>
+
+      <h1 class="moudra">Moudra programátora</h1>
+
+      <!-- Tady propojujeme JS funkci s kliknutím -->
+      <button onclick="ukazCitat()">Chci radu!</button>
+
+      <!-- Tlačítko, které spouští tvou funkci -->
+      <button onclick="klikni()">KLIKNI NA MĚ!</button>
+
+      <!-- Tady se bude zobrazovat skóre -->
+      <h1 id="pocitadlo">Skóre: 0</h1>
+
+      <form onsubmit="alert('Odesláno!'); return false;">
+        <input class="email" type="email" placeholder="Tvůj e-mail" required>
+        <button id="odeslat" type="submit">Odeslat</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js">
+
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+  }
+
+</script>
+</body>
+</html>
