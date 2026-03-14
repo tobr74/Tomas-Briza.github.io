@@ -23,44 +23,55 @@ tlacitkoKontaktovat.addEventListener('click', () => {
   }
 });
 
+// 1. NAČTENÍ DAT Z PAMĚTI
+let mojeNavolenaBarva = localStorage.getItem('ulozenaBarva') || '#1e3a8a';
+let jeBarevnyRezim = localStorage.getItem('rezim') === 'barevny'; // pamatuje si, co bylo zapnuto
+
 const skala = document.getElementById('barevnaSkala');
-const kontaktElement = document.getElementById('kontakt');
+skala.value = mojeNavolenaBarva;
 
-// 1. PŮVODNÍ PŘEPÍNAČ (Bílá <-> Modrá)
+// 2. FUNKCE PRO APLIKACI STYLU
+function aplikujAktualniStyl() {
+    if (jeBarevnyRezim) {
+        nastavStyl(mojeNavolenaBarva, mojeNavolenaBarva);
+    } else {
+        nastavStyl('white', 'black');
+    }
+}
+
+// 3. TLAČÍTKO PŘEPNOUT
 tlacitkoZapni.addEventListener('click', () => {
-  const jeModra = document.body.style.backgroundColor === 'rgb(30, 58, 138)';
-  
-  if (!jeModra) {
-    document.body.style.backgroundColor = '#1e3a8a'; // Tmavě modrá pozadí
-    document.body.style.color = 'blue';             // Text do modré
-    // Zde změníme i barvu kontaktu, pokud je zobrazen
-    if (kontaktElement) kontaktElement.style.color = 'blue';
-  } else {
-    document.body.style.backgroundColor = 'white';   // Původní bílá
-    document.body.style.color = 'black';             // Původní černá
-    if (kontaktElement) kontaktElement.style.color = 'black';
-  }
-  // Resetujeme škálu na bílou, aby nekolidovala
-  skala.value = "#ffffff";
+    jeBarevnyRezim = !jeBarevnyRezim; // otočí stav (true/false)
+    localStorage.setItem('rezim', jeBarevnyRezim ? 'barevny' : 'bily');
+    aplikujAktualniStyl();
 });
 
-// 2. FUNKCE PRO BAREVNOU ŠKÁLU
-skala.addEventListener('input', () => {
-  const vybranaBarva = skala.value;
-  
-  // Nastaví vybranou barvu na pozadí i veškerý text
-  document.body.style.backgroundColor = vybranaBarva;
-  document.body.style.color = vybranaBarva;
-  
-  // Aby byl text v úkolech a kontaktu vidět, dáme mu kontrastní barvu (černou)
-  // nebo ho necháme v barvě škály, pokud jsi to tak myslel:
-  if (kontaktElement) kontaktElement.style.color = vybranaBarva;
-  
-  // Pokud chceš, aby text úkolů v seznamu byl také v barvě škály:
-  document.querySelectorAll('#mujSeznam li').forEach(li => {
-      li.style.color = vybranaBarva;
-  });
+// 4. SLEDOVÁNÍ ŠKÁLY
+skala.addEventListener('input', (e) => {
+    mojeNavolenaBarva = e.target.value;
+    localStorage.setItem('ulozenaBarva', mojeNavolenaBarva);
+    
+    // Pokud měním škálu, automaticky to zapne barevný režim
+    jeBarevnyRezim = true;
+    localStorage.setItem('rezim', 'barevny');
+    aplikujAktualniStyl();
 });
+
+// Pomocná funkce (obarví vše)
+function nastavStyl(pozadi, text) {
+    document.body.style.backgroundColor = pozadi;
+    document.body.style.color = text;
+    
+    const kontakt = document.getElementById('kontakt');
+    if (kontakt) kontakt.style.color = text;
+
+    document.querySelectorAll('#mujSeznam li').forEach(li => {
+        li.style.color = text;
+    });
+}
+
+// --- DŮLEŽITÉ: Spustit hned po načtení stránky ---
+aplikujAktualniStyl();
 
 // Najdeme prvky
 const novyUkol = document.getElementById('novyUkol');
