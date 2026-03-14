@@ -4,7 +4,7 @@
     padding: 20px; 
     border-radius: 15px; 
     background: rgb(255, 255, 235); 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.9); 
     text-align: center; 
     margin: auto;
 }
@@ -13,7 +13,7 @@
     height: 50px; 
     background: #007bff; 
     border-radius: 50%; 
-    margin: 0 auto 15px;
+    margin: -6px auto 16px;
 }
 h3.TB {
     margin: 0; 
@@ -22,12 +22,12 @@ h3.TB {
 }
 h2.jmeno {
     margin: 0; 
-    margin-top: 25px; 
+    margin-top: 22px; 
     color: #333;
 }
 p.programator {
     color: #666; 
-    margin-top: 5px; 
+    margin-top: 2px; 
     text-decoration: underline;
 }
 button#kontaktovat {
@@ -35,10 +35,11 @@ button#kontaktovat {
     border-radius: 5px; 
     cursor: pointer; 
     border: 1px solid black;
+    margin-top: -6px;
 }
 button#zapni-barvu {
     padding: 5px 5px; 
-    margin: 15px 5px 10px 5px; 
+    margin: 6px 5px 11px 5px; 
     cursor: pointer;
 }
 /* Plynulý přechod pro celé tělo stránky */
@@ -52,8 +53,9 @@ body {
 .container {
     background: rgb(255, 255, 235);
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    margin-top: -10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    margin-top: -14px;
+    width: 357px;
 }
 .pridprio {
     margin-top: -20px;
@@ -65,16 +67,16 @@ body {
 }
 #novyUkol {
     width: 60%; 
-    height: 14px;
+    height: 15px;
 }
 .pridatSeznam {
-    margin: -5px 0px 0px 0px;
+    margin: -12px 0px 0px 0px;
     font-size: 12px;
 }
 h1.moudra {
     font-size: 10px; 
     color: #2ecc71; 
-    margin: 0 130px 0 0;
+    margin: 5px 130px 0 0;
 }
 h1#pocitadlo {
     font-size: 10px; 
@@ -87,7 +89,7 @@ input.email {
     border-radius: 5px;
 }
 button#odeslat {
-    margin-bottom: 60px;
+    margin-bottom: 9px;
 }
 h2 { text-align: center; }
 input[type="text"] {
