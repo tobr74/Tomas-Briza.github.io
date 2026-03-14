@@ -98,8 +98,8 @@ function pridatUkol() {
 
     // Text úkolu bude na vlastním řádku
     infoWrapper.innerHTML = `
-        <span style="display: block; font-weight: bold; font-size: 16px;">${text}</span>
-        <span style="font-size: 12px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
+        <span style="display: block; font-weight: bold; font-size: 20px;">${text}</span>
+        <span style="font-size: 14px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
     `;
 
     // Označení jako hotové (přidá třídu .done definovanou v CSS), volání uložení
