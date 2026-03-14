@@ -1,3 +1,42 @@
+// Pomocná proměnná, aby se svátek nenačítal každou vteřinu
+let posledniDen = -1;
+
+function aktualizujCasAKalendar() {
+    const nyni = new Date();
+    
+    // 1. DIGITÁLNÍ HODINY (střed)
+    const hodiny = String(nyni.getHours()).padStart(2, '0');
+    const minuty = String(nyni.getMinutes()).padStart(2, '0');
+    const sekundy = String(nyni.getSeconds()).padStart(2, '0');
+    document.getElementById('hodiny-stred').innerText = `${hodiny}:${minuty}:${sekundy}`;
+
+    // 2. DATUM A SVÁTEK (jen pokud se změnil den)
+    if (nyni.getDate() !== posledniDen) {
+        posledniDen = nyni.getDate();
+        
+        // Datum vlevo
+        const moznosti = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('datum-vlevo').innerText = nyni.toLocaleDateString('cs-CZ', moznosti);
+
+        // Načtení svátku vpravo
+        fetch('https://svatkyapi.cz')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('svatek-vpravo').innerText = "Svátek: " + data.name;
+            })
+            .catch(() => {
+                document.getElementById('svatek-vpravo').innerText = "Svátek: Rút a Matylda";
+            });
+    }
+}
+
+// Spustit ihned
+aktualizujCasAKalendar();
+
+// AKTUALIZACE KAŽDOU VTEŘINU (1000 ms)
+setInterval(aktualizujCasAKalendar, 1000);
+ 
+
 const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
 const tlacitkoZapni = document.querySelector('#zapni-barvu');
 

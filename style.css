@@ -1,19 +1,22 @@
 .box {
     font-family: sans-serif;
-    max-width: 710px; 
+    max-width: 1000px; 
     padding: 20px; 
     border-radius: 15px; 
     background: rgb(255, 255, 235); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.9); 
     text-align: center; 
     margin: auto;
+    position: relative; /* Toto udrží datum a svátek uvnitř */
+    /* tvoje ostatní styly pro box... */
+    padding-top: 40px; /* Přidá místo nahoře, aby texty nezasahovaly do kruhu */
 }
 .kruh {
     width: 50px; 
     height: 50px; 
     background: #007bff; 
     border-radius: 50%; 
-    margin: -6px auto 16px;
+    margin: 2px auto 16px;
 }
 h3.TB {
     margin: 0; 
@@ -23,7 +26,7 @@ h3.TB {
 }
 h1.jmeno {
     margin: 0; 
-    margin-top: 22px; 
+    margin-top: 16px; 
     color: #333;
     font-weight: bold;
     font-size: 35px;
