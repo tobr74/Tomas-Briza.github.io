@@ -3,26 +3,63 @@ const tlacitkoZapni = document.querySelector('#zapni-barvu');
 
 tlacitkoKontaktovat.addEventListener('click', () => {
   const kontaktElement = document.getElementById('kontakt');
-  const udaje = "Zahradní 50, Kolín, 28002 \n email: tobr74@email.cz \n tel: 721336515";
+  
+  // HTML kód s interaktivními odkazy
+  const udajeHTML = `
+    Zahradní 50, 280 02, Kolín <br>
+    email: <a href="mailto:tobr74@email.cz" style="color: inherit; text-decoration: underline;">tobr74@email.cz</a> <br>
+    tel: <a href="tel:+420721336515" style="color: inherit; text-decoration: underline;">+420721336515</a>
+  `;
 
-  // Pokud je prázdno, vlož text. Pokud tam text už je, vymaž ho.
-  if (kontaktElement.innerText === "") {
-    kontaktElement.innerText = udaje;
+  if (kontaktElement.innerHTML === "") {
+    kontaktElement.innerHTML = udajeHTML;
+    // Styl pro tučné a větší písmo
+    kontaktElement.style.fontWeight = 'bold';
+    kontaktElement.style.fontSize = '18px';
+    kontaktElement.style.lineHeight = '1.4';
+    kontaktElement.style.marginTop = '0px';
   } else {
-    kontaktElement.innerText = "";
+    kontaktElement.innerHTML = "";
   }
 });
 
+const skala = document.getElementById('barevnaSkala');
+const kontaktElement = document.getElementById('kontakt');
+
+// 1. PŮVODNÍ PŘEPÍNAČ (Bílá <-> Modrá)
 tlacitkoZapni.addEventListener('click', () => {
-  const jeModra = document.body.style.backgroundColor === 'rgb(30, 58, 138)'; // Tmavě modrá
+  const jeModra = document.body.style.backgroundColor === 'rgb(30, 58, 138)';
   
   if (!jeModra) {
-    document.body.style.backgroundColor = '#1e3a8a'; // Tmavě modrá
-    document.body.style.color = 'blue';
+    document.body.style.backgroundColor = '#1e3a8a'; // Tmavě modrá pozadí
+    document.body.style.color = 'blue';             // Text do modré
+    // Zde změníme i barvu kontaktu, pokud je zobrazen
+    if (kontaktElement) kontaktElement.style.color = 'blue';
   } else {
-    document.body.style.backgroundColor = 'white';
-    document.body.style.color = 'black';
+    document.body.style.backgroundColor = 'white';   // Původní bílá
+    document.body.style.color = 'black';             // Původní černá
+    if (kontaktElement) kontaktElement.style.color = 'black';
   }
+  // Resetujeme škálu na bílou, aby nekolidovala
+  skala.value = "#ffffff";
+});
+
+// 2. FUNKCE PRO BAREVNOU ŠKÁLU
+skala.addEventListener('input', () => {
+  const vybranaBarva = skala.value;
+  
+  // Nastaví vybranou barvu na pozadí i veškerý text
+  document.body.style.backgroundColor = vybranaBarva;
+  document.body.style.color = vybranaBarva;
+  
+  // Aby byl text v úkolech a kontaktu vidět, dáme mu kontrastní barvu (černou)
+  // nebo ho necháme v barvě škály, pokud jsi to tak myslel:
+  if (kontaktElement) kontaktElement.style.color = vybranaBarva;
+  
+  // Pokud chceš, aby text úkolů v seznamu byl také v barvě škály:
+  document.querySelectorAll('#mujSeznam li').forEach(li => {
+      li.style.color = vybranaBarva;
+  });
 });
 
 // Najdeme prvky
@@ -99,7 +136,7 @@ function pridatUkol() {
     // Text úkolu bude na vlastním řádku
     infoWrapper.innerHTML = `
         <span style="display: block; font-weight: bold; font-size: 20px;">${text}</span>
-        <span style="font-size: 14px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
+        <span style="font-size: 12px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
     `;
 
     // Označení jako hotové (přidá třídu .done definovanou v CSS), volání uložení
@@ -107,7 +144,7 @@ function pridatUkol() {
 
     // Tlačítko pro smazání
     const vymazat = document.createElement('button');
-    vymazat.innerHTML = "✕";
+    vymazat.innerHTML = "x";
     vymazat.className = 'delete';
     vymazat.onclick = () => { li.remove(); ulozDoPameti(); }; // Uložení do paměti
 
