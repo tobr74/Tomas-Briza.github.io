@@ -2,7 +2,15 @@ const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
 const tlacitkoZapni = document.querySelector('#zapni-barvu');
 
 tlacitkoKontaktovat.addEventListener('click', () => {
-  document.getElementById('kontakt').innerText = "Zahradní 50, Kolín, 28002 \n\t email: tobr74@email.cz \n\t tel: 721336515";
+  const kontaktElement = document.getElementById('kontakt');
+  const udaje = "Zahradní 50, Kolín, 28002 \n email: tobr74@email.cz \n tel: 721336515";
+
+  // Pokud je prázdno, vlož text. Pokud tam text už je, vymaž ho.
+  if (kontaktElement.innerText === "") {
+    kontaktElement.innerText = udaje;
+  } else {
+    kontaktElement.innerText = "";
+  }
 });
 
 tlacitkoZapni.addEventListener('click', () => {
@@ -85,13 +93,13 @@ function pridatUkol() {
 
     // Vytvoření kontejneru pro text a čas (aby se dalo klikat na obojí)
     const infoWrapper = document.createElement('div');
-    infoWrapper.style.textAlign = "left";
+    infoWrapper.style.textAlign = "center";
     infoWrapper.style.flexGrow = "1";
 
     // Text úkolu bude na vlastním řádku
     infoWrapper.innerHTML = `
-        <span style="display: block; font-weight: bold; font-size: 14px;">${text}</span>
-        <span style="font-size: 10px; color: #888;">📅 ${datum} | 🕒 ${cas} | datum a čas zadání</span>
+        <span style="display: block; font-weight: bold; font-size: 16px;">${text}</span>
+        <span style="font-size: 12px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
     `;
 
     // Označení jako hotové (přidá třídu .done definovanou v CSS), volání uložení
