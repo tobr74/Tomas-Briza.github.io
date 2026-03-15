@@ -23,13 +23,32 @@
     height: 50px; 
     background: #007bff; 
     border-radius: 50%; 
-    margin: -5px auto 16px;
+    margin: 10px auto 16px; /* Normální margin místo záporného */
+    
+    /* Vycentrování textu uvnitř */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Animace */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    user-select: none;
 }
 h3.TB {
-    margin: 0px; 
-    margin-top: -54px; 
+    margin: 0;
     color: white;
-    font-size: 25px;
+    font-size: 20px; /* Trochu zmenšíme, aby se v 50px kruhu netísnilo */
+    pointer-events: none; /* Aby klikání na text nebránilo animaci kruhu */
+}
+/* Efekt při najetí myší (hover) */
+.kruh:hover {
+  transform: scale(1.2); /* Pouze zvětšení o 20 % */
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); /* Zářivý stín zůstává */
+  filter: brightness(1.1); /* Rozjasnění zůstává */
+}
+.kruh:active {
+  transform: scale(0.9);
 }
 h1.jmeno {
     margin: 0px; 
@@ -82,7 +101,6 @@ h4.pridatNU-nadpis{
     margin-top: 0px;
     font-size: 20px;
 }
-
 .pridprio {
     margin-top: -20px;
 }
@@ -177,6 +195,63 @@ li div {
 .delete:hover {
     background: #c82333;
 }
+/* Hlavní kontejner formuláře */
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px; /* Mezera od seznamu úkolů */
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.05); /* Jemné pozadí pro odlišení */
+    border-radius: 12px;
+}
+
+/* Styl pro všechna vstupní pole */
+.feedback-form input, 
+.feedback-form select, 
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px; /* Zakulacené rohy jako u tvého boxu */
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+/* Efekt při kliknutí do políčka (focus) */
+.feedback-form input:focus, 
+.feedback-form select:focus, 
+.feedback-form textarea:focus {
+    outline: none;
+    border-color: #007bff; /* Barva tvého kruhu/loga */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Styl tlačítka */
+#odeslat-feedback {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#odeslat-feedback:hover {
+    background-color: #218838;
+    transform: translateY(-2px); /* Jemné nadzvednutí při najetí */
+}
+
+.feedback-form input::placeholder, 
+.feedback-form textarea::placeholder {
+    color: inherit;
+    opacity: 0.7; /* Bude trochu průhlednější než tvůj hlavní text */
+}
+
 /* Tato pravidla se aktivují jen když je mobil na šířku nebo má velký displej */
 /* Styl pro široký displej / na ležato */
 @media screen and (min-width: 600px) and (orientation: landscape) {

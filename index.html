@@ -9,19 +9,19 @@
 </head>
 <body>
 <div class="box">
-  <!-- PRVEK PRO DATUM VLEVO -->
+  <!-- HORNÍ LIŠTA -->
   <div id="datum-vlevo" style="position: absolute; top: 35px; left: 15px; font-size: 13px; font-weight: bold;"></div>
-  <!-- PRVEK PRO HODINY UPROSTŘED -->
   <div id="hodiny-stred" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
-  <!-- PRVEK PRO SVÁTEK VPRAVO -->
   <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 15px; font-size: 13px; font-weight: bold;"></div>
-  <!-- NOVÝ OBAL PRO OBSAH -->
+
+  <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">
     
     <!-- LEVÁ ČÁST: Vizitka -->
     <div class="vizitka-cast">
-      <div class="kruh"></div>
+      <div class="kruh">
       <h3 class="TB">TB</h3>
+      </div>
       <h1 class="jmeno">Tomáš Bříza</h1>
       <p class="programator">programátor</p>
       <button id="kontaktovat">Kontakt</button>
@@ -31,9 +31,25 @@
         <span>Zvol si barvu:</span>
         <input type="color" id="barevnaSkala">
       </div>
+
+      <!-- SEKCE MOUDRA A HRY -->
+      <div id="rady-hry" style="margin-top: 20px;">
+        <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h1 class="moudra" style="font-size: 14px; margin-bottom: 5px;">Moudra programátora</h1>
+            <button onclick="ukazCitat()">Chci radu!</button>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h1 id="pocitadlo" style="font-size: 14px; margin-bottom: 5px;">Skóre: 0</h1>
+            <button onclick="klikni()">KLIKNI NA MĚ!</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- PRAVÁ ČÁST: To-Do a Formulář -->
     <div class="container">
-      <h4 class="pridatNU-nadpis">📝Přidat nový úkol📝</h4>
+      <h4 class="pridatNU-nadpis">📝 Přidat nový úkol 📝</h4>
       <div class="pridprio">
         <select id="priorita">
           <option value="green">🟢 Normální</option>
@@ -43,48 +59,35 @@
         <input type="text" id="novyUkol" placeholder="Nový úkol...">
         <button id="pridat">Přidat</button>
       </div>
+
       <div class="pridatSeznam">
-        <ul type="text" name="mujSeznam" id="mujSeznam"></ul>
+        <ul id="mujSeznam"></ul>
 
-        <div id="rady-hry" style="margin-top: 20px;">
-  <!-- Obal pro dvě sekce vedle sebe -->
-  <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
-    
-    <!-- LEVÁ ČÁST: Moudra -->
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <h1 class="moudra" style="font-size: 14px; margin-bottom: 5px;">Moudra programátora</h1>
-      <button onclick="ukazCitat()">Chci radu!</button>
-    </div>
-
-    <!-- PRAVÁ ČÁST: Klikání -->
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <h1 id="pocitadlo" style="font-size: 14px; margin-bottom: 5px;">Skóre: 0</h1>
-      <button onclick="klikni()">KLIKNI NA MĚ!</button>
-    </div>
-
-  </div>
-</div>
-
-        <!-- Tlačítko, které spouští tvou funkci -->
-        <form onsubmit="alert('Odesláno!'); return false;">
-          <input class="email" type="email" placeholder="Tvůj e-mail" required>
-          <button id="odeslat" type="submit">Odeslat</button>
+        <!-- FORMULÁŘ -->
+        <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form">
+          <input type="text" name="jmeno" placeholder="Tvé jméno">
+          <select name="hodnoceni" required>
+            <option value="" disabled selected>Líbí se ti web?</option>
+            <option value="libi">👍 Líbí</option>
+            <option value="nelibi">👎 Nelíbí</option>
+          </select>
+          <textarea name="zprava" placeholder="Co se ti líbí nebo co vylepšit?" rows="3"></textarea>
+          <input type="email" name="email" placeholder="Tvůj e-mail" required>
+          <button type="submit" id="odeslat-feedback">Odeslat zpětnou vazbu</button>
         </form>
 
-      </div>
-    </div>
-  </div>
-</div>
+      </div> <!-- Konec pridatSeznam -->
+    </div> <!-- Konec container -->
+  </div> <!-- Konec flex-wrapper -->
+</div> <!-- Konec box -->
 
 <script src="script.js?v=1.1"></script>
-
-  <!-- 2. Pak samostatně zaregistrujeme Service Worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log("SW registrován"))
-        .catch(err => console.log("Chyba SW:", err));
-    }
-  </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("SW registrován"))
+      .catch(err => console.log("Chyba SW:", err));
+  }
+</script>
 </body>
 </html>

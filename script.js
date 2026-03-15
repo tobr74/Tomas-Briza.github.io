@@ -120,6 +120,21 @@ function nastavStyl(pozadi, text) {
     document.querySelectorAll('#mujSeznam li').forEach(li => {
         li.style.color = text;
     });
+
+    // Obarví texty ve formuláři, aby ladily se zbytkem
+    document.querySelectorAll('.feedback-form input, .feedback-form select, .feedback-form textarea').forEach(el => {
+        el.style.color = text;
+    });
+
+    // Obarvení kruhu a jeho stínu při najetí
+    /* const kruh = document.querySelector('.kruh');
+    if (kruh) {
+        kruh.style.backgroundColor = text; // Kruh bude mít barvu textu
+        kruh.style.color = pozadi;        // Písmo TB bude mít barvu pozadí
+        
+        // Nastavení dynamického stínu pro hover (přidáme přes CSS proměnnou)
+        kruh.style.setProperty('--barva-stinu', text);
+    } */
 }
 
 // --- DŮLEŽITÉ: Spustit hned po načtení stránky ---
@@ -269,3 +284,4 @@ function klikni() {
     document.getElementById('pocitadlo').innerText = `Skóre: ${skore}`;
   }
 }
+
