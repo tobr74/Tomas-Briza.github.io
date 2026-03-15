@@ -9,12 +9,12 @@
 </head>
 <body>
 <div class="box">
-  <div id="datum-vlevo" style="position: absolute; top: 15px; left: 20px; font-size: 13px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 35px; left: 15px; font-size: 13px; font-weight: bold;"></div>
   
   <!-- NOVÝ PRVEK PRO HODINY -->
-  <div id="hodiny-stred" style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
   
-  <div id="svatek-vpravo" style="position: absolute; top: 15px; right: 20px; font-size: 13px; font-weight: bold;"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 15px; font-size: 13px; font-weight: bold;"></div>
   <div class="kruh"></div>
   <h3 class="TB">TB</h3>
   <h1 class="jmeno">Tomáš Bříza</h1>
@@ -61,11 +61,15 @@
   </div>
 </div>
 
-<script src="script.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
+<script src="script.js?v=1.1"></script>
+
+  <!-- 2. Pak samostatně zaregistrujeme Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log("SW registrován"))
+        .catch(err => console.log("Chyba SW:", err));
+    }
+  </script>
 </body>
 </html>

@@ -1,32 +1,45 @@
 // Pomocná proměnná, aby se svátek nenačítal každou vteřinu
 let posledniDen = -1;
 
-function aktualizujCasAKalendar() {
+async function aktualizujCasAKalendar() {
     const nyni = new Date();
+    const dnesniDen = nyni.getDate();
     
-    // 1. DIGITÁLNÍ HODINY (střed)
+    // 1. DIGITÁLNÍ HODINY (vždy aktuální)
     const hodiny = String(nyni.getHours()).padStart(2, '0');
     const minuty = String(nyni.getMinutes()).padStart(2, '0');
     const sekundy = String(nyni.getSeconds()).padStart(2, '0');
     document.getElementById('hodiny-stred').innerText = `${hodiny}:${minuty}:${sekundy}`;
 
-    // 2. DATUM A SVÁTEK (jen pokud se změnil den)
-    if (nyni.getDate() !== posledniDen) {
-        posledniDen = nyni.getDate();
+    // 2. DATUM A SVÁTEK (spustí se jen při změně dne nebo při startu)
+    if (dnesniDen !== posledniDen) {
+        posledniDen = dnesniDen;
         
-        // Datum vlevo
+        // Formátování data vlevo
         const moznosti = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         document.getElementById('datum-vlevo').innerText = nyni.toLocaleDateString('cs-CZ', moznosti);
 
-        // Načtení svátku vpravo
-        fetch('https://svatkyapi.cz')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('svatek-vpravo').innerText = "Svátek: " + data.name;
-            })
-            .catch(() => {
-                document.getElementById('svatek-vpravo').innerText = "Svátek: Rút a Matylda";
-            });
+        // Načtení svátku s ochranou proti starým datům (?_t=číslo zajistí čerstvost)
+        try {
+            const response = await fetch('https://svatkyapi.cz' + Date.now());
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            document.getElementById('svatek-vpravo').innerText = "Svátek má " + data.name;
+        } catch (error) {
+            // Záložní řešení, pokud API vypadne
+            document.getElementById('svatek-vpravo').innerText = "Svátek: (načítání...)";
+            
+            // Druhý pokus o jiný zdroj po 2 sekundách
+            setTimeout(async () => {
+                try {
+                    const res2 = await fetch('https://svatky.adresa.info' + Date.now());
+                    const data2 = await res2.json();
+                    document.getElementById('svatek-vpravo').innerText = "Svátek má " + data2.name;
+                } catch (e) {
+                    document.getElementById('svatek-vpravo').innerText = "Svátek: Ida"; // Záloha pro 15.3.
+                }
+            }, 2000);
+        }
     }
 }
 
