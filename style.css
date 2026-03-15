@@ -1,15 +1,22 @@
 .box {
     font-family: sans-serif;
-    max-width: 2000px; 
+    width: 95%; /* Na mobilu zabere skoro celou šířku */
+    max-width: 800px; /* Ale na počítači se neroztáhne do nekonečna */ 
     padding: 20px; 
     border-radius: 15px; 
     background: rgb(255, 255, 235); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.9); 
     text-align: center; 
-    margin: auto;
-    position: relative; /* Toto udrží datum a svátek uvnitř */
+    margin: 10px auto; /* Vycentrování */
+    position: relative; /* Toto udrží datum a svátek uvnitř - důležité pro to datum a svátek v rozích */
     /* tvoje ostatní styly pro box... */
     padding-top: 40px; /* Přidá místo nahoře, aby texty nezasahovaly do kruhu */
+}
+/* Základní styl pro wrapper (na stojato) */
+.flex-wrapper {
+  display: flex;
+  flex-direction: column; /* Pod sebou */
+  align-items: center;
 }
 .kruh {
     width: 50px; 
@@ -92,21 +99,24 @@ h4.pridatNU-nadpis{
     margin: -12px 0px 0px 0px;
     font-size: 12px;
 }
+.moudra, #pocitadlo {
+    margin: 0;
+    padding: 0;
+    min-height: 0px; /* Aby skákající čísla skóre nehýbala s tlačítkem */
+}
 h1.moudra {
-    font-size: 10px; 
-    color: #2ecc71; 
-    margin: 25px 152px 0 0;
+    font-size: 10px;
+    color: #2ecc71;
 }
 h1#pocitadlo {
     font-size: 10px; 
     color: #2ecc71; 
-    margin: 0 0 10px 125px;
 }
 input.email {
     padding: 9px; 
     border: 2px solid #ddd; 
     border-radius: 5px;
-    margin-top: -10px;
+    margin-top: 10px;
 }
 button#odeslat {
     margin-bottom: 10px;
@@ -166,4 +176,49 @@ li div {
 }
 .delete:hover {
     background: #c82333;
+}
+/* Tato pravidla se aktivují jen když je mobil na šířku nebo má velký displej */
+/* Styl pro široký displej / na ležato */
+@media screen and (min-width: 600px) and (orientation: landscape) {
+  .flex-wrapper {
+    flex-direction: row;    /* Vedle sebe */
+    justify-content: center;
+    align-items: flex-start; /* Zarovnat k hornímu okraji */
+    gap: 30px;              /* Mezera mezi vizitkou a úkoly */
+    padding-top: 20px;
+  }
+
+  .vizitka-cast {
+    width: 40%;
+    text-align: center;
+  }
+
+  .container {
+    width: 50%;
+    margin-top: 0;
+  }
+}
+/* Tato pravidla se aktivují při otočení na ležato (landscape) */
+@media screen and (orientation: landscape) {
+    
+    /* Sjednocení roviny a zvětšení písma */
+    #datum-vlevo, #svatek-vpravo, #hodiny-stred {
+        top: 20px !important;    /* Všechny posuneme do stejné výšky od horního okraje */
+        font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
+    }
+
+    /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
+    #hodiny-stred {
+        font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
+    }
+
+    /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
+    .box {
+        padding-top: 60px; /* Vytvoříme víc místa pod horní lištou */
+        width: 95%;
+        max-width: 900px;
+    }
+}
+@media screen and (max-height: 400px) and (orientation: landscape) {
+    #datum-vlevo, #svatek-vpravo { font-size: 15px !important; }
 }

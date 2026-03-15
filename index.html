@@ -9,54 +9,69 @@
 </head>
 <body>
 <div class="box">
+  <!-- PRVEK PRO DATUM VLEVO -->
   <div id="datum-vlevo" style="position: absolute; top: 35px; left: 15px; font-size: 13px; font-weight: bold;"></div>
-  
-  <!-- NOVÝ PRVEK PRO HODINY -->
+  <!-- PRVEK PRO HODINY UPROSTŘED -->
   <div id="hodiny-stred" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
-  
+  <!-- PRVEK PRO SVÁTEK VPRAVO -->
   <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 15px; font-size: 13px; font-weight: bold;"></div>
-  <div class="kruh"></div>
-  <h3 class="TB">TB</h3>
-  <h1 class="jmeno">Tomáš Bříza</h1>
-  <p class="programator">programátor</p>
-  <button type="text" name="kontaktovat" id="kontaktovat">Kontakt</button>
-  <div name="kontakt" id="kontakt"></div>
-  <div><button type="text" id="zapni-barvu">Zapni a nebo vypni barvu pozadí a úkolu</button>
-  </div>
-  <div style="margin-bottom: 10px;">
-    <span style="font-size: 18px;">Zvol si vlastní barvu:</span>
-    <input type="color" id="barevnaSkala" value="#ffffff" style="cursor: pointer; height: 25px;">
-  </div>
-  <div class="container">
-    <h4 class="pridatNU-nadpis">📝Přidat nový úkol📝</h4>
-    <div class="pridprio">
-      <select id="priorita">
-        <option value="green">🟢 Normální</option>
-        <option value="orange">🟡 Spěchá</option>
-        <option value="red">🔴 Důležité</option>
-      </select>
-      <input type="text" id="novyUkol" placeholder="Nový úkol...">
-      <button id="pridat">Přidat</button>
+  <!-- NOVÝ OBAL PRO OBSAH -->
+  <div class="flex-wrapper">
+    
+    <!-- LEVÁ ČÁST: Vizitka -->
+    <div class="vizitka-cast">
+      <div class="kruh"></div>
+      <h3 class="TB">TB</h3>
+      <h1 class="jmeno">Tomáš Bříza</h1>
+      <p class="programator">programátor</p>
+      <button id="kontaktovat">Kontakt</button>
+      <div id="kontakt"></div>
+      <button id="zapni-barvu">Zapni/Vypni barvu</button>
+      <div style="margin-bottom: 10px;">
+        <span>Zvol si barvu:</span>
+        <input type="color" id="barevnaSkala">
+      </div>
     </div>
-    <div class="pridatSeznam">
-      <ul type="text" name="mujSeznam" id="mujSeznam"></ul>
+    <div class="container">
+      <h4 class="pridatNU-nadpis">📝Přidat nový úkol📝</h4>
+      <div class="pridprio">
+        <select id="priorita">
+          <option value="green">🟢 Normální</option>
+          <option value="orange">🟡 Spěchá</option>
+          <option value="red">🔴 Důležité</option>
+        </select>
+        <input type="text" id="novyUkol" placeholder="Nový úkol...">
+        <button id="pridat">Přidat</button>
+      </div>
+      <div class="pridatSeznam">
+        <ul type="text" name="mujSeznam" id="mujSeznam"></ul>
 
-      <h1 class="moudra">Moudra programátora</h1>
-
-      <!-- Tady propojujeme JS funkci s kliknutím -->
+        <div id="rady-hry" style="margin-top: 20px;">
+  <!-- Obal pro dvě sekce vedle sebe -->
+  <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
+    
+    <!-- LEVÁ ČÁST: Moudra -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <h1 class="moudra" style="font-size: 14px; margin-bottom: 5px;">Moudra programátora</h1>
       <button onclick="ukazCitat()">Chci radu!</button>
+    </div>
 
-      <!-- Tlačítko, které spouští tvou funkci -->
+    <!-- PRAVÁ ČÁST: Klikání -->
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <h1 id="pocitadlo" style="font-size: 14px; margin-bottom: 5px;">Skóre: 0</h1>
       <button onclick="klikni()">KLIKNI NA MĚ!</button>
+    </div>
 
-      <!-- Tady se bude zobrazovat skóre -->
-      <h1 id="pocitadlo">Skóre: 0</h1>
+  </div>
+</div>
 
-      <form onsubmit="alert('Odesláno!'); return false;">
-        <input class="email" type="email" placeholder="Tvůj e-mail" required>
-        <button id="odeslat" type="submit">Odeslat</button>
-      </form>
+        <!-- Tlačítko, které spouští tvou funkci -->
+        <form onsubmit="alert('Odesláno!'); return false;">
+          <input class="email" type="email" placeholder="Tvůj e-mail" required>
+          <button id="odeslat" type="submit">Odeslat</button>
+        </form>
 
+      </div>
     </div>
   </div>
 </div>
