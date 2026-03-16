@@ -8,6 +8,18 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+<div id="moje-okno" class="modal">
+    <div class="modal-obsah">
+        <span class="zavrit">&times;</span>
+        <h2>Vyhledat svátek</h2>
+        <p>Zadej jméno (např. Tomáš) nebo datum (např. 7. března):</p>
+        <input type="text" id="vstup-hledani" placeholder="Napiš sem...">
+        <button id="tlacitko-hledat">Vyhledat</button>
+        <div id="vysledek-hledani"></div>
+    </div>
+</div>
+
 <div class="box">
   <!-- HORNÍ LIŠTA -->
   <div id="datum-vlevo" style="position: absolute; top: 35px; left: 15px; font-size: 13px; font-weight: bold;"></div>
