@@ -4,19 +4,19 @@
     display: none; 
     position: fixed; 
     z-index: 1000; 
-    left: 0; 
+    left: center; 
     top: 0;
     width: 100%; 
     height: 100%; 
     background-color: rgba(0,0,0,0.8);
-    /* Tyto 3 řádky zajistí dokonalý střed na výšku i šířku */
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column;
     /* Flexbox zajistí centrování obsahu horizontálně i vertikálně */
     display: none;
     justify-content: center; 
     align-items: center;
+    /* Tyto 3 řádky zajistí dokonalý střed na výšku i šířku */
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
     overflow-y: auto; /* Kdyby bylo okno na výšku větší než mobil, půjde posunout */
     padding: 10px;
 }
@@ -26,7 +26,7 @@
     background-color: #fefefe; 
     padding: 20px;
     border-radius: 15px; 
-    width: 90%; /* Na mobilu zabere víc místa */
+    width: 85%; /* Na mobilu zabere víc místa */
     max-width: 350px; /* Na počítači zůstane malé */
     text-align: center; 
     font-family: sans-serif;

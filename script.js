@@ -123,7 +123,7 @@ function provedVyhledavani() {
                 let [m, d] = klic.split('-');
                 let jmeno = SVATKY_DATA[klic];
                 let jmenoFinal = jmeno.charAt(0).toUpperCase() + jmeno.slice(1);
-                nalezena.push(`${jmenoFinal}: ${d}. ${MESICE_PAD[parseInt(m)-1]}`);
+                nalezena.push(`${jmenoFinal} má svátek ${d}. ${MESICE_PAD[parseInt(m)-1]}`);
             }
         }
         vysledekElem.innerText = nalezena.length > 0 ? nalezena.join('\n') : "Jméno nebylo nalezeno.";
