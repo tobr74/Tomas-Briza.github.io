@@ -9,6 +9,10 @@
     width: 100%; 
     height: 100%; 
     background-color: rgba(0,0,0,0.8);
+    /* Tyto 3 řádky zajistí dokonalý střed na výšku i šířku */
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
     /* Flexbox zajistí centrování obsahu horizontálně i vertikálně */
     display: none; 
     justify-content: center; 
