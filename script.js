@@ -2,7 +2,7 @@
 const SVATKY_DATA = {
     "1-1": "Nový rok", "1-2": "Karina", "1-3": "Radmila", "1-4": "Diana", "1-5": "Dalimil", "1-6": "Tři králové", "1-7": "Vilma", "1-8": "Čestmír", "1-9": "Vladan", "1-10": "Břetislav", "1-11": "Bohdana", "1-12": "Pravoslav", "1-13": "Edita", "1-14": "Radovan", "1-15": "Alice", "1-16": "Ctirad", "1-17": "Drahoslav", "1-18": "Vladislav", "1-19": "Doubravka", "1-20": "Ilona", "1-21": "Běla", "1-22": "Slavomír", "1-23": "Zdeněk", "1-24": "Milena", "1-25": "Miloš", "1-26": "Zora", "1-27": "Ingrid", "1-28": "Otýlie", "1-29": "Zdislava", "1-30": "Robin", "1-31": "Marika",
     "2-1": "Hynek", "2-2": "Nela", "2-3": "Blažej", "2-4": "Jarmila", "2-5": "Dobromila", "2-6": "Vanda", "2-7": "Veronika", "2-8": "Milada", "2-9": "Apolena", "2-10": "Mojmír", "2-11": "Božena", "2-12": "Slavěna", "2-13": "Věnceslav", "2-14": "Valentýn", "2-15": "Jiřina", "2-16": "Ljuba", "2-17": "Miloslava", "2-18": "Gizela", "2-19": "Patrik", "2-20": "Oldřich", "2-21": "Lenka", "2-22": "Petr", "2-23": "Svatopluk", "2-24": "Matěj", "2-25": "Liliana", "2-26": "Dorota", "2-27": "Alexandr", "2-28": "Lumír", "2-29": "Horymír",
-    "3-1": "Bedřich", "3-2": "Anežka", "3-3": "Kamil", "3-4": "Stela", "3-5": "Kazimír", "3-6": "Miroslav", "3-7": "Tomáš", "3-8": "Gabriela", "3-9": "Františka", "3-10": "Viktorie", "3-11": "Anděla", "3-12": "Řehoř", "3-13": "Růžena", "3-14": "Rút/Matylda", "3-15": "Ida", "3-16": "Elena / Herbert", "3-17": "Vlastimil", "3-18": "Eduard", "3-19": "Josef", "3-20": "Světlana", "3-21": "Radek", "3-22": "Leona", "3-23": "Ivona", "3-24": "Gabriel", "3-25": "Marián", "3-26": "Emanuel", "3-27": "Dita", "3-28": "Soňa", "3-29": "Taťána", "3-30": "Arnošt", "3-31": "Kvido",
+    "3-1": "Bedřich", "3-2": "Anežka", "3-3": "Kamil", "3-4": "Stela", "3-5": "Kazimír", "3-6": "Miroslav", "3-7": "Tomáš", "3-8": "Gabriela", "3-9": "Františka", "3-10": "Viktorie", "3-11": "Anděla", "3-12": "Řehoř", "3-13": "Růžena", "3-14": "Rút/Matylda", "3-15": "Ida", "3-16": "Elena/Herbert", "3-17": "Vlastimil", "3-18": "Eduard", "3-19": "Josef", "3-20": "Světlana", "3-21": "Radek", "3-22": "Leona", "3-23": "Ivona", "3-24": "Gabriel", "3-25": "Marián", "3-26": "Emanuel", "3-27": "Dita", "3-28": "Soňa", "3-29": "Taťána", "3-30": "Arnošt", "3-31": "Kvido",
     "4-1": "Hugo", "4-2": "Erika", "4-3": "Richard", "4-4": "Ivana", "4-5": "Miroslava", "4-6": "Vendula", "4-7": "Heřman/Hermína", "4-8": "Ema", "4-9": "Dušan", "4-10": "Darja", "4-11": "Izabela", "4-12": "Julius", "4-13": "Aleš", "4-14": "Vincenc", "4-15": "Anastázie", "4-16": "Irena", "4-17": "Rudolf", "4-18": "Valérie", "4-19": "Rostislav", "4-20": "Marcela", "4-21": "Alexandra", "4-22": "Evženie", "4-23": "Vojtěch", "4-24": "Jiří", "4-25": "Marek", "4-26": "Oto", "4-27": "Jaroslav", "4-28": "Vlastislav", "4-29": "Robert", "4-30": "Blahoslav",
     "5-1": "Svátek práce", "5-2": "Zikmund", "5-3": "Alexej", "5-4": "Květoslav", "5-5": "Klaudie", "5-6": "Radoslav", "5-7": "Stanislav", "5-8": "Den vítězství", "5-9": "Ctibor", "5-10": "Blažena", "5-11": "Svatava", "5-12": "Pankrác", "5-13": "Servác", "5-14": "Bonifác", "5-15": "Žofie", "5-16": "Přemysl", "5-17": "Aneta", "5-18": "Nataša", "5-19": "Ivo", "5-20": "Zbyšek", "5-21": "Monika", "5-22": "Emil", "5-23": "Vladimír", "5-24": "Jana", "5-25": "Viola", "5-26": "Filip", "5-27": "Valdemar", "5-28": "Vilém", "5-29": "Maxmilián", "5-30": "Ferdinand", "5-31": "Kamila",
     "6-1": "Laura", "6-2": "Jarmil", "6-3": "Tamara", "6-4": "Dalibor", "6-5": "Dobroslav", "6-6": "Norbert", "6-7": "Iveta/Slavko", "6-8": "Medard", "6-9": "Stanislava", "6-10": "Gita", "6-11": "Bruno", "6-12": "Antonie", "6-13": "Antonín", "6-14": "Roland", "6-15": "Vít", "6-16": "Zbyněk", "6-17": "Adolf", "6-18": "Milan", "6-19": "Leoš", "6-20": "Květa", "6-21": "Alois", "6-22": "Pavla", "6-23": "Zdeňka", "6-24": "Jan", "6-25": "Ivan", "6-26": "Adriana", "6-27": "Ladislav", "6-28": "Lubomír", "6-29": "Petr a Pavel", "6-30": "Šárka",
@@ -81,42 +81,54 @@ function provedVyhledavani() {
         return;
     }
 
-    // A) Hledání podle data
-    if (/\d/.test(dotaz)) {
+    let mIndex = -1;
+    let den = -1;
+
+    // A) HLEDÁNÍ PODLE FORMÁTU 17.3. nebo 17.3
+    if (dotaz.includes('.')) {
+        let casti = dotaz.split('.').filter(x => x.trim() !== "");
+        if (casti.length >= 2) {
+            den = parseInt(casti[0]);
+            mIndex = parseInt(casti[1]);
+        }
+    }
+
+    // B) HLEDÁNÍ PODLE TEXTOVÉHO DATA (17. března)
+    if (mIndex === -1 && /\d/.test(dotaz)) {
         let denMatch = dotaz.match(/\d+/);
-        let mIndex = -1;
-        
+        if (denMatch) den = parseInt(denMatch[0]);
         for (let i = 0; i < 12; i++) {
             if (dotaz.includes(MESICE_PAD[i]) || dotaz.includes(MESICE_NOM[i])) {
                 mIndex = i + 1;
                 break;
             }
         }
+    }
 
-        if (mIndex !== -1 && denMatch) {
-            let klic = `${mIndex}-${parseInt(denMatch)}`;
-            let jmeno = SVATKY_DATA[klic];
-            if (jmeno) {
-                vysledekElem.innerText = `${parseInt(denMatch)}. ${MESICE_PAD[mIndex-1]} má svátek: ${jmeno}`;
-            } else {
-                vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
-            }
+    // VYHODNOCENÍ DATA
+    if (mIndex !== -1 && mIndex <= 12 && den !== -1) {
+        let klic = `${mIndex}-${den}`;
+        let jmeno = SVATKY_DATA[klic];
+        if (jmeno) {
+            vysledekElem.innerText = `${den}. ${MESICE_PAD[mIndex-1]} má svátek: ${jmeno}`;
         } else {
-            vysledekElem.innerText = "Zadej datum ve tvaru např. 7. března";
+            vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
         }
     } 
-    // B) Hledání podle jména
-    else {
+    // C) HLEDÁNÍ PODLE JMÉNA
+    else if (!/\d/.test(dotaz)) {
         let nalezena = [];
         for (let klic in SVATKY_DATA) {
             if (SVATKY_DATA[klic].toLowerCase().includes(dotaz)) {
                 let [m, d] = klic.split('-');
                 let jmeno = SVATKY_DATA[klic];
                 let jmenoFinal = jmeno.charAt(0).toUpperCase() + jmeno.slice(1);
-                nalezena.push(`${jmenoFinal}: ${d}. ${MESICE_PAD[m-1]}`);
+                nalezena.push(`${jmenoFinal}: ${d}. ${MESICE_PAD[parseInt(m)-1]}`);
             }
         }
         vysledekElem.innerText = nalezena.length > 0 ? nalezena.join('\n') : "Jméno nebylo nalezeno.";
+    } else {
+        vysledekElem.innerText = "Zadej datum (např. 7.3. nebo 7. března) nebo jméno.";
     }
 }
 
