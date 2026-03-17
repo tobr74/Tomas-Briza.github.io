@@ -1,3 +1,28 @@
+/* STYL PRO TLAČÍTKO SVÁTKU V KALENDÁŘI */
+#svatek-vpravo {
+    display: inline-block;        /* Důležité: podbarví se jen plocha kolem textu */
+    padding: 6px 15px;            /* Prostor mezi textem a okrajem */
+    background-color: rgba(0, 0, 0, 0.1); /* Jemné podbarvení viditelné hned (nastav si 0.05 pro světlejší) */
+    border-radius: 20px;          /* Velký rádius pro "pilulkový" vzhled */
+    cursor: pointer;              /* Ukáže ruku při najetí */
+    transition: background-color 0.3s ease, transform 0.2s; /* Plynulý přechod */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Velmi jemný okraj */
+    margin: 5px;                  /* Mezera od okolních prvků */
+    font-weight: 500;             /* Trochu výraznější písmo */
+}
+
+/* EFEKT PŘI NAJETÍ MYŠÍ */
+#svatek-vpravo:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Ztmavnutí při najetí na kraj/plochu */
+    transform: translateY(-1px);          /* Jemné nadzvednutí pro pocit klikatelnosti */
+}
+
+/* EFEKT PŘI KLIKNUTÍ */
+#svatek-vpravo:active {
+    background-color: rgba(0, 0, 0, 0.3); /* Ještě o něco tmavší při stisknutí */
+    transform: translateY(0px);           /* Vrácení zpět při stisku */
+}
+
 /* Styly pro vyskakovací okno */
 /* Pozadí přes celou obrazovku */
 .modal {
@@ -74,6 +99,7 @@
     font-weight: bold;
     font-size: 16px;
     transition: 0.3s;
+    margin-left: 0px;
 }
 
 /* ZMĚNA ODSTÍNU PŘI NAJETÍ MYŠÍ */
