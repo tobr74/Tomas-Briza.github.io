@@ -73,10 +73,13 @@ window.onclick = (e) => {
 
 // 5. LOGIKA VYHLEDÁVÁNÍ (Funkce vytažená zvlášť pro Enter i kliknutí)
 function provedVyhledavani() {
-    let dotaz = document.getElementById('vstup-hledani').value.toLowerCase().trim();
+    let originalniDotaz = document.getElementById('vstup-hledani').value.toLowerCase().trim();
     let vysledekElem = document.getElementById('vysledek-hledani');
     
-    if (!dotaz) {
+    // Vytvoříme si verzi dotazu bez teček pro snadnější hledání textu (např. "7. března" -> "7 března")
+    let dotazBezTecek = originalniDotaz.replace(/\./g, ' ');
+    
+    if (!originalniDotaz) {
         vysledekElem.innerText = "Zadej prosím jméno nebo datum.";
         return;
     }
@@ -84,28 +87,29 @@ function provedVyhledavani() {
     let mIndex = -1;
     let den = -1;
 
-    // A) HLEDÁNÍ PODLE FORMÁTU 17.3. nebo 17.3
-    if (dotaz.includes('.')) {
-        let casti = dotaz.split('.').filter(x => x.trim() !== "");
+    // A) HLEDÁNÍ ČÍSELNÉHO DATA (např. 7.3. nebo 7.3)
+    if (originalniDotaz.includes('.') && /\d+\.\s*\d+/.test(originalniDotaz)) {
+        let casti = originalniDotaz.split('.').filter(x => x.trim() !== "");
         if (casti.length >= 2) {
             den = parseInt(casti[0]);
             mIndex = parseInt(casti[1]);
         }
     }
 
-    // B) HLEDÁNÍ PODLE TEXTOVÉHO DATA (17. března)
-    if (mIndex === -1 && /\d/.test(dotaz)) {
-        let denMatch = dotaz.match(/\d+/);
-        if (denMatch) den = parseInt(denMatch[0]);
+    // B) HLEDÁNÍ TEXTOVÉHO DATA (funguje pro: 7. března, 7.března, 7 březen, 7březen)
+    if (mIndex === -1) {
         for (let i = 0; i < 12; i++) {
-            if (dotaz.includes(MESICE_PAD[i]) || dotaz.includes(MESICE_NOM[i])) {
+            if (dotazBezTecek.includes(MESICE_PAD[i]) || dotazBezTecek.includes(MESICE_NOM[i])) {
                 mIndex = i + 1;
+                // Vytáhneme číslo dne z dotazu
+                let denMatch = dotazBezTecek.match(/\d+/);
+                if (denMatch) den = parseInt(denMatch[0]);
                 break;
             }
         }
     }
 
-    // VYHODNOCENÍ DATA
+    // VYHODNOCENÍ A VÝPIS
     if (mIndex !== -1 && mIndex <= 12 && den !== -1) {
         let klic = `${mIndex}-${den}`;
         let jmeno = SVATKY_DATA[klic];
@@ -115,11 +119,11 @@ function provedVyhledavani() {
             vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
         }
     } 
-    // C) HLEDÁNÍ PODLE JMÉNA
-    else if (!/\d/.test(dotaz)) {
+    // C) HLEDÁNÍ PODLE JMÉNA (pokud v dotazu nejsou čísla)
+    else if (!/\d/.test(originalniDotaz)) {
         let nalezena = [];
         for (let klic in SVATKY_DATA) {
-            if (SVATKY_DATA[klic].toLowerCase().includes(dotaz)) {
+            if (SVATKY_DATA[klic].toLowerCase().includes(originalniDotaz)) {
                 let [m, d] = klic.split('-');
                 let jmeno = SVATKY_DATA[klic];
                 let jmenoFinal = jmeno.charAt(0).toUpperCase() + jmeno.slice(1);
