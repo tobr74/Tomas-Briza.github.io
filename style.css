@@ -1,26 +1,23 @@
-/* STYL PRO TLAČÍTKO SVÁTKU V KALENDÁŘI */
-#svatek-vpravo {
-    display: inline-block;        /* Důležité: podbarví se jen plocha kolem textu */
-    padding: 6px 15px;            /* Prostor mezi textem a okrajem */
-    background-color: rgba(0, 0, 0, 0.1); /* Jemné podbarvení viditelné hned (nastav si 0.05 pro světlejší) */
-    border-radius: 20px;          /* Velký rádius pro "pilulkový" vzhled */
-    cursor: pointer;              /* Ukáže ruku při najetí */
-    transition: background-color 0.3s ease, transform 0.2s; /* Plynulý přechod */
-    border: 1px solid rgba(0, 0, 0, 0.05); /* Velmi jemný okraj */
-    margin: 5px;                  /* Mezera od okolních prvků */
-    font-weight: 500;             /* Trochu výraznější písmo */
+/* Společný styl pro klikatelná tlačítka v hlavičce */
+.klikaci-polozka {
+    display: inline-block;
+    padding: 6px 15px;
+    background-color: rgba(0, 0, 0, 0.04); /* Světlé podbarvení hned po načtení */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    user-select: none;
+    margin: 5px;
 }
 
-/* EFEKT PŘI NAJETÍ MYŠÍ */
-#svatek-vpravo:hover {
-    background-color: rgba(0, 0, 0, 0.2); /* Ztmavnutí při najetí na kraj/plochu */
-    transform: translateY(-1px);          /* Jemné nadzvednutí pro pocit klikatelnosti */
+.klikaci-polozka:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
 }
 
-/* EFEKT PŘI KLIKNUTÍ */
-#svatek-vpravo:active {
-    background-color: rgba(0, 0, 0, 0.3); /* Ještě o něco tmavší při stisknutí */
-    transform: translateY(0px);           /* Vrácení zpět při stisku */
+.klikaci-polozka:active {
+    transform: translateY(0px);
 }
 
 /* Styly pro vyskakovací okno */
@@ -29,21 +26,14 @@
     display: none; 
     position: fixed; 
     z-index: 1000; 
-    left: center; 
+    left: 0; 
     top: 0;
     width: 100%; 
     height: 100%; 
     background-color: rgba(0,0,0,0.8);
     /* Flexbox zajistí centrování obsahu horizontálně i vertikálně */
-    display: none;
-    justify-content: center; 
-    align-items: center;
-    /* Tyto 3 řádky zajistí dokonalý střed na výšku i šířku */
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column;
-    overflow-y: auto; /* Kdyby bylo okno na výšku větší než mobil, půjde posunout */
-    padding: 10px;
+    overflow-y: auto; /* Důležité pro dlouhé seznamy jmen */
+    padding-top: 20px; /* Okno bude 20px od vrchu */
 }
 
 /* Samotné bílé okno */
@@ -54,12 +44,13 @@
     width: 85%; /* Na mobilu zabere víc místa */
     max-width: 350px; /* Na počítači zůstane malé */
     text-align: center; 
-    font-family: sans-serif;
+    margin: 0 auto 40px auto; /* Centrování horizontálně a mezera dole */
+    position: relative;
     box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    position: relative; /* Pro správné umístění křížku */
+    /* position: relative; /* Pro správné umístění křížku */
     
-    /* Zajištění, že se okno nezasekne nahoře/dole */
-    margin: auto; 
+    /* Zajištění, že se okno nezasekne nahoře/dole 
+    margin: auto; */
 }
 
 /* Křížek pro zavření */
@@ -140,7 +131,7 @@
     height: 50px; 
     background: #007bff; 
     border-radius: 50%; 
-    margin: 10px auto 16px; /* Normální margin místo záporného */
+    margin: 40px auto 16px; /* Normální margin místo záporného */
     
     /* Vycentrování textu uvnitř */
     display: flex;
@@ -148,7 +139,7 @@
     justify-content: center;
     
     /* Animace */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 3);
     cursor: pointer;
     user-select: none;
 }

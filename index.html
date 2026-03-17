@@ -12,10 +12,14 @@
 <div id="moje-okno" class="modal">
     <div class="modal-obsah">
         <span class="zavrit">&times;</span>
-        <h2>Vyhledat svátek</h2>
-        <p>Zadej jméno (např. Tomáš nebo tomáš) <br> nebo datum (např. 7. března nebo 7.3.)</p>
-        <input type="text" id="vstup-hledani" placeholder="Napiš sem...">
+        
+        <!-- TYTO DVA ŘÁDKY JSOU KLÍČOVÉ PRO PŘEPISOVÁNÍ TEXTU -->
+        <h3 id="nadpis-okna">Vyhledat svátek</h3>
+        <p id="napoveda-okna">Zadej jméno nebo datum</p>
+        
+        <input type="text" id="vstup-hledani" placeholder="Jméno nebo datum">
         <button id="tlacitko-hledat">Vyhledat</button>
+        
         <div id="vysledek-hledani"></div>
     </div>
 </div>

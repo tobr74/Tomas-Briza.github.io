@@ -1,4 +1,4 @@
-// 1. KOMPLETNÍ DATABÁZE SVÁTKŮ
+// KOMPLETNÍ DATABÁZE SVÁTKŮ
 const SVATKY_DATA = {
     "1-1": "Nový rok", "1-2": "Karina", "1-3": "Radmila", "1-4": "Diana", "1-5": "Dalimil", "1-6": "Tři králové", "1-7": "Vilma", "1-8": "Čestmír", "1-9": "Vladan", "1-10": "Břetislav", "1-11": "Bohdana", "1-12": "Pravoslav", "1-13": "Edita", "1-14": "Radovan", "1-15": "Alice", "1-16": "Ctirad", "1-17": "Drahoslav", "1-18": "Vladislav", "1-19": "Doubravka", "1-20": "Ilona", "1-21": "Běla", "1-22": "Slavomír", "1-23": "Zdeněk", "1-24": "Milena", "1-25": "Miloš", "1-26": "Zora", "1-27": "Ingrid", "1-28": "Otýlie", "1-29": "Zdislava", "1-30": "Robin", "1-31": "Marika",
     "2-1": "Hynek", "2-2": "Nela", "2-3": "Blažej", "2-4": "Jarmila", "2-5": "Dobromila", "2-6": "Vanda", "2-7": "Veronika", "2-8": "Milada", "2-9": "Apolena", "2-10": "Mojmír", "2-11": "Božena", "2-12": "Slavěna", "2-13": "Věnceslav", "2-14": "Valentýn", "2-15": "Jiřina", "2-16": "Ljuba", "2-17": "Miloslava", "2-18": "Gizela", "2-19": "Patrik", "2-20": "Oldřich", "2-21": "Lenka", "2-22": "Petr", "2-23": "Svatopluk", "2-24": "Matěj", "2-25": "Liliana", "2-26": "Dorota", "2-27": "Alexandr", "2-28": "Lumír", "2-29": "Horymír",
@@ -14,147 +14,185 @@ const SVATKY_DATA = {
     "12-1": "Iva", "12-2": "Blanka", "12-3": "Svatoslav", "12-4": "Barbora", "12-5": "Jitka", "12-6": "Mikuláš", "12-7": "Ambrož", "12-8": "Květoslava", "12-9": "Vratislav", "12-10": "Julie", "12-11": "Dana", "12-12": "Simona", "12-13": "Lucie", "12-14": "Lýdie", "12-15": "Radana", "12-16": "Albína", "12-17": "Daniel", "12-18": "Miloslav", "12-19": "Ester", "12-20": "Dagmar", "12-21": "Natálie", "12-22": "Šimon", "12-23": "Vlasta", "12-24": "Adam a Eva", "12-25": "Boží hod", "12-26": "Štěpán", "12-27": "Žaneta", "12-28": "Bohumila", "12-29": "Judita", "12-30": "David", "12-31": "Silvestr"
 };
 
-// 2. POMOCNÉ PROMĚNNÉ
-let posledniDen = -1;
+// ==========================================================
+// 1. POMOCNÉ PROMĚNNÉ
+// ==========================================================
+let posledniDen = -1; // Kontroluje, jestli už nastal nový den, aby se kalendář zbytečně nepřekresloval
+let rezimOkna = "";    // Pamatuje si, jestli uživatel klikl na datum (vlevo) nebo svátek (vpravo)
+
+// Seznamy měsíců pro převod textu (např. "března") na číslo (3)
 const MESICE_PAD = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
 const MESICE_NOM = ["leden", "únor", "březen", "duben", "květen", "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec"];
 
-// 3. HLAVNÍ FUNKCE HODIN A KALENDÁŘE
+// ==========================================================
+// 2. HLAVNÍ FUNKCE HODIN A KALENDÁŘE
+// ==========================================================
 function aktualizujCasAKalendar() {
     const nyni = new Date();
     const dnesniDen = nyni.getDate();
     const dnesniMesic = nyni.getMonth() + 1;
     
+    // Aktualizace času uprostřed vizitky
     const hodinyElem = document.getElementById('hodiny-stred');
-    if (hodinyElem) {
-        hodinyElem.innerText = nyni.toLocaleTimeString('cs-CZ');
-    }
+    if (hodinyElem) hodinyElem.innerText = nyni.toLocaleTimeString('cs-CZ');
 
+    // Pokud se změnil den (nebo se stránka právě načetla)
     if (dnesniDen !== posledniDen) {
         posledniDen = dnesniDen;
+        
+        // Nastavení datumu vlevo + přidání klikacího efektu
         const datumElem = document.getElementById('datum-vlevo');
         if (datumElem) {
             datumElem.innerText = nyni.toLocaleDateString('cs-CZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            datumElem.classList.add('klikaci-polozka'); 
+            datumElem.onclick = () => otevriOkno('datum'); // Nastaví režim pro hledání dne v týdnu
         }
         
+        // Nastavení svátku vpravo + přidání klikacího efektu
         const svatekElem = document.getElementById('svatek-vpravo');
         if (svatekElem) {
             const klic = `${dnesniMesic}-${dnesniDen}`;
             svatekElem.innerText = "svátek má " + (SVATKY_DATA[klic] || "Neznámé jméno");
-            svatekElem.style.cursor = "pointer";
-            svatekElem.onclick = otevriOkno;
+            svatekElem.classList.add('klikaci-polozka');
+            svatekElem.onclick = () => otevriOkno('svatek'); // Nastaví režim pro hledání jmen
         }
     }
 }
 
-// 4. FUNKCE PRO VLASTNÍ MODÁLNÍ OKNO
-function otevriOkno() {
+// ==========================================================
+// 3. FUNKCE PRO OTEVŘENÍ OKNA
+// ==========================================================
+function otevriOkno(typ) {
+    rezimOkna = typ; 
     const modal = document.getElementById('moje-okno');
+    const vstup = document.getElementById('vstup-hledani');
+    const vysledek = document.getElementById('vysledek-hledani');
+    const nadpis = document.getElementById('nadpis-okna');
+    const napoveda = document.getElementById('napoveda-okna');
+
     if (modal) {
         modal.style.display = "block";
-        const vstup = document.getElementById('vstup-hledani');
         vstup.value = "";
-        document.getElementById('vysledek-hledani').innerText = "";
-        vstup.focus();
-    }
-}
+        vysledek.innerHTML = ""; // Pod tlačítkem bude po otevření prázdno
 
-// Zavření okna křížkem
-const krizek = document.querySelector('.zavrit');
-if (krizek) {
-    krizek.onclick = () => document.getElementById('moje-okno').style.display = "none";
-}
-
-// Zavření okna kliknutím mimo obsah
-window.onclick = (e) => {
-    const modal = document.getElementById('moje-okno');
-    if (e.target == modal) modal.style.display = "none";
-};
-
-// 5. LOGIKA VYHLEDÁVÁNÍ (Funkce vytažená zvlášť pro Enter i kliknutí)
-function provedVyhledavani() {
-    let originalniDotaz = document.getElementById('vstup-hledani').value.toLowerCase().trim();
-    let vysledekElem = document.getElementById('vysledek-hledani');
-    
-    // Vytvoříme si verzi dotazu bez teček pro snadnější hledání textu (např. "7. března" -> "7 března")
-    let dotazBezTecek = originalniDotaz.replace(/\./g, ' ');
-    
-    if (!originalniDotaz) {
-        vysledekElem.innerText = "Zadej prosím jméno nebo datum.";
-        return;
-    }
-
-    let mIndex = -1;
-    let den = -1;
-
-    // A) HLEDÁNÍ ČÍSELNÉHO DATA (např. 7.3. nebo 7.3)
-    if (originalniDotaz.includes('.') && /\d+\.\s*\d+/.test(originalniDotaz)) {
-        let casti = originalniDotaz.split('.').filter(x => x.trim() !== "");
-        if (casti.length >= 2) {
-            den = parseInt(casti[0]);
-            mIndex = parseInt(casti[1]);
-        }
-    }
-
-    // B) HLEDÁNÍ TEXTOVÉHO DATA (funguje pro: 7. března, 7.března, 7 březen, 7březen)
-    if (mIndex === -1) {
-        for (let i = 0; i < 12; i++) {
-            if (dotazBezTecek.includes(MESICE_PAD[i]) || dotazBezTecek.includes(MESICE_NOM[i])) {
-                mIndex = i + 1;
-                // Vytáhneme číslo dne z dotazu
-                let denMatch = dotazBezTecek.match(/\d+/);
-                if (denMatch) den = parseInt(denMatch[0]);
-                break;
-            }
-        }
-    }
-
-    // VYHODNOCENÍ A VÝPIS
-    if (mIndex !== -1 && mIndex <= 12 && den !== -1) {
-        let klic = `${mIndex}-${den}`;
-        let jmeno = SVATKY_DATA[klic];
-        if (jmeno) {
-            vysledekElem.innerText = `${den}. ${MESICE_PAD[mIndex-1]} má svátek: ${jmeno}`;
+        if (typ === 'datum') {
+            // Texty pro vyhledávání DNE V TÝDNU
+            nadpis.innerText = "Vyhledat den týdne\n podle datumu a roku";
+            napoveda.innerText = "Zadej datum a rok\n (např. 7. března 2026 nebo 7.3.2026)";
+            vstup.placeholder = "Napiš sem datum a rok";
         } else {
-            vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
+            // Texty pro vyhledávání SVÁTKU
+            nadpis.innerText = "Vyhledat svátek";
+            napoveda.innerText = "Zadej jméno (např. Tomáš nebo tomáš)\n nebo datum (např. 7. března. nebo 7.3.)";
+            vstup.placeholder = "Napiš sem jméno nebo datum";
+        }
+        
+        setTimeout(() => vstup.focus(), 100);
+    }
+}
+
+// ==========================================================
+// 4. LOGIKA VYHLEDÁVÁNÍ (Spustí se až po kliknutí na tlačítko)
+// ==========================================================
+function provedVyhledavani() {
+    let dotaz = document.getElementById('vstup-hledani').value.toLowerCase().trim();
+    let vysledekElem = document.getElementById('vysledek-hledani');
+    let dotazBezTecek = dotaz.replace(/\./g, ' '); // Odstraní tečky pro snadné hledání měsíců
+
+    if (!dotaz) return; // Pokud nic nenapsal, nic nedělej
+
+    // --- REŽIM A: HLEDÁNÍ DNE V TÝDNU ---
+    if (rezimOkna === 'datum') {
+        let cisla = dotaz.match(/\d+/g); // Vytáhne všechna čísla z textu
+        let rokMatch = dotaz.match(/\d{4}/); // Najde rok (4 číslice)
+
+        if (rokMatch && cisla && cisla.length >= 2) {
+            let rok = parseInt(rokMatch);
+            let den = parseInt(cisla[0]);
+            let mesic = parseInt(cisla[1]); // Předpoklad pro formát 7.3.
+
+            // Pokud je měsíc napsán slovem (např. "března")
+            for (let i = 0; i < 12; i++) {
+                if (dotazBezTecek.includes(MESICE_PAD[i]) || dotazBezTecek.includes(MESICE_NOM[i])) { 
+                    mesic = i + 1; break; 
+                }
+            }
+
+            const dObj = new Date(rok, mesic - 1, den);
+            if (!isNaN(dObj.getTime())) {
+                const denVTydnu = dObj.toLocaleDateString('cs-CZ', { weekday: 'long' });
+                vysledekElem.innerHTML = `Den <strong>${den}. ${MESICE_PAD[mesic-1]} ${rok}</strong><br>` +
+                                         `byl-a, je a nebo bude: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${denVTydnu}</span>`;
+            } else { 
+                vysledekElem.innerText = "Neexistující datum."; 
+            }
+        } else { 
+            vysledekElem.innerText = "Zadej datum i s rokem (např. 2026)."; 
         }
     } 
-    // C) HLEDÁNÍ PODLE JMÉNA (pokud v dotazu nejsou čísla)
-    else if (!/\d/.test(originalniDotaz)) {
-        let nalezena = [];
-        for (let klic in SVATKY_DATA) {
-            if (SVATKY_DATA[klic].toLowerCase().includes(originalniDotaz)) {
-                let [m, d] = klic.split('-');
-                let jmeno = SVATKY_DATA[klic];
-                let jmenoFinal = jmeno.charAt(0).toUpperCase() + jmeno.slice(1);
-                nalezena.push(`${jmenoFinal} má svátek ${d}. ${MESICE_PAD[parseInt(m)-1]}`);
+    // --- REŽIM B: HLEDÁNÍ SVÁTKU ---
+    else {
+        let mI = -1, d = -1;
+        // Zjištění, zda uživatel zadal číselné datum (7.3.)
+        if (dotaz.includes('.') && /\d+\.\s*\d+/.test(dotaz)) {
+            let c = dotaz.split('.').filter(x => x.trim() !== "");
+            if (c.length >= 2) { d = parseInt(c[0]); mI = parseInt(c[1]); }
+        }
+        // Zjištění textového data (7. března)
+        if (mI === -1) {
+            for (let i = 0; i < 12; i++) {
+                if (dotazBezTecek.includes(MESICE_PAD[i]) || dotazBezTecek.includes(MESICE_NOM[i])) {
+                    mI = i + 1; 
+                    let dm = dotazBezTecek.match(/\d+/); 
+                    if (dm) d = parseInt(dm[0]); 
+                    break;
+                }
             }
         }
-        vysledekElem.innerText = nalezena.length > 0 ? nalezena.join('\n') : "Jméno nebylo nalezeno.";
-    } else {
-        vysledekElem.innerText = "Zadej datum (např. 7.3. nebo 7. března) nebo jméno.";
+        // Výpis jména nebo seznamu jmen
+        if (mI !== -1 && d !== -1) {
+            let k = `${mI}-${d}`;
+            vysledekElem.innerText = SVATKY_DATA[k] ? `${d}. ${MESICE_PAD[mI-1]} má svátek:\n ${SVATKY_DATA[k]}` : "Nenalezeno.";
+        } else {
+            let n = [];
+            for (let k in SVATKY_DATA) {
+                if (SVATKY_DATA[k].toLowerCase().includes(dotaz)) {
+                    let [m, day] = k.split('-');
+                    n.push(`<strong>${SVATKY_DATA[k]}</strong> má svátek:<span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${day}.${MESICE_PAD[parseInt(m)-1]}</span>`);
+                }
+            }
+            vysledekElem.innerHTML = n.length > 0 ? n.join('<br>') : "Jméno nenalezeno.";
+        }
     }
 }
 
-// Přiřazení vyhledávání k tlačítku
-const tlacitkoHledat = document.getElementById('tlacitko-hledat');
-if (tlacitkoHledat) {
-    tlacitkoHledat.onclick = provedVyhledavani;
-}
+// ==========================================================
+// 5. OBSLUHA UDÁLOSTÍ
+// ==========================================================
+document.getElementById('tlacitko-hledat').onclick = provedVyhledavani;
 
-// OBSLUHA KLÁVESY ENTER
-const vstupHledani = document.getElementById('vstup-hledani');
-if (vstupHledani) {
-    vstupHledani.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            provedVyhledavani();
-        }
-    });
-}
+// Spuštění vyhledávání klávesou Enter
+document.getElementById('vstup-hledani').onkeypress = (e) => { 
+    if (e.key === 'Enter') provedVyhledavani(); 
+};
 
+// Zavření okna křížkem
+document.querySelector('.zavrit').onclick = () => {
+    document.getElementById('moje-okno').style.display = "none";
+};
+
+// Zavření okna kliknutím na tmavé pozadí
+window.onclick = (e) => { 
+    const modal = document.getElementById('moje-okno');
+    if (e.target == modal) modal.style.display = "none"; 
+};
+
+// ==========================================================
 // 6. START PROGRAMU
-setInterval(aktualizujCasAKalendar, 1000);
-aktualizujCasAKalendar();
+// ==========================================================
+setInterval(aktualizujCasAKalendar, 1000); // Hodiny běží každou vteřinu
+aktualizujCasAKalendar(); // Spustí se hned po načtení
+
 
 
 const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
