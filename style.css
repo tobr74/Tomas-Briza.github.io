@@ -151,19 +151,31 @@ h3.TB {
 }
 /* Efekt při najetí myší (hover) */
 .kruh:hover {
-  transform: scale(1.2); /* Pouze zvětšení o 20 % */
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); /* Zářivý stín zůstává */
-  filter: brightness(1.1); /* Rozjasnění zůstává */
+    transform: scale(1.2); /* Pouze zvětšení o 20 % */
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); /* Zářivý stín zůstává */
+    filter: brightness(1.1); /* Rozjasnění zůstává */
 }
 .kruh:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }
 h1.jmeno {
     margin: 0px; 
-    margin-top: 16px; 
+    margin-top: 0px; 
     color: #333;
     font-weight: bold;
     font-size: 35px;
+
+/* ANIMACE */
+    display: inline-block; /* Nutné, aby se prvek mohl otáčet kolem své osy */ 
+    transition: transform 0.8s ease-in-out; /* Doba otočení (0.8 sekundy) a plynulost */
+    cursor: default; /* Změní kurzor, aby bylo jasné, že je prvek interaktivní */
+    backface-visibility: hidden; /* Zabrání rozmazání textu během rotace */
+}
+
+/* EFEKT PŘI NAJETÍ */
+h1.jmeno:hover {
+    transform: rotateY(360deg); /* Otočení o 360 stupňů kolem svislé osy Y */
+    font-size: 50px;
 }
 p.programator {
     color: #666; 
@@ -374,6 +386,7 @@ li div {
   .vizitka-cast {
     width: 40%;
     text-align: center;
+    margin-top: -30px;
   }
 
   .container {

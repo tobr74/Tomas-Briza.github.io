@@ -14,19 +14,15 @@ const SVATKY_DATA = {
     "12-1": "Iva", "12-2": "Blanka", "12-3": "Svatoslav", "12-4": "Barbora", "12-5": "Jitka", "12-6": "Mikuláš", "12-7": "Ambrož", "12-8": "Květoslava", "12-9": "Vratislav", "12-10": "Julie", "12-11": "Dana", "12-12": "Simona", "12-13": "Lucie", "12-14": "Lýdie", "12-15": "Radana", "12-16": "Albína", "12-17": "Daniel", "12-18": "Miloslav", "12-19": "Ester", "12-20": "Dagmar", "12-21": "Natálie", "12-22": "Šimon", "12-23": "Vlasta", "12-24": "Adam a Eva", "12-25": "Boží hod", "12-26": "Štěpán", "12-27": "Žaneta", "12-28": "Bohumila", "12-29": "Judita", "12-30": "David", "12-31": "Silvestr"
 };
 
-// ==========================================================
 // 1. POMOCNÉ PROMĚNNÉ
-// ==========================================================
 let posledniDen = -1; // Kontroluje, jestli už nastal nový den, aby se kalendář zbytečně nepřekresloval
-let rezimOkna = "";    // Pamatuje si, jestli uživatel klikl na datum (vlevo) nebo svátek (vpravo)
+let rezimOkna = ""; // Pamatuje si, jestli uživatel klikl na datum (vlevo) nebo svátek (vpravo)
 
 // Seznamy měsíců pro převod textu (např. "března") na číslo (3)
 const MESICE_PAD = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
 const MESICE_NOM = ["leden", "únor", "březen", "duben", "květen", "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec"];
 
-// ==========================================================
 // 2. HLAVNÍ FUNKCE HODIN A KALENDÁŘE
-// ==========================================================
 function aktualizujCasAKalendar() {
     const nyni = new Date();
     const dnesniDen = nyni.getDate();
@@ -59,9 +55,7 @@ function aktualizujCasAKalendar() {
     }
 }
 
-// ==========================================================
 // 3. FUNKCE PRO OTEVŘENÍ OKNA
-// ==========================================================
 function otevriOkno(typ) {
     rezimOkna = typ; 
     const modal = document.getElementById('moje-okno');
@@ -91,9 +85,7 @@ function otevriOkno(typ) {
     }
 }
 
-// ==========================================================
 // 4. LOGIKA VYHLEDÁVÁNÍ (Spustí se až po kliknutí na tlačítko)
-// ==========================================================
 function provedVyhledavani() {
     let dotaz = document.getElementById('vstup-hledani').value.toLowerCase().trim();
     let vysledekElem = document.getElementById('vysledek-hledani');
@@ -152,23 +144,31 @@ function provedVyhledavani() {
         // Výpis jména nebo seznamu jmen
         if (mI !== -1 && d !== -1) {
             let k = `${mI}-${d}`;
-            vysledekElem.innerText = SVATKY_DATA[k] ? `${d}. ${MESICE_PAD[mI-1]} má svátek:\n ${SVATKY_DATA[k]}` : "Nenalezeno.";
+            let jmeno = SVATKY_DATA[k];
+            
+            if (jmeno) {
+                // Formátování: Tučné datum + modré jméno pod ním (shodné s hledáním podle jména)
+                vysledekElem.innerHTML = `<strong>${d}. ${MESICE_PAD[mI-1]}</strong> má svátek: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${jmeno}</span>`;
+            } else {
+                vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
+            }
         } else {
             let n = [];
             for (let k in SVATKY_DATA) {
                 if (SVATKY_DATA[k].toLowerCase().includes(dotaz)) {
                     let [m, day] = k.split('-');
-                    n.push(`<strong>${SVATKY_DATA[k]}</strong> má svátek:<span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${day}.${MESICE_PAD[parseInt(m)-1]}</span>`);
+                    let jmenoFinal = SVATKY_DATA[k].charAt(0).toUpperCase() + SVATKY_DATA[k].slice(1);
+                    
+                    // Tvůj stávající formát pro hledání podle jména (zůstává stejný)
+                    n.push(`<strong>${jmenoFinal}</strong> má svátek:<span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${day}. ${MESICE_PAD[parseInt(m)-1]}</span>`);
                 }
             }
-            vysledekElem.innerHTML = n.length > 0 ? n.join('<br>') : "Jméno nenalezeno.";
+            vysledekElem.innerHTML = n.length > 0 ? n.join('<br><br>') : "Jméno nebylo nalezeno.";
         }
     }
 }
 
-// ==========================================================
 // 5. OBSLUHA UDÁLOSTÍ
-// ==========================================================
 document.getElementById('tlacitko-hledat').onclick = provedVyhledavani;
 
 // Spuštění vyhledávání klávesou Enter
@@ -187,9 +187,7 @@ window.onclick = (e) => {
     if (e.target == modal) modal.style.display = "none"; 
 };
 
-// ==========================================================
 // 6. START PROGRAMU
-// ==========================================================
 setInterval(aktualizujCasAKalendar, 1000); // Hodiny běží každou vteřinu
 aktualizujCasAKalendar(); // Spustí se hned po načtení
 
