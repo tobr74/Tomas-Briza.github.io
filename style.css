@@ -1,3 +1,36 @@
+/* Styl pro interaktivní hodiny */
+#hodiny-stred {
+    display: inline-block;
+    padding: 0px 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Průhledné pozadí */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Jemná kontura */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-variant-numeric: tabular-nums; /* Zabrání poskakování čísel */
+    user-select: none;
+}
+
+#hodiny-stred:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Styl pro volbu v modálním okně */
+.volba-hodin {
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.volba-hodin:hover {
+    border-color: #007bff;
+    background-color: #f0f7ff;
+}
+
 /* Společný styl pro klikatelná tlačítka v hlavičce */
 .klikaci-polozka {
     display: inline-block;
@@ -160,7 +193,7 @@ h3.TB {
 }
 h1.jmeno {
     margin: 0px; 
-    margin-top: 0px; 
+    margin-top: -6px; 
     color: #333;
     font-weight: bold;
     font-size: 35px;
@@ -176,6 +209,7 @@ h1.jmeno {
 h1.jmeno:hover {
     transform: rotateY(360deg); /* Otočení o 360 stupňů kolem svislé osy Y */
     font-size: 50px;
+    margin-top: -10px;
 }
 p.programator {
     color: #666; 
@@ -386,7 +420,7 @@ li div {
   .vizitka-cast {
     width: 40%;
     text-align: center;
-    margin-top: -30px;
+    margin-top: -45px;
   }
 
   .container {

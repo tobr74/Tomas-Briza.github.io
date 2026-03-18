@@ -22,67 +22,113 @@ let rezimOkna = ""; // Pamatuje si, jestli uživatel klikl na datum (vlevo) nebo
 const MESICE_PAD = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
 const MESICE_NOM = ["leden", "únor", "březen", "duben", "květen", "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec"];
 
+// POMOCNÉ PROMĚNNÉ PRO HODINY
+// Načte uložené nastavení z paměti prohlížeče (pokud neexistuje, nastaví vteřiny jako zapnuté)
+let zobrazovatVteriny = localStorage.getItem('nastaveniHodin') !== 'bez-vterin';
+
+// Funkce, která zajistí formát hodin bez úvodní nuly a minuty/vteřiny s nulou
+function formatujCas(datum) {
+    let h = datum.getHours(); // Hodiny (systémově bez nuly, např. 6)
+    let m = datum.getMinutes().toString().padStart(2, '0'); // Minuty (vždy 2 místa)
+    let s = datum.getSeconds().toString().padStart(2, '0'); // Vteřiny (vždy 2 místa)
+    
+    return zobrazovatVteriny ? `${h}:${m}:${s}` : `${h}:${m}`;
+}
+
 // 2. HLAVNÍ FUNKCE HODIN A KALENDÁŘE
 function aktualizujCasAKalendar() {
     const nyni = new Date();
     const dnesniDen = nyni.getDate();
     const dnesniMesic = nyni.getMonth() + 1;
     
-    // Aktualizace času uprostřed vizitky
+    // HODINY: Aktualizace času uprostřed vizitky
     const hodinyElem = document.getElementById('hodiny-stred');
-    if (hodinyElem) hodinyElem.innerText = nyni.toLocaleTimeString('cs-CZ');
+    if (hodinyElem) {
+        hodinyElem.innerText = formatujCas(nyni);
+        // Nastavíme kliknutí na hodiny, pokud ještě není nastaveno
+        if (!hodinyElem.onclick) {
+            hodinyElem.onclick = () => otevriOkno('hodiny');
+        }
+    }
 
-    // Pokud se změnil den (nebo se stránka právě načetla)
+    // Pokud se změnil den (překreslení kalendáře a svátku)
     if (dnesniDen !== posledniDen) {
         posledniDen = dnesniDen;
         
-        // Nastavení datumu vlevo + přidání klikacího efektu
+        // Nastavení datumu vlevo + klikací efekt
         const datumElem = document.getElementById('datum-vlevo');
         if (datumElem) {
             datumElem.innerText = nyni.toLocaleDateString('cs-CZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
             datumElem.classList.add('klikaci-polozka'); 
-            datumElem.onclick = () => otevriOkno('datum'); // Nastaví režim pro hledání dne v týdnu
+            datumElem.onclick = () => otevriOkno('datum');
         }
         
-        // Nastavení svátku vpravo + přidání klikacího efektu
+        // Nastavení svátku vpravo + klikací efekt
         const svatekElem = document.getElementById('svatek-vpravo');
         if (svatekElem) {
             const klic = `${dnesniMesic}-${dnesniDen}`;
             svatekElem.innerText = "svátek má " + (SVATKY_DATA[klic] || "Neznámé jméno");
             svatekElem.classList.add('klikaci-polozka');
-            svatekElem.onclick = () => otevriOkno('svatek'); // Nastaví režim pro hledání jmen
+            svatekElem.onclick = () => otevriOkno('svatek');
         }
     }
 }
 
 // 3. FUNKCE PRO OTEVŘENÍ OKNA
 function otevriOkno(typ) {
-    rezimOkna = typ; 
+    rezimOkna = typ;
     const modal = document.getElementById('moje-okno');
-    const vstup = document.getElementById('vstup-hledani');
-    const vysledek = document.getElementById('vysledek-hledani');
     const nadpis = document.getElementById('nadpis-okna');
     const napoveda = document.getElementById('napoveda-okna');
+    const vstup = document.getElementById('vstup-hledani');
+    const vysledek = document.getElementById('vysledek-hledani');
+    const tlacitkoHledat = document.getElementById('tlacitko-hledat');
 
-    if (modal) {
-        modal.style.display = "block";
-        vstup.value = "";
-        vysledek.innerHTML = ""; // Pod tlačítkem bude po otevření prázdno
+    if (!modal) return;
+    
+    // Zobrazíme okno a vyčistíme předchozí výsledky
+    modal.style.display = "block";
+    vysledek.innerHTML = "";
+    vstup.value = "";
 
-        if (typ === 'datum') {
-            // Texty pro vyhledávání DNE V TÝDNU
-            nadpis.innerText = "Vyhledat den týdne\n podle datumu a roku";
-            napoveda.innerText = "Zadej datum a rok\n (např. 7. března 2026 nebo 7.3.2026)";
-            vstup.placeholder = "Napiš sem datum a rok";
-        } else {
-            // Texty pro vyhledávání SVÁTKU
-            nadpis.innerText = "Vyhledat svátek";
-            napoveda.innerText = "Zadej jméno (např. Tomáš nebo tomáš)\n nebo datum (např. 7. března. nebo 7.3.)";
-            vstup.placeholder = "Napiš sem jméno nebo datum";
-        }
-        
+    // REŽIM HODINY
+    if (typ === 'hodiny') {
+        nadpis.innerText = "Nastavení zobrazení času";
+        napoveda.innerText = "Vyberte si, jak chcete hodiny zobrazovat:";
+        vstup.style.display = "none"; // Skryje vstupní pole
+        if (tlacitkoHledat) tlacitkoHledat.style.display = "none"; // Skryje tlačítko hledat
+
+        vysledek.innerHTML = `
+            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(true)">S vteřinami (14:05:01)</div>
+            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(false)">Bez vteřin (14:05)</div>
+        `;
+    } 
+    // REŽIM DATUM
+    else if (typ === 'datum') {
+        vstup.style.display = "block";
+        if (tlacitkoHledat) tlacitkoHledat.style.display = "block";
+        nadpis.innerText = "Vyhledat den týdne\npodle datumu a roku";
+        napoveda.innerText = "Zadejte datum a rok\n(např. 7. března 2026 nebo 7.3.2026)";
+        vstup.placeholder = "Napište sem datum a rok";
+        setTimeout(() => vstup.focus(), 100);
+    } 
+    // REŽIM SVÁTEK
+    else if (typ === 'svatek') {
+        vstup.style.display = "block";
+        if (tlacitkoHledat) tlacitkoHledat.style.display = "block";
+        nadpis.innerText = "Vyhledat svátek";
+        napoveda.innerText = "Zadejte jméno (např. Tomáš nebo tomáš)\nnebo datum (např. 7. března nebo 7.3.)";
+        vstup.placeholder = "Napište sem jméno nebo datum";
         setTimeout(() => vstup.focus(), 100);
     }
+}
+
+// Funkce pro uložení volby formátu hodin
+function nastavFormatHodin(vteriny) {
+    zobrazovatVteriny = vteriny;
+    localStorage.setItem('nastaveniHodin', vteriny ? 's-vterinami' : 'bez-vterin');
+    document.getElementById('moje-okno').style.display = "none"; // Zavře okno
+    aktualizujCasAKalendar(); // Okamžitá aktualizace na stránce
 }
 
 // 4. LOGIKA VYHLEDÁVÁNÍ (Spustí se až po kliknutí na tlačítko)
@@ -119,7 +165,7 @@ function provedVyhledavani() {
                 vysledekElem.innerText = "Neexistující datum."; 
             }
         } else { 
-            vysledekElem.innerText = "Zadej datum i s rokem (např. 2026)."; 
+            vysledekElem.innerText = "Zadejte datum i s rokem\n (např. 7.3.2026)."; 
         }
     } 
     // --- REŽIM B: HLEDÁNÍ SVÁTKU ---
