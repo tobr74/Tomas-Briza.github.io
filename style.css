@@ -361,9 +361,11 @@ li div {
 .feedback-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 30px; /* Mezera od seznamu úkolů */
-    padding: 15px;
+    gap: 12px;
+    margin-top: 0px; /* Mezera od seznamu úkolů */
+    padding: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
     background: rgba(0, 0, 0, 0.05); /* Jemné pozadí pro odlišení */
     border-radius: 12px;
 }
@@ -373,13 +375,14 @@ li div {
 .feedback-form select, 
 .feedback-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     border: 2px solid #ddd;
-    border-radius: 8px; /* Zakulacené rohy jako u tvého boxu */
+    border-radius: 10px; /* Zakulacené rohy jako u tvého boxu */
     font-family: inherit;
-    font-size: 14px;
+    font-size: 12px;
     transition: border-color 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
+    margin-top: -5px;
 }
 
 /* Efekt při kliknutí do políčka (focus) */
@@ -401,6 +404,8 @@ li div {
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s, background 0.2s;
+    margin-top: -5px;
+    margin-bottom: 10px;
 }
 
 #odeslat-feedback:hover {
