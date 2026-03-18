@@ -433,8 +433,8 @@ novyUkol.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') pridatUkol();
 });
 
-// Pole s citáty
-const citaty = [
+// Pole s moudry
+const moudra = [
   "Programování je 10 % psaní kódu a 90 % zírání do monitoru.",
   "Chyba není v kódu, chyba je v uživateli.",
   "Včera mi kód fungoval, dneska jsem na nic nesáhl a nefunguje.",
@@ -445,10 +445,10 @@ const citaty = [
   "Dvakrát měř, jednou Ctrl+C."
 ];
 
-// Náhodný výběr citátu z pole s citáty
-function ukazCitat() {
-  const index = Math.floor(Math.random() * citaty.length);
-  alert(citaty[index]);
+// Náhodný výběr moudra z pole s moudry
+function ukazMoudro() {
+  const index = Math.floor(Math.random() * moudra.length);
+  alert(moudra[index]);
 }
 
 // Funkce klikni, přičítá každé kliknutí do skore
@@ -472,5 +472,140 @@ function klikni() {
     skore = 0; // Restart
     document.getElementById('pocitadlo').innerText = `Skóre: ${skore}`;
   }
+}
+// Pole s citaty
+const citaty = [
+'„Život je takový, jaký si ho uděláme.“',
+'„Každý den je nová šance začít znovu.“',
+'„Život není o čekání, až bouře přejde, ale o učení se tancovat v dešti.“',
+'„Není důležité, kolikrát spadneš, ale kolikrát vstaneš.“',
+'„Každé ráno je nový začátek a příležitost být lepší než včera.“',
+'„Život je příliš krátký na to, abys zůstal stát.“',
+'„Nečekej na správný okamžik – vytvoř si ho.“',
+'„Věci, které nás děsí, často vedou k největšímu růstu.“',
+'„Život je jako kniha – každý den je nová stránka.“',
+'„Každý moment má svůj smysl – stačí ho najít.“',
+'„Neboj se selhání – boj se toho, že to nikdy nezkusíš.“',
+'„Změna je těžká na začátku, chaotická uprostřed a krásná na konci.“',
+'„Skutečná síla není ve svalech, ale ve vytrvalosti.“',
+'„Když padáš, nauč se létat.“',
+'„Síla není v tom, že nikdy nepadneš, ale že vždy znovu vstaneš.“',
+'„Pamatuj, že i nejtěžší chvíle tě formují v silnějšího člověka.“',
+'„Za každým snem se skrývá odvaha zkusit to znovu.“',
+'„Největší úspěchy začínají nejistotou.“',
+'„Tvůj největší limit je ten, který si nastavíš sám.“',
+'„Žij tak, aby si tě tvé sny pamatovaly.“',
+'„Nejdůležitější není, co máme, ale koho máme.“',
+'„Lidé zapomenou, co jsi řekl, ale nikdy nezapomenou, jak se s tebou cítili.“',
+'„Moudrost přichází z chyb, které si dovolíš udělat.“',
+'„Člověk se učí celý život, a přesto umírá nevědomý.“',
+'„Někdy je mlčení tou nejhlasitější odpovědí.“',
+'„Ne každé ticho je prázdné – někdy v něm najdeš odpovědi.“',
+'„Život je otázkou rovnováhy – mezi tím, co pustíš, a co si necháš.“',
+'„Nesnaž se být perfektní – buď opravdový.“',
+'„Nejsilnější lidé jsou ti, kteří se usmívají přes slzy.“',
+'„Nejdůležitější rozhodnutí děláme v nejtěžších chvílích.“',
+'„Život je série malých zázraků – neváhej je vidět.“',
+'„Každý den je dar – proto se mu říká přítomnost.“',
+'„S každým koncem přichází nový začátek.“',
+'„Užívej si malé věci – jednou si uvědomíš, že byly těmi největšími.“',
+'„Někdy musíš ztratit směr, abys našel svou cestu.“',
+'„Krása života je v jeho nedokonalosti.“',
+'„Život je odrazem toho, jak se rozhodneš na něj dívat.“',
+'„Zázraky se dějí těm, kteří na ně věří.“',
+'„Nejde o to mít čas – jde o to si ho udělat.“',
+'„I malý krok vpřed je stále krok.“',
+'„Smysl života nenajdeš, musíš ho vytvořit.“',
+'„Nejde o to přežít – jde o to skutečně žít.“',
+'„Život není měřen počtem nádechů, ale momenty, které nám berou dech.“',
+'„Najdi, co miluješ, a nech to být tvým životem.“',
+'„Život není cíl – je to cesta, kterou jdeš každý den.“',
+'„To, co děláš pro druhé, definuje tvůj smysl.“',
+'„Život je otázkou voleb, ne náhod.“',
+'„Smysl života je milovat a být milován.“',
+'„Opravdové bohatství není v penězích, ale v prožitcích.“',
+'„Někdy právě ticho přináší největší odpovědi.“'
+];
+
+// Náhodný výběr citátu z pole s citaty
+function ukazCitat() {
+  const index = Math.floor(Math.random() * citaty.length);
+  alert(citaty[index]);
+}
+
+// Pole s citaty
+const vtipy = [
+'„Mami, dáš mi prosím 50 korun pro starého a chudého pána?"\n\
+„Ty jsi moc hodný, ale kde vlastně je?"\n\
+„Tady na rohu ulice, prodává zmrzlinu."',
+'„Pane strážmistře, z vás by byl lepší zločinec než policista.“\n\
+„A proč, pane kapitáne?“\n\
+„Po vaší práci nikdy není ani stopa!“',
+'„Drahoušku, co říkáš na to, že bychom se vzali na Vánoce?“\n\
+„Prosím tě, přestaň. Proč si kazit svátky?“',
+'Budeme mít krásné Vánoce – dám ženě tisícovku, ta ji dá babičce, ta zase dědečkovi, a ten ji dá mně. Já ji potom vrátím sousedovi, od kterého jsem si ji půjčil, a jsme všichni spokojeni.',
+'Ve škole:\n\
+Učitel: „Kolik jsou 4 000 zapsané římskými čísly?“\n\
+Žák: „Mmmm…“\n\
+Učitel: „Skvěle, to máte na výbornou.“',
+'Káva vyřeší všechno…\n\
+Jsi unavená? Dej si kávu!\n\
+Je ti zima? Dej si kávu!\n\
+Štve tě někdo? Vylej mu ji na hlavu!',
+'Mladý Kohn přijde za rabínem a ptá se ho na radu:\n\
+„Rabi, naskytla se mi nevěsta, co mám dělat?“\n\
+„Ožeň se.“\n\
+„Jenže ona se mi nelíbí, je ošklivá, kulhá…“\n\
+„Tak se nežeň.“\n\
+„Jenže ona je ze skvělé rodiny, její otec je majitel banky, hned tam můžu začít pracovat jako ředitel…, taková příležitost se mi už nikdy v životě nenaskytne.“\n\
+„Tak se ožeň.“\n\
+\n\
+Nespokojený Kohn začne lamentovat:\n\
+„Rebe, já jsem za vámi přišel s tím, že mi poradíte, a vy v jednu chvíli říkáte ‚ožeň se‘, pak zase ‚nežeň se‘, co je tohle za radu?“\n\
+„Tak já se budu muset ponořit do svatých písem, přijď za čtrnáct dní.“\n\
+\n\
+Za čtrnáct dní přijde Kohn a netrpělivě se ptá:\n\
+„Tak co, rabi, máte pro mě radu? Ze svatých písem?“\n\
+„Ano, mám – nech se pokřtít.“\n\
+„Pokřtít? A jak se tím vyřeší moje dilema s nevěstou?“\n\
+„No to já nevím, ale budeš s tím chodit otravovat někoho jinýho.“',
+'Muž přijde do práce a kolega se ho zeptá:\n\
+„Jardo, co si myslíš, že dostaneš k Vánocům?“\n\
+„No, asi chlapa. Včera jsem ho našel u manželky ve skříni.“',
+'Rada do života: Když budeš spát do oběda, ušetříš za snídani.',
+'„Přátelé, většinou se nechlubím drahými výlety a cestami, ale pro jednou snad prominete: Právě jsem se vrátil z benzinky!“',
+'Ptá se paní železničáře:\n\
+„Kdy pojede vlak na Písek?“\n\
+„Jo, paninko, to neví nikdo… Zatím tady jezdí všechny motoráky na naftu.“',
+'Manžel vstal z křesla a šel do kuchyně.\n\
+V tu chvíli spadly těžké hodiny přesně na místo, kde předtím seděl.\n\
+Manželka jen suše řekla: „Ty hodiny se pořád opožďují!“',
+'Muž se ptá v předstihu manželky, co by si přála k Vánocům. Ona mu pokaždé odpovídá: „Nevím.“\n\
+\n\
+Uběhne pár týdnů… oba sedí u vánočního stromečku a rozbalují dárečky. Žena se pustí do vybalování, když tu na ni z lesklého papíru vypadne špinavý kus plechu.\n\
+„Co je to?“ nechápe manželka.\n\
+„Nevím,“ odpoví muž.',
+'Pokaždé, když si jdu koupit rum, k tomu přihodím mouku, aby to vypadalo, že je to na pečení. Nechcete někdo ode mě 25 kg mouky?',
+'Potká medvěd zajíce a ten mu říká: „Čau medvěde, pozdravuje tě Hroutil.“\n\
+„Jakej Hroutil?“\n\
+„Ten, co ti zadkem kroutil!“\n\
+Zajíc se strašně chechtá a uteče.\n\
+\n\
+Za nějakou dobu se opět potkají…\n\
+„Čau medvěde. Co dělá Hroutil?“\n\
+„Jakej Hroutil?“\n\
+„Ten, co ti zadkem kroutil!“ vysměje se mu zajíc a uteče.\n\
+\n\
+Medvěda už to štve, a tak se jde zeptat lišky, jak má zajíce dostat.\n\
+Liška mu říká: „Tak mu to taky udělej. Řekni mu třeba: Pozdravuje tě Hacil a až se zeptá, jakej Hacil, tak řekni: Ten, co tě do hlavy bacil.“\n\
+„To je skvělý, díky, fakt, na to bych nepřišel,“ říká medvěd a jde za zajícem: „Čau zajíci, pozdravuje tě Hacil.“\n\
+„Já vím, říkal mi to Hroutil.“\n\
+„Jakej Hroutil?“'
+];
+
+// Náhodný výběr vtipu z pole s vtipy
+function ukazVtip() {
+  const index = Math.floor(Math.random() * vtipy.length);
+  alert(vtipy[index]);
 }
 

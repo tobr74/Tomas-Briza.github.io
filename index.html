@@ -49,18 +49,32 @@
       </div>
 
       <!-- SEKCE MOUDRA A HRY -->
-      <div id="rady-hry" style="margin-top: 20px;">
+      <div id="moudra-hry" style="margin-top: 10px;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <h1 class="moudra" style="font-size: 14px; margin-bottom: 5px;">Moudra programátora</h1>
-            <button onclick="ukazCitat()">Chci radu!</button>
+            <h1 class="moudra" style="font-size: 14px; margin-bottom: 0px;">Moudra programátora</h1>
+            <button onclick="ukazMoudro()">Chci radu!</button>
           </div>
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <h1 id="pocitadlo" style="font-size: 14px; margin-bottom: 5px;">Skóre: 0</h1>
+            <h1 id="pocitadlo" style="font-size: 14px; margin-bottom: 0px;">Skóre: 0</h1>
             <button onclick="klikni()">KLIKNI NA MĚ!</button>
           </div>
         </div>
       </div>
+      <!-- SEKCE CITATY A VTIPY -->
+      <div id="citaty-vtipy" style="margin-top: 0px;margin-left: 22px;">
+        <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h1 class="citaty" style="font-size: 14px; margin-bottom: 0px;">Pravdivé citáty</h1>
+            <button onclick="ukazCitat()">Chci poučit!</button>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h1 class="vtipy" style="font-size: 14px; margin-bottom: 0px;">Vtipy pro zasmání</h1>
+            <button onclick="ukazVtip()">KLIKNI A POBAV SE!</button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- PRAVÁ ČÁST: To-Do a Formulář -->

@@ -284,6 +284,14 @@ h1#pocitadlo {
     font-size: 10px; 
     color: #2ecc71; 
 }
+h1.citaty {
+    font-size: 10px;
+    color: #2ecc71;
+}
+h1.vtipy {
+    font-size: 10px; 
+    color: #2ecc71; 
+}
 input.email {
     padding: 9px; 
     border: 2px solid #ddd; 
