@@ -99,8 +99,8 @@ function otevriOkno(typ) {
         if (tlacitkoHledat) tlacitkoHledat.style.display = "none"; // Skryje tlačítko hledat
 
         vysledek.innerHTML = `
-            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(true)">S vteřinami (14:05:01)</div>
-            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(false)">Bez vteřin (14:05)</div>
+            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(true)">S vteřinami (např. 12:05:01)</div>
+            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(false)">Bez vteřin (např. 12:05)</div>
         `;
     } 
     // REŽIM DATUM
@@ -160,7 +160,7 @@ function provedVyhledavani() {
             if (!isNaN(dObj.getTime())) {
                 const denVTydnu = dObj.toLocaleDateString('cs-CZ', { weekday: 'long' });
                 vysledekElem.innerHTML = `Den <strong>${den}. ${MESICE_PAD[mesic-1]} ${rok}</strong><br>` +
-                                         `byl-a, je a nebo bude: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${denVTydnu}</span>`;
+                `byl-a, je a nebo bude: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${denVTydnu}</span>`;
             } else { 
                 vysledekElem.innerText = "Neexistující datum."; 
             }
@@ -236,7 +236,6 @@ window.onclick = (e) => {
 // 6. START PROGRAMU
 setInterval(aktualizujCasAKalendar, 1000); // Hodiny běží každou vteřinu
 aktualizujCasAKalendar(); // Spustí se hned po načtení
-
 
 
 const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
@@ -330,108 +329,193 @@ function nastavStyl(pozadi, text) {
 aplikujAktualniStyl();
 
 // Najdeme prvky
+// --- ZÁKLADNÍ PROMĚNNÉ ---
 const novyUkol = document.getElementById('novyUkol');
 const pridat = document.getElementById('pridat');
 const mujSeznam = document.getElementById('mujSeznam');
 
-// FUNKCE PRO ULOŽENÍ DO PAMĚTI
+// Mapa pro převod barev na písmena (N-normální, S-spěchá, D-důležité)
+const priorityMap = { "green": "N", "orange": "S", "red": "D" };
+
+// --- 1. FUNKCE PRO ULOŽENÍ (localStorage) ---
 function ulozDoPameti() {
     const ukoly = [];
-    document.querySelectorAll('#mujSeznam li').forEach(li => {
+    // Procházíme všechny hlavní úkoly v seznamu
+    document.querySelectorAll('#mujSeznam > li').forEach(li => {
+        const podpolozky = [];
+        // Projdeme malé položky uvnitř tohoto úkolu
+        li.querySelectorAll('.pod-polozka').forEach(pLi => {
+            podpolozky.push({
+                text: pLi.querySelector('.p-text').innerText,
+                // Bereme čas ze skrytého pole p-cas-raw, abychom neměli dvojité závorky
+                cas: pLi.querySelector('.p-cas-raw').innerText, 
+                hotovo: pLi.classList.contains('p-done')
+            });
+        });
+
+        // Uložíme data hlavního úkolu
         ukoly.push({
-            html: li.innerHTML,
-            barva: li.style.borderLeft,
-            hotovo: li.classList.contains('done')
+            text: li.querySelector('.hlavni-text').innerText,
+            info: li.querySelector('.info-cas').innerText,
+            barva: li.style.borderLeftColor,
+            hotovo: li.classList.contains('done'),
+            podpolozky: podpolozky
         });
     });
+    // Převedeme pole na text a uložíme
     localStorage.setItem('mojeUkoly', JSON.stringify(ukoly));
 }
 
-// FUNKCE PRO NAČTENÍ Z PAMĚTI
-function nactiZPameti() {
-    const ulozene = JSON.parse(localStorage.getItem('mojeUkoly') || '[]');
-    ulozene.forEach(data => {
-        const li = document.createElement('li');
-        li.style.borderLeft = data.barva;
-        li.style.marginBottom = "5px";
-        li.style.paddingLeft = "10px";
-        li.innerHTML = data.html;
-        if (data.hotovo) li.classList.add('done');
-        
-        // Znovu musíme připojit události (v innerHTML se neukládají)
-        li.querySelector('div').onclick = () => { li.classList.toggle('done'); ulozDoPameti(); };
-        li.querySelector('.delete').onclick = () => { li.remove(); ulozDoPameti(); };
-        
-        mujSeznam.appendChild(li);
-    });
+// --- 2. FUNKCE PRO VYTVOŘENÍ MALÉ POLOŽKY ---
+function vytvorPodpolozku(text, casData, hotovo = false) {
+    const pLi = document.createElement('li');
+    // Přidáme třídu p-done, pokud je položka hotová (kvůli škrtání)
+    pLi.className = "pod-polozka" + (hotovo ? " p-done" : "");
+    pLi.style.cssText = "font-size:13px; list-style:none; border-bottom:1px solid rgba(0,0,0,0.05); display:flex; justify-content:space-between; padding:5px 0; cursor:pointer; text-align:left;";
+
+    // Datum a čas (buď načtený, nebo aktuální)
+    const nyni = new Date();
+    const cas = casData || `${nyni.toLocaleDateString()} ${nyni.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+
+    // p-cas-raw je skrytý (display:none), slouží pouze pro čisté ukládání bez závorek
+    pLi.innerHTML = `
+        <span class="p-klik" style="flex-grow:1;">• <span class="p-text">${text}</span> <small style="color:gray">(${cas})</small><span class="p-cas-raw" style="display:none">${cas}</span></span>
+        <button class="del-sub" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; padding:0 5px; display:flex; align-items:center; justify-content:center;">×</button>
+    `;
+
+    // Kliknutí na text malé položky (škrtání)
+    pLi.querySelector('.p-klik').onclick = (e) => {
+        e.stopPropagation(); // Aby neklikl i na hlavní úkol pod tím
+        pLi.classList.toggle('p-done');
+        ulozDoPameti();
+    };
+
+    // Smazání malé položky
+    pLi.querySelector('.del-sub').onclick = (e) => {
+        e.stopPropagation();
+        pLi.remove();
+        ulozDoPameti();
+    };
+
+    return pLi;
 }
 
-// Přidání úkolu
+// --- 3. FUNKCE PRO SESTAVENÍ HLAVNÍHO ÚKOLU ---
+function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
+    const li = document.createElement('li');
+    // Nastavení stavu (hotovo) a barevné linky
+    if (hotovo) li.classList.add('done');
+    li.style.borderLeft = `10px solid ${barva}`;
+    li.style.marginBottom = "15px";
+    li.style.padding = "10px";
+    li.style.background = "rgba(255,255,255,0.7)";
+    li.style.display = "flex";
+    li.style.flexDirection = "column";
+
+    // Získání písmene priority
+    let symbol = priorityMap[barva] || "N";
+
+    // HTML struktura: Flexbox zajistí zarovnání doleva, tlačítka vpravo
+    li.innerHTML = `
+        <div style="display:flex; justify-content:flex-start; align-items:center; width: 100%;">
+            <!-- Písmeno priority - klikatelné pro změnu -->
+            <div class="priorita-btn" style="cursor:pointer; font-weight:bold; font-size:18px; color:${barva}; min-width:25px; text-align:left; margin-right:5px;">${symbol}</div>
+            
+            <!-- Hlavní text úkolu - zarovnaný doleva -->
+            <div class="klik-oblast" style="cursor:pointer; flex-grow:1; text-align:left; overflow:hidden;">
+                <span class="hlavni-text" style="display:block; font-weight:bold; font-size:18px;">${text}</span>
+                <span class="info-cas" style="font-size:11px; color:#666;">${info}</span>
+            </div>
+
+            <!-- Tlačítka vpravo (Přidat a Smazat) -->
+            <div style="display:flex; gap:5px; align-items:center; margin-left: auto;">
+                <button class="add-sub" style="background:#28a745; color:white; border:none; border-radius:4px; cursor:pointer; padding:6px 10px; font-size:11px; white-space:nowrap; display:flex; align-items:center; justify-content:center;">+ Přidat položku úkolu</button>
+                <button class="delete" style="background:#dc3545; color:white; border:none; border-radius:4px; width:26px; height:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold;">x</button>
+            </div>
+        </div>
+        <!-- Seznam pro malé položky pod úkolem -->
+        <ul class="pod-seznam" style="margin-top:8px; padding:0; border-top:1px solid #ddd; width: 100%;"></ul>
+    `;
+
+    const podSeznamUl = li.querySelector('.pod-seznam');
+    const prioritaBtn = li.querySelector('.priorita-btn');
+
+    // LOGIKA PŘEPÍNÁNÍ PRIORITY (Kliknutím na písmeno N/S/D)
+    prioritaBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (li.style.borderLeftColor === "green") {
+            li.style.borderLeftColor = "orange"; prioritaBtn.innerText = "S"; prioritaBtn.style.color = "orange";
+        } else if (li.style.borderLeftColor === "orange") {
+            li.style.borderLeftColor = "red"; prioritaBtn.innerText = "D"; prioritaBtn.style.color = "red";
+        } else {
+            li.style.borderLeftColor = "green"; prioritaBtn.innerText = "N"; prioritaBtn.style.color = "green";
+        }
+        ulozDoPameti();
+    };
+
+    // Načtení malých položek, pokud existují
+    podpolozkyData.forEach(p => podSeznamUl.appendChild(vytvorPodpolozku(p.text, p.cas, p.hotovo)));
+
+    // Označení celého úkolu za hotový (škrtne jen název díky CSS)
+    li.querySelector('.klik-oblast').onclick = () => {
+        li.classList.toggle('done');
+        ulozDoPameti();
+    };
+
+    // Smazání úkolu
+    li.querySelector('.delete').onclick = () => { li.remove(); ulozDoPameti(); };
+
+    // Přidání nové malé položky přes prompt
+    li.querySelector('.add-sub').onclick = () => {
+        const pText = prompt("Zadej název nové položky:");
+        if (pText && pText.trim() !== "") {
+            podSeznamUl.appendChild(vytvorPodpolozku(pText.trim()));
+            ulozDoPameti();
+        }
+    };
+
+    return li;
+}
+
+// --- 4. PŘIDÁNÍ ÚKOLU Z FORMULÁŘE (S animací třesení) ---
 function pridatUkol() {
     const text = novyUkol.value.trim();
     const barvaPriority = document.getElementById('priorita').value;
 
-    // Animace zatřese políčkem Nový úkol, když se nevyplní
     if (!text) {
-    novyUkol.style.border = "2px solid red";
-    novyUkol.animate([
-        { transform: 'translateX(0px)' },
-        { transform: 'translateX(5px)' },
-        { transform: 'translateX(-5px)' },
-        { transform: 'translateX(0px)' }
-    ], { duration: 200, iterations: 3 });
-    return;
+        novyUkol.style.border = "2px solid red";
+        // Animace zatřesení, pokud je políčko prázdné
+        novyUkol.animate([
+            { transform: 'translateX(0px)' }, { transform: 'translateX(5px)' }, 
+            { transform: 'translateX(-5px)' }, { transform: 'translateX(0px)' }
+        ], { duration: 200, iterations: 3 });
+        return;
     }
-    novyUkol.style.border = "1px solid #ccc"; // Vratit zpet
+    novyUkol.style.border = "1px solid #ccc";
 
-    // Určení priority úkolu
-    const li = document.createElement('li');
-    li.style.borderLeft = `5px solid ${barvaPriority}`; // Barevný pruh podle priority
-    li.style.marginBottom = "5px";
-    li.style.paddingLeft = "10px";
-
-    // Získání aktuálního času a data
     const nyni = new Date();
-    const cas = nyni.toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' });
-    const datum = nyni.toLocaleDateString('cs-CZ');
+    const info = `🗓️ ${nyni.toLocaleDateString()} | 🕒 ${nyni.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
 
-    // Vytvoření kontejneru pro text a čas (aby se dalo klikat na obojí)
-    const infoWrapper = document.createElement('div');
-    infoWrapper.style.textAlign = "center";
-    infoWrapper.style.flexGrow = "1";
-
-    // Text úkolu bude na vlastním řádku
-    infoWrapper.innerHTML = `
-        <span style="display: block; font-weight: bold; font-size: 20px;">${text}</span>
-        <span style="font-size: 12px; color: #666;">🗓️ ${datum} | 🕒 ${cas} | datum a čas zadání</span>
-    `;
-
-    // Označení jako hotové (přidá třídu .done definovanou v CSS), volání uložení
-    infoWrapper.onclick = () => { li.classList.toggle('done'); ulozDoPameti(); };
-
-    // Tlačítko pro smazání
-    const vymazat = document.createElement('button');
-    vymazat.innerHTML = "x";
-    vymazat.className = 'delete';
-    vymazat.onclick = () => { li.remove(); ulozDoPameti(); }; // Uložení do paměti
-
-    // Sestavení a přidání do seznamu
-    li.appendChild(infoWrapper);
-    li.appendChild(vymazat);
+    const li = sestavUkol(text, info, barvaPriority, false, []);
     mujSeznam.appendChild(li);
-
     novyUkol.value = "";
-    ulozDoPameti(); // Uložíme po přidání
+    ulozDoPameti();
 }
 
-// Spustit načítání při startu
-nactiZPameti();
+// --- 5. NAČTENÍ PŘI STARTU ---
+function nactiZPameti() {
+    const ulozene = JSON.parse(localStorage.getItem('mojeUkoly') || '[]');
+    mujSeznam.innerHTML = "";
+    ulozene.forEach(d => {
+        mujSeznam.appendChild(sestavUkol(d.text, d.info, d.barva, d.hotovo, d.podpolozky));
+    });
+}
 
-// Události
-pridat.addEventListener('click', pridatUkol);
-novyUkol.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') pridatUkol();
-});
+// --- SPUŠTĚNÍ ---
+nactiZPameti();
+pridat.onclick = pridatUkol;
+novyUkol.onkeypress = (e) => { if (e.key === 'Enter') pridatUkol(); };
+
 
 // Pole s moudry
 const moudra = [
