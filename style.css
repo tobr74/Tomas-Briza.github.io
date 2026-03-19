@@ -34,14 +34,14 @@
 /* Společný styl pro klikatelná tlačítka v hlavičce */
 .klikaci-polozka {
     display: inline-block;
-    padding: 6px 15px;
+    padding: 6px 10px;
     background-color: rgba(0, 0, 0, 0.04); /* Světlé podbarvení hned po načtení */
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.02);
     user-select: none;
-    margin: 5px;
+    margin-top: 5px;
 }
 
 .klikaci-polozka:hover {
@@ -155,16 +155,16 @@
 }
 /* Základní styl pro wrapper (na stojato) */
 .flex-wrapper {
-  display: flex;
-  flex-direction: column; /* Pod sebou */
-  align-items: center;
+    display: flex;
+    flex-direction: column; /* Pod sebou */
+    align-items: center;
 }
 .kruh {
     width: 50px; 
     height: 50px; 
     background: #007bff; 
     border-radius: 50%; 
-    margin: 40px auto 16px; /* Normální margin místo záporného */
+    margin: 35px auto 16px; /* Normální margin místo záporného */
     
     /* Vycentrování textu uvnitř */
     display: flex;
@@ -211,11 +211,25 @@ h1.jmeno:hover {
     font-size: 50px;
     margin-top: -10px;
 }
-p.programator {
+.programator {
     color: #666; 
     margin-top: 2px; 
-    text-decoration: underline;
     font-size: 20px;
+    text-decoration: none; /* Vypneme klasické podtržení */
+    transition: color 0.3s ease;
+    /* Vytvoříme vlastní podtržení pomocí pozadí */
+    background-image: linear-gradient(to top, #b6d3f2, transparent 100%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.programator:hover {
+    color: white; /* Text zbělá, aby byl na barvě vidět */
+    background-size: 100% 100%; /* Změň na 100% 10% pro jen tlusté podtržení */
+    background-image: linear-gradient(to top, #007bff 100%, transparent 0%);
+    border-radius: 4px;
 }
 button#kontaktovat {
     padding: 10px 20px; 
@@ -363,7 +377,7 @@ li div {
     flex-direction: column;
     gap: 12px;
     margin-top: 0px; /* Mezera od seznamu úkolů */
-    padding: 8px;
+    padding: 9px;
     padding-top: 0;
     padding-bottom: 0;
     background: rgba(0, 0, 0, 0.05); /* Jemné pozadí pro odlišení */
@@ -379,7 +393,7 @@ li div {
     border: 2px solid #ddd;
     border-radius: 10px; /* Zakulacené rohy jako u tvého boxu */
     font-family: inherit;
-    font-size: 12px;
+    font-size: 14px;
     transition: border-color 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
     margin-top: -5px;

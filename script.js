@@ -600,7 +600,110 @@ Medvěda už to štve, a tak se jde zeptat lišky, jak má zajíce dostat.\n\
 Liška mu říká: „Tak mu to taky udělej. Řekni mu třeba: Pozdravuje tě Hacil a až se zeptá, jakej Hacil, tak řekni: Ten, co tě do hlavy bacil.“\n\
 „To je skvělý, díky, fakt, na to bych nepřišel,“ říká medvěd a jde za zajícem: „Čau zajíci, pozdravuje tě Hacil.“\n\
 „Já vím, říkal mi to Hroutil.“\n\
-„Jakej Hroutil?“'
+„Jakej Hroutil?“',
+'Odpovědi na zkouškové otázky uchazeče o pracovní místo v Google Inc., který sice získal 0 bodů ze zkoušky, ale přesto byl přijat:\n\
+\n\
+1. Během které bitvy zemřel Napoleon?\n\
+– během té poslední\n\
+2. Kde byla podepsána Deklarace nezávislosti?\n\
+– dole, na poslední stránce\n\
+3. Hlavní příčina rozvodu?\n\
+– svatba\n\
+4. Hlavní příčina neúspěchu?\n\
+– zkouška\n\
+5. Co jste nikdy neměl ke snídani?\n\
+– oběd a večeři\n\
+6. Co vypadá jako půlka jablka?\n\
+– druhá půlka\n\
+7. Pokud hodíme červený kamen do modrého moře, jaký bude?\n\
+– mokrý\n\
+8. Jak může člověk žít osm dní bez spánku?\n\
+– bez problémů, vždyť v noci spí\n\
+9. Pokud budete mít 3 jablka a 4 pomeranče na jedné dlani a 4 jablka a 3 pomeranče na druhé, co budete mít?\n\
+– opravdu velké dlaně\n\
+10. 8 zedníků postavilo zeď za 10 hodin, kolik času to zabere 4 zedníkům?\n\
+– žádný čas, zeď již byla postavena\n\
+11. Jak můžeme hodit vejce na betonový základ tak, abychom ho nerozbili?\n\
+– jakkoliv, vejce v žádném případě nepoškodí betonový základ',
+'To takhle minulý prezident USA, Joe Biden, sháněl po volbách do svého týmu zkušeného poradce a diplomata. O tento post se nakonec uchází jediný kandidát: Pepa Horáček.\n\
+\n\
+„Zkuste mě, znám se se všema osobně,“ říká Bidenovi. Biden si pomyslí: „Nějaký hloupý venkovan, ale co… Za zkoušku nic nedám.“ S těmi slovy se rozhodne Pepu Horáčka otestovat.\n\
+\n\
+Nejdříve dojedou za Schwarzeneggerem:\n\ „Nazdar Horáček, ty stará vojno! Tak jak se vede po tý dlouhý době?“ poplácá ho Arnold po rameni a užuž se s ním začne domlouvat na společném čase v posilovně. To Bidena trošku překvapí, ale řekne si, že nic neponechá náhodě.\n\
+\n\
+A tak jdou za Madonnou. „Ahoj Pepíku, ráda Tě zase vidím,“ řekne Madonna, dá mu pusu na tvář a začne ho přemlouvat na společnou skleničku vína. Joe Biden je evidentně potěšený, ale řekne si, že přeci jen udělá ještě poslední zkoušku.\n\
+\n\
+A tak společně jedou do Vatikánu, kde se papež právě před zraky všeho lidu modlí na balkoně před Svatopetrským náměstím. Pepa Horáček vystoupá odvážně za ním. Když jsou oba dva společně na balkoně asi 5 minut, všimne si Pepa, že Joe Biden dole mezitím omdlel a ochranka se ho snaží vzkřísit.\n\
+\n\
+Když seběhne dolů, ptá se, co se stalo. Na to mu už napůl vzkříšený Biden povídá: „Když jste nahoře stál s papežem, tak ještě dobré. Ale když se vedle mě stojící Japonec zeptal ostatních, co je to tam za dědulu vedle Horáčka, to už bylo moc i na mě.“',
+'Pan Novák se vrací domů z práce, bohužel si doma zapomněl doklady. Náhodou ho zastaví policista, a protože se nemůže legitimovat, je odvezen na stanici a začne vyšetřovačka.\n\
+\n\
+„Jmenuji se Novák, bydlím na Palackého 5. Zeptejte se domovníka!“\n\
+Za půlhodiny se policisté vrátí s tím, že tam žádný Novák nebydlí. Takže dostane nakládačku, aby se přiznal, kdo že to vlastně je.\n\
+Když už je zmlácený do modra, náhodou vejde do místnosti nadporučík. Když vidí dobitého chudáka vykřikne: „Petře, proboha, co jsi vyváděl!?“\n\
+„Vy ho znáte, pane nadporučíku?“\n\
+„Jasně, spolužák ze základky, Petr Novák. Tuším, že bydlí na Palackého.“\n\
+Pan Novák se teda zbitý vrací domů a před vchodem vyběhne domovník.\n\
+„Pane Nováku, rychle utečte! Hledala vás tu policie, ale já jsem vás kryl.“',
+'„Haló, to je vodárna?“\n\
+„Ano, co si přejete?“\n\
+„Z mého vodovodu teče voda.“\n\
+„A co byste očekával?“\n\
+„Podle toho účtu… aspoň Pilsner Urquell!“',
+'Učitel chce demonstrovat žákům účinky alkoholu, a tak přinese do školy dva červy, dvě sklenice a flašku vodky. Během hodiny jim ukazuje pokus, kdy v jedné sklenici je červ ve vodě a je spokojený, jak jen může být. Ve druhé sklenici s vodkou se červ kroutí a pak upadne na dno.\n\
+Učitel říká: „Tak, žáci, co jste zjistili?“\n\
+Jeden žák se ozve: „Pijte alkohol, nebudete mít červy.“',
+'„Máte jednolůžkový pokoj s tekoucí vodou?“\n\
+„Máte smůlu, včera nám opravili střechu.“',
+'Ptá se paní učitelka Marka: „Marku, kolik řad zubů máme za život a jak je nazýváme?“\n\
+Marek: „Troje, paní učitelko.“\n\
+Učitelka: „Jak to?“\n\
+Marek: „Noooo, máme mléčné, stálé a klapačky!“',
+'Mladé děvče jde přes park, když vtom vidí proti sobě velkého chlapa, ruce roztažené, vlevo keř, vpravo keř, tak si říká, to je konec. Když už byl blízko, tak se rozběhla a vší silou ho nakopla do rozkroku. Velká rána, řev a nadávání: „Do háje, to je už třetí tabule skla, já to okno snad nikdy nezasklím!“',
+'Každá žena má něco hezkého. Jedna oči, druhá vlasy, třetí kamarádku.',
+'Víte, že Mezinárodní den žen měl být původně 6. března?\n\
+Ale znáte to, než se holky namalujou...',
+'Žena se ptá manžela:\n\
+„Co bys dělal, kdyby mě unesli?“\n\
+„No to bych jim pogratuloval, protože tebe, kdyby někdo unesl, tak to by musel být ohromný silák.“',
+'Pro ženu neexistuje problém, který by se nedal vytvořit!',
+'Dneska mě pozvalo 10 holek ven. Byl jsem totiž v dámské šatně.',
+'Policista zastavil auto a ptá se řidiče: „Požil jste před jízdou nějakou návykovou látku?“\n\
+Řidič: „Ano, měl jsem vynikající zmrzlinu.“',
+'Nemilá situace, v porodnici byla záhy po porodu promíchána tři novorozeňata od nigerijské, slovenské a maďarské maminky. Rodičky jsou čerstvě po porodu, tak pozvou tatínky, ať se rozhodnou, čí je které mimino.\n\
+\n\
+Ti přijdou a Slovák se hned sápe po černouškovi. Všichni se ho ptají proč, vždyť je přeci zřejmé, že není jeho. Ten ale nehne brvou: „Možno to nie je moje, ale Maďara riskovať nebudem!“',
+'Roubíček stojí u náhrobku a čte: „Zde odpočívá Izák Khon, řádný člověk, poctivý obchodník.“\n\
+Povzdechne si: „Chudák Khon, musí bejt v hrobě se dvěma úplně cizíma lidma.“',
+'Rodiče, nechte své děti věřit na Ježíška. Vám taky nikdo nebere vaši víru na krémy proti vráskám, na celulitidu a šampóny proti padání vlasů.',
+'„Hej, králíku, dáme si závod, kdo bude dřív doma,“ povídá želva. A než jí králík stihne odpovědět, schová se do krunýře.',
+'Muž přijde na úřad a úřednice mu říká: „Pane, vy neplatíte televizní poplatky pro Českou televizi.“\n\
+Pán odpoví, že se na ČT nekouká, úřednice mu řekne: „To nevadí, ale přístroj na to máte.“\n\
+„Chtěl bych zažádat o přídavky na děti.“\n\
+„Ale pane, vy nemáte děti!“\n\
+„To nevadí, ale přístroj na to mám!“',
+'Maminka: Pepíčku, chutná ti ten bonbon, co jsem ti dala?\n\
+Pepíček: Ano, maminko, chutná.\n\
+Maminka: No vidíš! A náš Alík ho vyplivnul.',
+'Vývoj elektroniky v kostce:\n\
+1953: „Kam ten počítač dáme?“\n\
+2022: „Kam jsem ten počítač dal?“',
+'Cestují dvě dámy vlakem v kupé společně s cizím mužem.\n\
+První: „Nejlepší milenci na světě jsou Maďaři.“\n\
+Druhá: „Nejlepší milenci na světě jsou indiáni.“\n\
+Muž: „Dámy, dovolte, abych se představil... Ištván Vinnetou!“',
+'50 % obyvatel vidí budoucnost optimisticky. Zbylých 50 % nemá na drogy peníze.',
+'Povídají si dva kamarádi:\n\
+„Tak jsem se včera nějak zapomněl v hospodě a abych si to u manželky aspoň trošku vyžehlil, koupil jsem jí květiny. Říkám si, co budeš vysvětlovat, květiny řeknou vše.“\n\
+„A co řekly?“\n\
+„Nic, ona je vůbec nepustila ke slovu!“',
+'Šéfredaktor si zavolá redaktorku a ptá se: „Máte večer čas?“\n\
+Ona zčervená a šeptne: „Ano.“\n\
+Na to on: „Fajn, tak si doma sedněte a učte se pravopis.“',
+'Zastavíš v autě stopařce, která ti ale v autě omdlí... To je stresující.\n\
+V nemocnici ti doktor řekne, že je těhotná a že ti gratuluje k otcovství. Bráníš se, že to dítě není tvoje, ale ona tvrdí opak... To je velmi stresující.\n\
+Požádáš o testy DNA, abys dokázal, že nejsi otcem dítěte. Po testech ti lékař opatrně vysvětlí, že jsi neplodný, pravděpodobně už od narození... To je extrémně stresující. Ale ulevilo se ti.\n\
+Po cestě domů začneš myslet na svoji rodinu a na své tři děti... A to je ten pravý stres.'
 ];
 
 // Náhodný výběr vtipu z pole s vtipy
