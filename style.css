@@ -435,7 +435,7 @@ li div {
 
 /* Tato pravidla se aktivují jen když je mobil na šířku nebo má velký displej */
 /* Styl pro široký displej / na ležato */
-@media screen and (min-width: 600px) and (orientation: landscape) {
+@media screen and (min-width: 640px) and (orientation: landscape) {
   .flex-wrapper {
     flex-direction: row;    /* Vedle sebe */
     justify-content: center;
@@ -478,4 +478,34 @@ li div {
 }
 @media screen and (max-height: 400px) and (orientation: landscape) {
     #datum-vlevo, #svatek-vpravo { font-size: 15px !important; }
+}
+/* Kontejner, ve kterém je datum, hodiny a svátek */
+.horni-lista {
+    display: flex;
+    justify-content: space-between; /* Datum vlevo, svátek vpravo */
+    align-items: center;
+    flex-wrap: wrap; /* Klíčové: pokud není místo, prvek skočí na nový řádek */
+    gap: 10px;       /* Mezera mezi prvky, aby se nelepily */
+    padding: 10px;
+    width: 100%;
+}
+
+/* Úprava pro malé mobily (na stojato) */
+@media (max-width: 639px) {
+    .horni-lista {
+        flex-direction: column; /* Prvky pod sebou */
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    #datum-vlevo, #svatek-vpravo, #hodiny-stred {
+        width: 26%; /* Roztáhnou se na celou šířku */
+        margin: 2px 0; /* Jemné rozestupy pod sebou */
+        font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
+        padding: 5px;
+    }
+    
+    .box {
+        padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
+    }
 }

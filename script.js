@@ -703,7 +703,102 @@ Na to on: „Fajn, tak si doma sedněte a učte se pravopis.“',
 'Zastavíš v autě stopařce, která ti ale v autě omdlí... To je stresující.\n\
 V nemocnici ti doktor řekne, že je těhotná a že ti gratuluje k otcovství. Bráníš se, že to dítě není tvoje, ale ona tvrdí opak... To je velmi stresující.\n\
 Požádáš o testy DNA, abys dokázal, že nejsi otcem dítěte. Po testech ti lékař opatrně vysvětlí, že jsi neplodný, pravděpodobně už od narození... To je extrémně stresující. Ale ulevilo se ti.\n\
-Po cestě domů začneš myslet na svoji rodinu a na své tři děti... A to je ten pravý stres.'
+Po cestě domů začneš myslet na svoji rodinu a na své tři děti... A to je ten pravý stres.',
+'Můj dietní plán: Dát všem svým kamarádům cupcake. 🧁\n\
+Čím budou tlustší, tím hubenější budu vypadat já.',
+'Přijde tak jeptiška do obchodu a zařve: „Láhev rumu!“ Prodavač jí to tak dává, ale nedá mu to a zeptá se: „Já myslel, že jeptišky pít alkohol nesmí.“ A ona mu odpoví: „Víte, to je pro matku představenou, ona nemůže usnout a tohle jí pomáhá.“\n\
+\n\
+Tak prodavač souhlasí, a když mu skončí práce, tak jde domů a vidí tu jeptišku, která je opilá na lavičce a naštvaně jí říká: „Vždyť jste mi říkala, že to je pro matku představenou!“ A ona mu odpoví: „No vždyť jo, ta omdlí, až mě uvidí!“',
+'Je chlapeček s maminkou na hřbitově a maminka mu vysvětluje, že v hrobech lidé spí. Najednou se ze tmy vynoří stará paní a chlapeček spustí: „Ta paní už se vzbudila.“',
+'Táta se ptá Honzíka:\n\
+„Honzíku, proč jsi nešel hrát karty s Lízou?“\n\
+„A ty bys šel hrát karty s někým, kdo podvádí?“\n\
+„To rozhodně ne!“\n\
+„Líza taky ne!“',
+'„V supermarketu píšou, že platit se dá libovolnou kartou. Vytáhla jsem zelenou sedmu. Přijde pro mě někdo prosím na policii?“',
+'Tajemstvím úspěchu v politice jsou slušnost a upřímnost. Jakmile se jich zbavíte, dosáhnete všeho.',
+'Sejde se Čech, Slovák, Japonec a Pirát.\n\
+To není začátek vtipu, ale české volby.',
+'„Předvolební sliby asi nesplníme, ale chtěl bych občany ujistit, že příště dáme nové.“',
+'Oranžové světlo na semaforu znamená, že máma zastaví a táta jede dál.',
+'Naše meteorologická stanice\n\
+Je-li provaz teplý – je slunečno.\n\
+Je-li provaz mokrý – prší.\n\
+Je-li provaz bílý – sněží.\n\
+Je-li provaz ztuhlý – je mráz.\n\
+Je-li provaz kolmo – je vichřice.\n\
+Kýve-li se provaz – je větrno.\n\
+Není-li provaz vidět – je mlha.\n\
+Mizí-li provaz před očima – přestaňte pít.\n\
+Je-li provaz začouzený – nekuřte tu.\n\
+Není-li zde žádný provaz – jste v Čechách.',
+'Inzerát: Vyměním půlku mozku za další játra, protože do budoucna plánuji více pít a méně se stresovat. Zn.: Spěchá!',
+'U soudu:\n\
+Soudce: „Svědku, víte, co můžete dostat za křivé svědectví?“\n\
+Svědek: „Vím. Obžalovaný mi slíbil nové auto.“',
+'Deník Američana na Moravě\n\
+Pondělí: Piju s Moraváky.\n\
+Úterý: Skoro jsem zemřel.\n\
+Středa: Zase piju s Moraváky.\n\
+Čtvrtek: Lituji, že jsem v úterý nezemřel...',
+'Pepíček se chlubí kamarádům: „O hodině jsem řekl tak dobrý vtip, že pozvali moje rodiče, aby si ho poslechli taky.“',
+'Pracovní pohovor: „Proč chcete tak vysokou výplatu, když ani nemáte žádné vzdělání v oboru?“\n\
+„Ta práce bude přece mnohem těžší, když ani nebudu vědět, co dělám!“',
+'Malíř se ptá pastýře:\n\
+„Mohl bych namalovat vaše ovce?“\n\
+„Ne. Co bych pak dělal s barevnou vlnou?“',
+'„Sousede, půjčil bys mi na víkend vrtačku?“\n\
+„Co budeš dělat?“\n\
+„Nic, ale konečně se vyspím!“',
+'„Hele, když vidíš krásnou ženskou, kam se nejdřív koukáš?“\n\
+„Jestli se nedívá ta moje…“',
+'Chlapec doma ukazuje žákovskou a tatínek jen koulí očima:\n\
+„Koukej na ty známky z matematiky, to je katastrofa!“\n\
+Chlapec jen pokrčí rameny a tatínek rozhněvaně pokračuje:\n\
+„Já jsem si to spočítal a ty tu máš průměr 5,8! To by mě zajímalo, po kom jsi tak hloupý!“',
+'Tři muži se sejdou u brány mezi peklem a nebem\n\
+Přichází svatý Petr a říká:\n\
+Vítejte u posvátné brány, nuže, jak jste nejspíš pochopili, potkal vás váš osud. Pro pořádek bych si potřeboval zapsat okolnosti... mhm... zajímavé... všichni tři jste umřeli přibližně ve stejnou dobu na stejném místě.\n\
+Dobrá, začneme od nejstaršího. Co se vám přihodilo?\n\
+První muž:\n\
+Ech, už jsem nějakou dobu podezříval, že mi je manželka nevěrná, a dnes jsem se v tom i přesvědčil. Přišel jsem dřív z práce a spatřil cizí boty. Hned jsem se vrhl do ložnice, kde jsem spatřil manželku. Samotnou. Ale v okně jsem viděl viset souseda! Začal jsem po něm házet všechno možný, dokonce ledničku! No, ale s mým zdravím, to moje srdce nevydrželo a dostal jsem infarkt.\n\
+Svatý Petr: Upřímnou soustrast. Přejdeme k dalšímu, tak co vy?\n\
+Druhý muž: Moje situace byla docela spontánní. Rozhodl jsem se, že dnes už musím umýt ta okna. Když jsem je myl z vnější strany, náhle mi uklouzla noha a spadl jsem. Naštěstí jsem se chytl o sousedovo otevřené okno! Ale ten se rozzuřil, začal na mě házet všechno možný a nakonec na mě hodil i ledničku! Neměl jsem šanci.\n\
+Svatý Petr: E ehm... No.. opravdu nepříjemná situace, přejdeme rovnou k poslednímu. Vyprávějte.\n\
+Třetí muž: Já už ani nemám moc co dodat, šel jsem ke své milence, ale najednou přišel její manžel, tak jsem se stihl schovat do ledničky...',
+'„Mami, proč ti šednou vlásky?“\n\
+„Protože hodně zlobíš.“\n\
+„Aha, tak já už vím, proč má babička šedou hlavu.“',
+'Pošlete SMS ve tvaru JDETE-DO-HAJE na číslo 158. Možných výher je velmi mnoho – sedmidenní pobyt ve vazbě, jízda blikajícím autem, dva luxusní stříbrné náramky a v neposlední řadě také série profesionálních fotografií ve speciálních oblecích. Ovšem pozor! Prvních dvacet odesílatelů dostane dokonce osobního hlídače během pobytu!',
+'Zákazníci v restauraci: „Jsem vegan a můj přítel je vegetarián. Co si u vás můžeme objednat?“\n\
+Číšník: „Taxi.“',
+'Policista zastaví řidiče za příliš rychlou jízdu. Vyžádá si od něj doklady a po chvilce mu povídá: „Pane řidiči, tak to máte za 4 body.“\n\
+„K čemu mi budou body?“\n\
+„Až jich nasbíráte 12, tak si můžete koupit kolo.“',
+'Zákazník se ptá v bufetu:\n\
+„Co má znamenat ten rychlý výprodej?“\n\
+„Zítra k nám má přijít hygienik.“',
+'Chlapeček se ptá: „Dědo, proč jedeme tak rychle a v protisměru?“\n\
+„Babička na nás čeká.“\n\
+„Ale babička už nežije…“',
+'Malý Pepíček si se zájmem prohlíží svého nového bratra a ptá se maminky: „On přišel z nebe, že?“\n\
+„Ano, Pepíčku.“\n\
+„No, ani se nedivím, že ho odtamtud vyhodili.“',
+'Před šejkovým palácem zastavil autobus plně obsazený staršími ženami.\n\
+\n\
+„Zase turistky?“ ptá se šejk.\n\
+„Nikoliv, náš pane, přijely vaše tchyně.“',
+'Konečně chápu ten koloběh života. Chodím do práce, abych měl peníze na alkohol, který si kupuju, abych zvládal svoji práci.',
+'Paní učitelka: „Pepíčku, proč jsi teď nebyl čtrnáct dní na online výuce?!“\n\
+Pepíček: „No, můj počítač chytil virus, tak jsem ho dal radši do karantény…“',
+'„Proč koukáš na ten měsíc?“\n\
+„Naši říkali, že pojedeme na prázdiny na měsíc, tak koukám, jak je to daleko.“',
+'Čím blíže je babička, tím víc tlustá jsou vnoučata.',
+'Muž přijde z hospody domů a má hlad. Rozhodne se proto, že si uvaří špagety. Čeká hodinu a dvě, ale špagety se pořád nechtějí uvařit. Mezitím vyčerpáním usne v kuchyni.\n\
+\n\
+Ráno ho budí manželka a ptá se: „Můžeš mi říct, proč sis vařil ty špejle?“',
+'Správce rekreační chaty vítá pana Nováka:\n\ „Uděláme všechno, abyste se zde cítil jako doma!“\n\
+„Bože! A já myslel, že si sem jedu odpočinout!“'
 ];
 
 // Náhodný výběr vtipu z pole s vtipy
