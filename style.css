@@ -148,6 +148,7 @@
     flex-direction: column; /* Pod sebou */
     align-items: center;
 }
+
 .kruh {
     width: 50px; 
     height: 50px; 
@@ -191,7 +192,7 @@ h1.jmeno {
     cursor: default; /* Změní kurzor, aby bylo jasné, že je prvek interaktivní */
     backface-visibility: hidden; /* Zabrání rozmazání textu během rotace */
 }
-    /* EFEKT PŘI NAJETÍ */
+/* EFEKT PŘI NAJETÍ */
 h1.jmeno:hover {
     transform: rotateY(360deg); /* Otočení o 360 stupňů kolem svislé osy Y */
     font-size: 50px;
@@ -241,10 +242,18 @@ button#zapni-barvu {
 /* Plynulý přechod pro celé tělo stránky */
 body {
     font-family: Arial, sans-serif;
-    background: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    /* Plynulý přechod barev */
     transition: background-color 0.5s ease, color 0.5s ease;
+    /* Základní nastavení pro obrázek, ale bez url! */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 .container {

@@ -263,45 +263,51 @@ tlacitkoKontaktovat.addEventListener('click', () => {
   }
 });
 
+
 // 1. NAČTENÍ DAT Z PAMĚTI
+// Pamatuje si režim: 'default' (bílá/černá), 'color' (škála), nebo 'image' (obrázek)
+let aktivniRezim = localStorage.getItem('rezimPozadi') || 'default';
 let mojeNavolenaBarva = localStorage.getItem('ulozenaBarva') || '#1e3a8a';
-let jeBarevnyRezim = localStorage.getItem('rezim') === 'barevny'; // pamatuje si, co bylo zapnuto
 
 const skala = document.getElementById('barevnaSkala');
-skala.value = mojeNavolenaBarva;
+if (skala) skala.value = mojeNavolenaBarva;
 
-// 2. FUNKCE PRO APLIKACI STYLU
-function aplikujAktualniStyl() {
-    if (jeBarevnyRezim) {
-        nastavStyl(mojeNavolenaBarva, mojeNavolenaBarva);
-    } else {
-        nastavStyl('white', 'black');
+// 2. HLAVNÍ FUNKCE PRO APLIKACI STYLU
+function aplikujStyl() {
+    // VÝCHOZÍ STAV: Bílé pozadí a černý text
+    let barvaPozadi = "#ffffff";
+    let barvaTextu = "#000000";
+
+    // Reset před aplikací (vypnutí obrázku)
+    document.body.style.backgroundImage = "none";
+
+    if (aktivniRezim === 'color') {
+        // REŽIM ŠKÁLA: Tvá navolená barva na pozadí i text
+        barvaPozadi = mojeNavolenaBarva;
+        barvaTextu = mojeNavolenaBarva; 
+    } 
+    else if (aktivniRezim === 'image') {
+        // REŽIM OBRÁZEK: Načte soubor
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
+        // Zde nastavujeme modrou barvu textu pro režim obrázku
+        barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
+
+    // Aplikace barev na BODY
+    document.body.style.backgroundColor = barvaPozadi;
+    document.body.style.color = barvaTextu;
+
+    // Obarvení všech ostatních prvků (úkoly, datum, svátek, formulář)
+    nastavBarvuPrvku(barvaTextu);
+
+    // Uložení stavu do paměti prohlížeče
+    localStorage.setItem('rezimPozadi', aktivniRezim);
 }
 
-// 3. TLAČÍTKO PŘEPNOUT
-tlacitkoZapni.addEventListener('click', () => {
-    jeBarevnyRezim = !jeBarevnyRezim; // otočí stav (true/false)
-    localStorage.setItem('rezim', jeBarevnyRezim ? 'barevny' : 'bily');
-    aplikujAktualniStyl();
-});
+// 3. POMOCNÉ FUNKCE
 
-// 4. SLEDOVÁNÍ ŠKÁLY
-skala.addEventListener('input', (e) => {
-    mojeNavolenaBarva = e.target.value;
-    localStorage.setItem('ulozenaBarva', mojeNavolenaBarva);
-    
-    // Pokud měním škálu, automaticky to zapne barevný režim
-    jeBarevnyRezim = true;
-    localStorage.setItem('rezim', 'barevny');
-    aplikujAktualniStyl();
-});
-
-// Pomocná funkce (obarví vše)
-function nastavStyl(pozadi, text) {
-    document.body.style.backgroundColor = pozadi;
-    document.body.style.color = text;
-    
+// Funkce pro obarvení všeho ostatního
+function nastavBarvuPrvku(text) {
     const kontakt = document.getElementById('kontakt');
     if (kontakt) kontakt.style.color = text;
 
@@ -309,9 +315,8 @@ function nastavStyl(pozadi, text) {
         li.style.color = text;
     });
 
-    // Obarví texty ve formuláři, aby ladily se zbytkem
-    document.querySelectorAll('.feedback-form input, .feedback-form select, .feedback-form textarea').forEach(el => {
-        el.style.color = text;
+    document.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.id !== 'barevnaSkala') el.style.color = text;
     });
 
     // Obarvení kruhu a jeho stínu při najetí
@@ -325,8 +330,40 @@ function nastavStyl(pozadi, text) {
     } */
 }
 
-// --- DŮLEŽITÉ: Spustit hned po načtení stránky ---
-aplikujAktualniStyl();
+// Výpočet, zda dát černý nebo bílý text podle jasu pozadí
+function dejKontrastniBarvu(hex) {
+    const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    const jas = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return (jas >= 128) ? '#000000' : '#ffffff';
+}
+
+// 4. OVLÁDÁNÍ (PROPOJENÍ S TLAČÍTKY)
+
+// Tlačítko Zapni/Vypni barvu
+window.prepniBarvu = function() {
+    aktivniRezim = (aktivniRezim === 'color') ? 'default' : 'color';
+    aplikujStyl();
+};
+
+// Tlačítko Zapni/Vypni obrázek
+window.zapniObrazek = function() {
+    aktivniRezim = (aktivniRezim === 'image') ? 'default' : 'image';
+    aplikujStyl();
+};
+
+// Sledování škály
+if (skala) {
+    skala.addEventListener('input', (e) => {
+        mojeNavolenaBarva = e.target.value;
+        localStorage.setItem('ulozenaBarva', mojeNavolenaBarva);
+        aktivniRezim = 'color'; // Při hýbání se škálou hned zapneme barvu
+        aplikujStyl();
+    });
+}
+
+// 5. START
+aplikujStyl();
+
 
 // Najdeme prvky
 // --- ZÁKLADNÍ PROMĚNNÉ ---
@@ -337,7 +374,7 @@ const mujSeznam = document.getElementById('mujSeznam');
 // Mapa pro převod barev na písmena (N-normální, S-spěchá, D-důležité)
 const priorityMap = { "green": "N", "orange": "S", "red": "D" };
 
-// --- 1. FUNKCE PRO ULOŽENÍ (localStorage) ---
+// 1. FUNKCE PRO ULOŽENÍ (localStorage)
 function ulozDoPameti() {
     const ukoly = [];
     // Procházíme všechny hlavní úkoly v seznamu
@@ -366,7 +403,7 @@ function ulozDoPameti() {
     localStorage.setItem('mojeUkoly', JSON.stringify(ukoly));
 }
 
-// --- 2. FUNKCE PRO VYTVOŘENÍ MALÉ POLOŽKY ---
+// 2. FUNKCE PRO VYTVOŘENÍ MALÉ POLOŽKY
 function vytvorPodpolozku(text, casData, hotovo = false) {
     const pLi = document.createElement('li');
     // Přidáme třídu p-done, pokud je položka hotová (kvůli škrtání)
@@ -400,7 +437,7 @@ function vytvorPodpolozku(text, casData, hotovo = false) {
     return pLi;
 }
 
-// --- 3. FUNKCE PRO SESTAVENÍ HLAVNÍHO ÚKOLU ---
+// 3. FUNKCE PRO SESTAVENÍ HLAVNÍHO ÚKOLU
 function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
     const li = document.createElement('li');
     // Nastavení stavu (hotovo) a barevné linky
@@ -477,7 +514,7 @@ function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
     return li;
 }
 
-// --- 4. PŘIDÁNÍ ÚKOLU Z FORMULÁŘE (S animací třesení) ---
+// 4. PŘIDÁNÍ ÚKOLU Z FORMULÁŘE (S animací třesení)
 function pridatUkol() {
     const text = novyUkol.value.trim();
     const barvaPriority = document.getElementById('priorita').value;
@@ -502,7 +539,7 @@ function pridatUkol() {
     ulozDoPameti();
 }
 
-// --- 5. NAČTENÍ PŘI STARTU ---
+// 5. NAČTENÍ PŘI STARTU
 function nactiZPameti() {
     const ulozene = JSON.parse(localStorage.getItem('mojeUkoly') || '[]');
     mujSeznam.innerHTML = "";
@@ -511,7 +548,7 @@ function nactiZPameti() {
     });
 }
 
-// --- SPUŠTĚNÍ ---
+// 6. SPUŠTĚNÍ 
 nactiZPameti();
 pridat.onclick = pridatUkol;
 novyUkol.onkeypress = (e) => { if (e.key === 'Enter') pridatUkol(); };
@@ -617,7 +654,7 @@ function ukazCitat() {
   alert(citaty[index]);
 }
 
-// Pole s citaty
+// Pole s vtipy
 const vtipy = [
 '„Mami, dáš mi prosím 50 korun pro starého a chudého pána?"\n\
 „Ty jsi moc hodný, ale kde vlastně je?"\n\
