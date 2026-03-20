@@ -48,50 +48,69 @@
     transform: translateY(0px);
 }
 
-/* Styly pro vyskakovací okno */
-/* Pozadí přes celou obrazovku */
+/* Sjednocený základ pro všechna modální okna */
 .modal {
-    display: none; 
+    display: none; /* Výchozí stav - skryté */
     position: fixed; 
-    z-index: 1000; 
-    left: 0; 
-    top: 0;
-    width: 100%; 
+    z-index: 2000; 
+    left: 0; top: 0;
+    width: 100%;
     height: 100%; 
-    background-color: rgba(0,0,0,0.8);
-    /* Flexbox zajistí centrování obsahu horizontálně i vertikálně */
-    overflow-y: auto; /* Důležité pro dlouhé seznamy jmen */
-    padding-top: 20px; /* Okno bude 20px od vrchu */
+    background-color: rgba(0,0,0,0.6); /* Ztmavení pozadí */
+    backdrop-filter: blur(5px); /* /* OPRAVA SCROLLOVÁNÍ: */
+    overflow-y: auto;        /* Povolí scroll na celém pozadí */
+    -webkit-overflow-scrolling: touch; /* Plynulý scroll na iPhonech */
+    display: none;           /* Skryté, JS přidá .videt */
 }
-/* Samotné bílé okno */
-.modal-obsah {
-    background-color: #fefefe; 
-    padding: 20px;
+/* Třída pro zobrazení okna (použijeme v JS místo .style.display) */
+.modal.videt {
+    display: block; 
+}
+.modal-obsah, .modal-content {
+    background-color: #fff; 
+    padding: 25px;
     border-radius: 15px; 
-    width: 85%; /* Na mobilu zabere víc místa */
-    max-width: 350px; /* Na počítači zůstane malé */
+    width: 90%; 
+    max-width: 380px; 
     text-align: center; 
-    margin: 0 auto 40px auto; /* Centrování horizontálně a mezera dole */
     position: relative;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    /* position: relative; /* Pro správné umístění křížku */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     
-    /* Zajištění, že se okno nezasekne nahoře/dole 
-    margin: auto; */
+    /* OPRAVA POZICE: */
+    margin: 40px auto;       /* 40px odshora i odspoda zajistí, že uvidíš i konec seznamu */
+    animation: popIn 0.3s ease-out;
+}
+/* Efekt pro tlačítko "Přidat" v modálním okně */
+#modalConfirm {
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+#modalConfirm:hover {
+    background-color: #218838 !important; /* Tmavší zelená */
+    cursor: pointer;
+}
+#modalConfirm:active {
+    transform: scale(0.98); /* Mírné "promáčknutí" při kliknutí */
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 /* Křížek pro zavření */
-.zavrit { 
+.zavrit, .close-btn { 
     position: absolute;
-    right: 15px;
-    top: 5px;
-    font-size: 30px; 
-    font-weight: bold;
+    right: 15px; 
+    top: 10px;
+    font-size: 28px; 
+    font-weight: bold; 
     cursor: pointer; 
     color: #888;
 }
 .zavrit:hover {
     color: #000; /* Křížek při najetí zčerná */
 }
+
 #vstup-hledani { 
     width: 90%; 
     padding: 12px; 

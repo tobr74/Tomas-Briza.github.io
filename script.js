@@ -77,6 +77,7 @@ function aktualizujCasAKalendar() {
 // 3. FUNKCE PRO OTEVŘENÍ OKNA
 function otevriOkno(typ) {
     rezimOkna = typ;
+    const m = document.getElementById('moje-okno');
     const modal = document.getElementById('moje-okno');
     const nadpis = document.getElementById('nadpis-okna');
     const napoveda = document.getElementById('napoveda-okna');
@@ -87,7 +88,8 @@ function otevriOkno(typ) {
     if (!modal) return;
     
     // Zobrazíme okno a vyčistíme předchozí výsledky
-    modal.style.display = "block";
+    m.classList.add('videt'); // Místo .style.display použijeme třídu
+    /* modal.style.display = "block"; */
     vysledek.innerHTML = "";
     vstup.value = "";
 
@@ -223,14 +225,17 @@ document.getElementById('vstup-hledani').onkeypress = (e) => {
 };
 
 // Zavření okna křížkem
-document.querySelector('.zavrit').onclick = () => {
-    document.getElementById('moje-okno').style.display = "none";
+// Zavření druhého okna
+document.querySelector('#moje-okno .zavrit').onclick = () => {
+    document.getElementById('moje-okno').classList.remove('videt');
 };
 
 // Zavření okna kliknutím na tmavé pozadí
-window.onclick = (e) => { 
-    const modal = document.getElementById('moje-okno');
-    if (e.target == modal) modal.style.display = "none"; 
+// Společné zavírání kliknutím mimo okno
+window.onclick = (e) => {
+    if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('videt');
+    }
 };
 
 // 6. START PROGRAMU
@@ -288,7 +293,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/1285f40e-5677-4fc2-b713-41e7e1881920')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -365,32 +370,90 @@ if (skala) {
 aplikujStyl();
 
 
-// Najdeme prvky
-// --- ZÁKLADNÍ PROMĚNNÉ ---
+// ==========================================================
+// 1. ZÁKLADNÍ PROMĚNNÉ A NASTAVENÍ MODALU
+// ==========================================================
 const novyUkol = document.getElementById('novyUkol');
 const pridat = document.getElementById('pridat');
 const mujSeznam = document.getElementById('mujSeznam');
 
-// Mapa pro převod barev na písmena (N-normální, S-spěchá, D-důležité)
+// Mapa pro priority (N-normální, S-spěchá, D-důležité)
 const priorityMap = { "green": "N", "orange": "S", "red": "D" };
 
-// 1. FUNKCE PRO ULOŽENÍ (localStorage)
+// Prvky nového moderního modalu
+// --- OVLÁDÁNÍ MODALU PRO ÚKOLY ---
+const taskModal = document.getElementById('taskModal');
+const modalInput = document.getElementById('modalInput');
+const modalConfirm = document.getElementById('modalConfirm');
+
+
+// Pomocná proměnná: uchovává, do kterého úkolu zrovna píšeme podpoložku
+let targetList = null; 
+
+// Funkce pro otevření moderního okna (nahrazuje starý prompt)
+// Funkce, kterou volá tlačítko "+" u úkolu
+function openTaskModal(listElement) {
+    targetList = listElement;
+    taskModal.classList.add('videt'); // Přidáme třídu pro zobrazení
+    modalInput.value = "";
+    setTimeout(() => modalInput.focus(), 100);
+}
+
+// Zavření okna úkolů
+document.querySelector('.close-btn').onclick = () => taskModal.classList.remove('videt');
+
+// ZAVÍRÁNÍ MODALU PRO ÚKOLY
+
+// 1. Zavření křížkem (close-btn)
+const tlacitkoKrizekUkol = document.querySelector('.close-btn');
+if (tlacitkoKrizekUkol) {
+    tlacitkoKrizekUkol.onclick = () => {
+        document.getElementById('taskModal').style.display = "none";
+    };
+}
+
+// 2. Zavření kliknutím na tmavé pozadí (overlay)
+// Tento kód obslouží obě tvoje okna (moje-okno i taskModal)
+window.onclick = (e) => {
+    const modalSvatek = document.getElementById('moje-okno');
+    const modalUkol = document.getElementById('taskModal');
+
+    if (e.target === modalSvatek) {
+        modalSvatek.style.display = "none";
+    }
+    if (e.target === modalUkol) {
+        modalUkol.style.display = "none";
+    }
+};
+
+// Potvrzení v modálním okně (tlačítko "Přidat")
+// Potvrzení přidání podpoložky
+modalConfirm.onclick = () => {
+    const text = modalInput.value.trim();
+    if (text && targetList) {
+        targetList.appendChild(vytvorPodpolozku(text));
+        ulozDoPameti();
+        taskModal.classList.remove('videt');
+    }
+};
+
+// Podpora klávesy Enter uvnitř modalu
+modalInput.onkeypress = (e) => {
+    if (e.key === 'Enter') modalConfirm.click();
+};
+
+// 2. FUNKCE PRO ULOŽENÍ A NAČTENÍ(LocalStorage)
 function ulozDoPameti() {
     const ukoly = [];
-    // Procházíme všechny hlavní úkoly v seznamu
     document.querySelectorAll('#mujSeznam > li').forEach(li => {
         const podpolozky = [];
-        // Projdeme malé položky uvnitř tohoto úkolu
         li.querySelectorAll('.pod-polozka').forEach(pLi => {
             podpolozky.push({
                 text: pLi.querySelector('.p-text').innerText,
-                // Bereme čas ze skrytého pole p-cas-raw, abychom neměli dvojité závorky
                 cas: pLi.querySelector('.p-cas-raw').innerText, 
                 hotovo: pLi.classList.contains('p-done')
             });
         });
-
-        // Uložíme data hlavního úkolu
         ukoly.push({
             text: li.querySelector('.hlavni-text').innerText,
             info: li.querySelector('.info-cas').innerText,
@@ -399,48 +462,44 @@ function ulozDoPameti() {
             podpolozky: podpolozky
         });
     });
-    // Převedeme pole na text a uložíme
     localStorage.setItem('mojeUkoly', JSON.stringify(ukoly));
 }
 
-// 2. FUNKCE PRO VYTVOŘENÍ MALÉ POLOŽKY
+// 3. FUNKCE PRO TVORBU ELEMENTŮ (Úkoly a podpoložky)
+// POMOCNÁ PROMĚNNÁ PRO MODAL (umístit na začátek skriptu) ---
+let cilovySeznamProPolozku = null; 
+
+// Vytvoření malé položky (podúkolu)
 function vytvorPodpolozku(text, casData, hotovo = false) {
     const pLi = document.createElement('li');
-    // Přidáme třídu p-done, pokud je položka hotová (kvůli škrtání)
     pLi.className = "pod-polozka" + (hotovo ? " p-done" : "");
     pLi.style.cssText = "font-size:13px; list-style:none; border-bottom:1px solid rgba(0,0,0,0.05); display:flex; justify-content:space-between; padding:5px 0; cursor:pointer; text-align:left;";
 
-    // Datum a čas (buď načtený, nebo aktuální)
     const nyni = new Date();
     const cas = casData || `${nyni.toLocaleDateString()} ${nyni.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
 
-    // p-cas-raw je skrytý (display:none), slouží pouze pro čisté ukládání bez závorek
     pLi.innerHTML = `
         <span class="p-klik" style="flex-grow:1;">• <span class="p-text">${text}</span> <small style="color:gray">(${cas})</small><span class="p-cas-raw" style="display:none">${cas}</span></span>
         <button class="del-sub" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; padding:0 5px; display:flex; align-items:center; justify-content:center;">×</button>
     `;
 
-    // Kliknutí na text malé položky (škrtání)
     pLi.querySelector('.p-klik').onclick = (e) => {
-        e.stopPropagation(); // Aby neklikl i na hlavní úkol pod tím
+        e.stopPropagation();
         pLi.classList.toggle('p-done');
         ulozDoPameti();
     };
 
-    // Smazání malé položky
     pLi.querySelector('.del-sub').onclick = (e) => {
         e.stopPropagation();
         pLi.remove();
         ulozDoPameti();
     };
-
     return pLi;
 }
 
-// 3. FUNKCE PRO SESTAVENÍ HLAVNÍHO ÚKOLU
+// Sestavení hlavního bloku úkolu
 function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
     const li = document.createElement('li');
-    // Nastavení stavu (hotovo) a barevné linky
     if (hotovo) li.classList.add('done');
     li.style.borderLeft = `10px solid ${barva}`;
     li.style.marginBottom = "15px";
@@ -449,51 +508,43 @@ function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
     li.style.display = "flex";
     li.style.flexDirection = "column";
 
-    // Získání písmene priority
     let symbol = priorityMap[barva] || "N";
 
-    // HTML struktura: Flexbox zajistí zarovnání doleva, tlačítka vpravo
     li.innerHTML = `
         <div style="display:flex; justify-content:flex-start; align-items:center; width: 100%;">
-            <!-- Písmeno priority - klikatelné pro změnu -->
             <div class="priorita-btn" style="cursor:pointer; font-weight:bold; font-size:18px; color:${barva}; min-width:25px; text-align:left; margin-right:5px;">${symbol}</div>
-            
-            <!-- Hlavní text úkolu - zarovnaný doleva -->
             <div class="klik-oblast" style="cursor:pointer; flex-grow:1; text-align:left; overflow:hidden;">
                 <span class="hlavni-text" style="display:block; font-weight:bold; font-size:18px;">${text}</span>
                 <span class="info-cas" style="font-size:11px; color:#666;">${info}</span>
             </div>
-
-            <!-- Tlačítka vpravo (Přidat a Smazat) -->
             <div style="display:flex; gap:5px; align-items:center; margin-left: auto;">
-                <button class="add-sub" style="background:#28a745; color:white; border:none; border-radius:4px; cursor:pointer; padding:6px 10px; font-size:11px; white-space:nowrap; display:flex; align-items:center; justify-content:center;">+ Přidat položku úkolu</button>
+                <button class="add-sub" style="background:#28a745; color:white; border:none; border-radius:4px; cursor:pointer; padding:6px 10px; font-size:11px; white-space:nowrap; display:flex; align-items:center; justify-content:center;">+ Položka úkolu</button>
                 <button class="delete" style="background:#dc3545; color:white; border:none; border-radius:4px; width:26px; height:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold;">x</button>
             </div>
         </div>
-        <!-- Seznam pro malé položky pod úkolem -->
         <ul class="pod-seznam" style="margin-top:8px; padding:0; border-top:1px solid #ddd; width: 100%;"></ul>
     `;
 
     const podSeznamUl = li.querySelector('.pod-seznam');
-    const prioritaBtn = li.querySelector('.priorita-btn');
 
-    // LOGIKA PŘEPÍNÁNÍ PRIORITY (Kliknutím na písmeno N/S/D)
-    prioritaBtn.onclick = (e) => {
+    // LOGIKA PŘEPÍNÁNÍ PRIORITY (Kliknutím na písmeno)
+    li.querySelector('.priorita-btn').onclick = (e) => {
         e.stopPropagation();
+        const btn = e.target;
         if (li.style.borderLeftColor === "green") {
-            li.style.borderLeftColor = "orange"; prioritaBtn.innerText = "S"; prioritaBtn.style.color = "orange";
+            li.style.borderLeftColor = "orange"; btn.innerText = "S"; btn.style.color = "orange";
         } else if (li.style.borderLeftColor === "orange") {
-            li.style.borderLeftColor = "red"; prioritaBtn.innerText = "D"; prioritaBtn.style.color = "red";
+            li.style.borderLeftColor = "red"; btn.innerText = "D"; btn.style.color = "red";
         } else {
-            li.style.borderLeftColor = "green"; prioritaBtn.innerText = "N"; prioritaBtn.style.color = "green";
+            li.style.borderLeftColor = "green"; btn.innerText = "N"; btn.style.color = "green";
         }
         ulozDoPameti();
     };
 
-    // Načtení malých položek, pokud existují
+    // Načtení podpoložek
     podpolozkyData.forEach(p => podSeznamUl.appendChild(vytvorPodpolozku(p.text, p.cas, p.hotovo)));
 
-    // Označení celého úkolu za hotový (škrtne jen název díky CSS)
+    // Odškrtnutí úkolu
     li.querySelector('.klik-oblast').onclick = () => {
         li.classList.toggle('done');
         ulozDoPameti();
@@ -502,26 +553,59 @@ function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
     // Smazání úkolu
     li.querySelector('.delete').onclick = () => { li.remove(); ulozDoPameti(); };
 
-    // Přidání nové malé položky přes prompt
-    li.querySelector('.add-sub').onclick = () => {
-        const pText = prompt("Zadej název nové položky:");
-        if (pText && pText.trim() !== "") {
-            podSeznamUl.appendChild(vytvorPodpolozku(pText.trim()));
-            ulozDoPameti();
-        }
+    // AKTUALIZOVÁNO: Otevření moderního modalu místo promptu
+    li.querySelector('.add-sub').onclick = (e) => {
+    e.stopPropagation(); // Důležité, aby se neoznačil úkol jako hotový
+    openTaskModal(podSeznamUl);
     };
 
     return li;
 }
 
-// 4. PŘIDÁNÍ ÚKOLU Z FORMULÁŘE (S animací třesení)
+// LOGIKA POTVRZENÍ V MODALU (Zůstává otevřené pro více položek)
+const modalConfirmUkol = document.getElementById('modalConfirm');
+const modalInputUkol = document.getElementById('modalInput');
+
+
+// POTVRZENÍ V OKNĚ ÚKOLU
+if (modalConfirmUkol) {
+    modalConfirmUkol.onclick = () => {
+        const text = modalInputUkol.value.trim();
+        if (text && cilovySeznamProPolozku) {
+            // 1. Přidáme položku do seznamu
+            cilovySeznamProPolozku.appendChild(vytvorPodpolozku(text));
+            
+            // 2. Uložíme do paměti
+            ulozDoPameti();
+            
+            // 3. VYMAŽEME POLÍČKO pro další zadávání (ale okno NEZAVÍRÁME)
+            modalInputUkol.value = "";
+            
+            // 4. VRÁTÍME KURZOR do políčka, aby se dalo hned psát dál
+            modalInputUkol.focus();
+            
+            // Poznámka: Okno se teď zavře jen křížkem nebo kliknutím na pozadí
+        }
+    };
+}
+ 
+// Funkce pro otevření okna (přidat k ostatním funkcím modalů)
+function openTaskModal(seznamUl) {
+    cilovySeznamProPolozku = seznamUl;
+    if (taskModal) {
+        taskModal.style.display = "block";
+        modalInputUkol.value = "";
+        setTimeout(() => modalInputUkol.focus(), 100);
+    }
+}
+
+// Přidání nového hlavního úkolu s animací
 function pridatUkol() {
     const text = novyUkol.value.trim();
     const barvaPriority = document.getElementById('priorita').value;
 
     if (!text) {
         novyUkol.style.border = "2px solid red";
-        // Animace zatřesení, pokud je políčko prázdné
         novyUkol.animate([
             { transform: 'translateX(0px)' }, { transform: 'translateX(5px)' }, 
             { transform: 'translateX(-5px)' }, { transform: 'translateX(0px)' }
@@ -539,7 +623,7 @@ function pridatUkol() {
     ulozDoPameti();
 }
 
-// 5. NAČTENÍ PŘI STARTU
+// Načtení dat při startu
 function nactiZPameti() {
     const ulozene = JSON.parse(localStorage.getItem('mojeUkoly') || '[]');
     mujSeznam.innerHTML = "";
@@ -548,10 +632,11 @@ function nactiZPameti() {
     });
 }
 
-// 6. SPUŠTĚNÍ 
+// Spuštění
 nactiZPameti();
 pridat.onclick = pridatUkol;
 novyUkol.onkeypress = (e) => { if (e.key === 'Enter') pridatUkol(); };
+
 
 
 // Pole s moudry

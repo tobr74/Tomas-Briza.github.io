@@ -102,6 +102,15 @@
 
       <div class="pridatSeznam">
         <ul id="mujSeznam"></ul>
+        <div id="taskModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+          <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 style="margin-top:0">➕ Přidat položku úkolu</h3>
+            <input type="text" id="modalInput" placeholder="Co je potřeba udělat?">
+            <button id="modalConfirm" style="background:#28a745; color:white; border:none; padding:15px; width:100%; border-radius:5px; cursor:pointer; font-weight:bold;margin:20px 0 0 0;"><b>Přidat položku úkolu</b><br><br/><i>(zavřete prosím křížkem, aby bylo možné přidat více položek za sebou)</i></button>
+          </div>
+        </div>
 
         <!-- FORMULÁŘ -->
         <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form">
