@@ -75,62 +75,64 @@ function aktualizujCasAKalendar() {
 }
 
 // 3. FUNKCE PRO OTEVŘENÍ OKNA
+// FUNKCE PRO OVLÁDÁNÍ MODALŮ
+// Funkce pro otevírání (Svátek, Datum, Hodiny)
 function otevriOkno(typ) {
     rezimOkna = typ;
-    const m = document.getElementById('moje-okno');
     const modal = document.getElementById('moje-okno');
-    const nadpis = document.getElementById('nadpis-okna');
-    const napoveda = document.getElementById('napoveda-okna');
     const vstup = document.getElementById('vstup-hledani');
     const vysledek = document.getElementById('vysledek-hledani');
+    const nadpis = document.getElementById('nadpis-okna');
+    const napoveda = document.getElementById('napoveda-okna');
     const tlacitkoHledat = document.getElementById('tlacitko-hledat');
 
     if (!modal) return;
     
     // Zobrazíme okno a vyčistíme předchozí výsledky
-    m.classList.add('videt'); // Místo .style.display použijeme třídu
-    /* modal.style.display = "block"; */
+    // VYČIŠTĚNÍ A ZOBRAZENÍ
     vysledek.innerHTML = "";
     vstup.value = "";
+    
+    // Místo .style.display použijeme třídu .videt (aby Esc fungoval správně)
+    modal.classList.add('videt');
 
     // REŽIM HODINY
-    if (typ === 'hodiny') {
+   if (typ === 'hodiny') {
         nadpis.innerText = "Nastavení zobrazení času";
-        napoveda.innerText = "Vyberte si, jak chcete hodiny zobrazovat:";
-        vstup.style.display = "none"; // Skryje vstupní pole
-        if (tlacitkoHledat) tlacitkoHledat.style.display = "none"; // Skryje tlačítko hledat
-
+        napoveda.innerText = "Vyberte si, jak chcete hodiny zobrazovat?";
+        vstup.style.display = "none";
+        if (tlacitkoHledat) tlacitkoHledat.style.display = "none";
         vysledek.innerHTML = `
-            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(true)">S vteřinami (např. 12:05:01)</div>
-            <div class="volba-hodin klikaci-polozka" style="margin: 10px 0; padding: 15px; border: 1px solid #ddd;" onclick="nastavFormatHodin(false)">Bez vteřin (např. 12:05)</div>
-        `;
-    } 
-    // REŽIM DATUM
-    else if (typ === 'datum') {
+            <button class="volba-hodin" onclick="nastavFormatHodin(true)">S vteřinami (např. 12:05:01)</button>
+            <button class="volba-hodin" onclick="nastavFormatHodin(false)">Bez vteřin (např. 12:05)</button>`;
+    } else {
         vstup.style.display = "block";
         if (tlacitkoHledat) tlacitkoHledat.style.display = "block";
-        nadpis.innerText = "Vyhledat den týdne\npodle datumu a roku";
-        napoveda.innerText = "Zadejte datum a rok\n(např. 7. března 2026 nebo 7.3.2026)";
-        vstup.placeholder = "Napište sem datum a rok";
-        setTimeout(() => vstup.focus(), 100);
-    } 
-    // REŽIM SVÁTEK
-    else if (typ === 'svatek') {
-        vstup.style.display = "block";
-        if (tlacitkoHledat) tlacitkoHledat.style.display = "block";
-        nadpis.innerText = "Vyhledat svátek";
-        napoveda.innerText = "Zadejte jméno (např. Tomáš nebo tomáš)\nnebo datum (např. 7. března nebo 7.3.)";
-        vstup.placeholder = "Napište sem jméno nebo datum";
+        if (typ === 'datum') {
+            nadpis.innerText = "Vyhledat den týdne\n podle datumu a roku";
+            napoveda.innerText = "Zadej datum a rok\n (např. 7. března 2026 nebo 7.3.2026)";
+        } else {
+            nadpis.innerText = "Vyhledat svátek";
+            napoveda.innerText = "Zadejte jméno (např. Tomáš nebo tomáš)\n nebo datum (např. 7. března nebo 7.3.)";
+        }
         setTimeout(() => vstup.focus(), 100);
     }
 }
 
-// Funkce pro uložení volby formátu hodin
+// Funkce pro uložení volby formátu hodin (voláno z modálního okna)
 function nastavFormatHodin(vteriny) {
     zobrazovatVteriny = vteriny;
+    // Uložíme volbu do paměti
     localStorage.setItem('nastaveniHodin', vteriny ? 's-vterinami' : 'bez-vterin');
-    document.getElementById('moje-okno').style.display = "none"; // Zavře okno
-    aktualizujCasAKalendar(); // Okamžitá aktualizace na stránce
+    
+    // OPRAVA: Místo .style.display použijeme odebrání třídy, aby se vrstva skutečně uvolnila
+    const modal = document.getElementById('moje-okno');
+    if (modal) {
+        modal.classList.remove('videt');
+    }
+
+    // Ihned aktualizujeme hodiny na vizitce
+    aktualizujCasAKalendar();
 }
 
 // 4. LOGIKA VYHLEDÁVÁNÍ (Spustí se až po kliknutí na tlačítko)
@@ -224,17 +226,30 @@ document.getElementById('vstup-hledani').onkeypress = (e) => {
     if (e.key === 'Enter') provedVyhledavani(); 
 };
 
-// Zavření okna křížkem
-// Zavření druhého okna
-document.querySelector('#moje-okno .zavrit').onclick = () => {
-    document.getElementById('moje-okno').classList.remove('videt');
-};
+// --- FUNKCE PRO ZAVÍRÁNÍ ---
 
-// Zavření okna kliknutím na tmavé pozadí
-// Společné zavírání kliknutím mimo okno
-window.onclick = (e) => {
-    if (e.target.classList.contains('modal')) {
-        e.target.classList.remove('videt');
+// Funkce, která zavře úplně všechna okna
+function zavriVsechnaOkna() {
+    document.getElementById('moje-okno').classList.remove('videt');
+    document.getElementById('taskModal').classList.remove('videt');
+}
+
+// Zavírání křížkem (pro obě okna)
+document.querySelectorAll('.zavrit, .close-btn').forEach(btn => {
+    btn.onclick = zavriVsechnaOkna;
+});
+
+// ZAVÍRÁNÍ KLÁVESOU ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        zavriVsechnaOkna();
+    }
+});
+
+// Podpora pro Enter v okně úkolů (aby se okno nezavřelo a přidalo položku)
+document.getElementById('modalInput').onkeypress = (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('modalConfirm').click();
     }
 };
 
@@ -293,7 +308,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -392,37 +407,57 @@ let targetList = null;
 
 // Funkce pro otevření moderního okna (nahrazuje starý prompt)
 // Funkce, kterou volá tlačítko "+" u úkolu
-function openTaskModal(listElement) {
-    targetList = listElement;
-    taskModal.classList.add('videt'); // Přidáme třídu pro zobrazení
-    modalInput.value = "";
-    setTimeout(() => modalInput.focus(), 100);
+// Funkce pro otevření okna úkolů
+function openTaskModal(seznamUl) {
+    cilovySeznamProPolozku = seznamUl;
+    const modal = document.getElementById('taskModal');
+    if (modal) {
+        modal.classList.add('videt'); // Sjednocené otevírání
+        const vstup = document.getElementById('modalInput');
+        vstup.value = "";
+        setTimeout(() => vstup.focus(), 100);
+    }
+}
+
+// Funkce pro otevření okna úkolů
+function openTaskModal(seznamUl) {
+    cilovySeznamProPolozku = seznamUl;
+    const modal = document.getElementById('taskModal');
+    if (modal) {
+        modal.classList.add('videt'); // Sjednocené otevírání
+        const vstup = document.getElementById('modalInput');
+        vstup.value = "";
+        setTimeout(() => vstup.focus(), 100);
+    }
 }
 
 // Zavření okna úkolů
 document.querySelector('.close-btn').onclick = () => taskModal.classList.remove('videt');
 
-// ZAVÍRÁNÍ MODALU PRO ÚKOLY
+// --- FUNKCE PRO ZAVÍRÁNÍ ---
 
-// 1. Zavření křížkem (close-btn)
-const tlacitkoKrizekUkol = document.querySelector('.close-btn');
-if (tlacitkoKrizekUkol) {
-    tlacitkoKrizekUkol.onclick = () => {
-        document.getElementById('taskModal').style.display = "none";
-    };
+// Funkce, která zavře úplně všechna okna
+function zavriVsechnaOkna() {
+    document.getElementById('moje-okno').classList.remove('videt');
+    document.getElementById('taskModal').classList.remove('videt');
 }
 
-// 2. Zavření kliknutím na tmavé pozadí (overlay)
-// Tento kód obslouží obě tvoje okna (moje-okno i taskModal)
-window.onclick = (e) => {
-    const modalSvatek = document.getElementById('moje-okno');
-    const modalUkol = document.getElementById('taskModal');
+// Zavírání křížkem (pro obě okna)
+document.querySelectorAll('.zavrit, .close-btn').forEach(btn => {
+    btn.onclick = zavriVsechnaOkna;
+});
 
-    if (e.target === modalSvatek) {
-        modalSvatek.style.display = "none";
+// ZAVÍRÁNÍ KLÁVESOU ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        zavriVsechnaOkna();
     }
-    if (e.target === modalUkol) {
-        modalUkol.style.display = "none";
+});
+
+// Podpora pro Enter v okně úkolů (aby se okno nezavřelo a přidalo položku)
+document.getElementById('modalInput').onkeypress = (e) => {
+    if (e.key === 'Enter') {
+        document.getElementById('modalConfirm').click();
     }
 };
 
@@ -473,7 +508,7 @@ let cilovySeznamProPolozku = null;
 function vytvorPodpolozku(text, casData, hotovo = false) {
     const pLi = document.createElement('li');
     pLi.className = "pod-polozka" + (hotovo ? " p-done" : "");
-    pLi.style.cssText = "font-size:13px; list-style:none; border-bottom:1px solid rgba(0,0,0,0.05); display:flex; justify-content:space-between; padding:5px 0; cursor:pointer; text-align:left;";
+    pLi.style.cssText = "font-size:15px; font-weight:bold; list-style:none; border-bottom:1px solid rgba(0,0,0,0.05); display:flex; justify-content:space-between; padding:5px 0; cursor:pointer; text-align:left;";
 
     const nyni = new Date();
     const cas = casData || `${nyni.toLocaleDateString()} ${nyni.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
@@ -522,7 +557,7 @@ function sestavUkol(text, info, barva, hotovo, podpolozkyData) {
                 <button class="delete" style="background:#dc3545; color:white; border:none; border-radius:4px; width:26px; height:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold;">x</button>
             </div>
         </div>
-        <ul class="pod-seznam" style="margin-top:8px; padding:0; border-top:1px solid #ddd; width: 100%;"></ul>
+        <ul class="pod-seznam" style="margin-top:8px; padding:0; border-top:1px solid #ddd; width: 88%;"></ul>
     `;
 
     const podSeznamUl = li.querySelector('.pod-seznam');
@@ -590,14 +625,14 @@ if (modalConfirmUkol) {
 }
  
 // Funkce pro otevření okna (přidat k ostatním funkcím modalů)
-function openTaskModal(seznamUl) {
+/* function openTaskModal(seznamUl) {
     cilovySeznamProPolozku = seznamUl;
     if (taskModal) {
         taskModal.style.display = "block";
         modalInputUkol.value = "";
         setTimeout(() => modalInputUkol.focus(), 100);
     }
-}
+} */
 
 // Přidání nového hlavního úkolu s animací
 function pridatUkol() {

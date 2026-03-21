@@ -49,42 +49,63 @@
 }
 
 /* Sjednocený základ pro všechna modální okna */
+/* UNIVERZÁLNÍ ZÁKLAD PRO MODÁLNÍ OKNA */
 .modal {
     display: none; /* Výchozí stav - skryté */
     position: fixed; 
     z-index: 2000; 
-    left: 0; top: 0;
-    width: 100%;
+    left: 0; 
+    top: 0;
+    width: 100%; 
     height: 100%; 
-    background-color: rgba(0,0,0,0.6); /* Ztmavení pozadí */
-    backdrop-filter: blur(5px); /* /* OPRAVA SCROLLOVÁNÍ: */
-    overflow-y: auto;        /* Povolí scroll na celém pozadí */
-    -webkit-overflow-scrolling: touch; /* Plynulý scroll na iPhonech */
-    display: none;           /* Skryté, JS přidá .videt */
+    background: transparent; 
+    pointer-events: none; /* Kliknutí propustí skrz na pozadí webu */
+    overflow-y: auto;    /* Umožní scrollovat, pokud je okno moc dlouhé */
 }
 /* Třída pro zobrazení okna (použijeme v JS místo .style.display) */
+/* Třída pro zobrazení okna (přidáváme v JS) */
 .modal.videt {
-    display: block; 
+    display: block;      /* Změna na block umožní marginu pracovat s vrškem */
 }
+/* VNITŘNÍ BÍLÉ OKNO */
 .modal-obsah, .modal-content {
+    pointer-events: auto; /* V okně už klikání normálně funguje */
     background-color: #fff; 
-    padding: 25px;
+    padding: 30px 20px;
     border-radius: 15px; 
     width: 90%; 
     max-width: 380px; 
-    text-align: center; 
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+    border: 1px solid #ddd;
     
-    /* OPRAVA POZICE: */
-    margin: 40px auto;       /* 40px odshora i odspoda zajistí, že uvidíš i konec seznamu */
+    /* POZICE: 20px od vrchu, vycentrováno horizontálně */
+    margin: 20px auto 40px auto; 
+    
+    /* CENTROVÁNÍ TEXTU: Vše uvnitř bude na střed */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     animation: popIn 0.3s ease-out;
 }
+/* Křížek pro zavření v rohu */
+.zavrit, .close-btn { 
+    position: absolute;
+    right: 15px; 
+    top: 10px;
+    font-size: 28px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    color: #888;
+    line-height: 1;
+}
+.zavrit:hover, .close-btn:hover { color: #000; }
 /* Efekt pro tlačítko "Přidat" v modálním okně */
 #modalConfirm {
     transition: background-color 0.3s ease, transform 0.1s ease;
 }
-
 #modalConfirm:hover {
     background-color: #218838 !important; /* Tmavší zelená */
     cursor: pointer;
@@ -96,19 +117,6 @@
 @keyframes popIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
-}
-/* Křížek pro zavření */
-.zavrit, .close-btn { 
-    position: absolute;
-    right: 15px; 
-    top: 10px;
-    font-size: 28px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    color: #888;
-}
-.zavrit:hover {
-    color: #000; /* Křížek při najetí zčerná */
 }
 
 #vstup-hledani { 
@@ -132,18 +140,17 @@
     font-weight: bold;
     font-size: 16px;
     transition: 0.3s;
-    margin-left: 0px;
 }
 /* ZMĚNA ODSTÍNU PŘI NAJETÍ MYŠÍ */
 #tlacitko-hledat:hover { 
     background-color: #0056b3; /* Tmavší modrá při najetí */
 }
-#vysledek-hledani { 
-    margin-top: 20px; 
-    font-weight: bold; 
-    color: #222;
-    line-height: 1.5;
-    white-space: pre-line;
+/* Zarovnání výsledků vyhledávání na střed */
+#vysledek-hledani {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    white-space: pre-line; /* Zachová řádkování u jmen */
 }
 
 .box {
@@ -350,19 +357,19 @@ li.done .delete {
 }
 /* Odstranění globálního zhasínání celého divu, které jsi tam měl */
 li.done div {
-    opacity: 1; /* Zrušíme to tvoje původní nastavení, aby nezhaslo všechno */
+    opacity: 1; /* Zrušíme původní nastavení, aby nezhaslo všechno */
 } 
 #mujSeznam {
-    padding-left: 0;       /* Odstraní výchozí odsazení seznamu */
+    padding-left: 0; /* Odstraní výchozí odsazení seznamu */
     list-style-type: none; /* Odstraní tečky seznamu, pokud tam jsou */
 }
 #mujSeznam li {
     text-align: left;
-    padding-left: 10px;    /* Malá mezera, aby text nelepil úplně na linku */
+    padding-left: 10px; /* Malá mezera, aby text nelepil úplně na linku */
 }
 .pod-seznam {
-    padding-left: 0;       /* Zarovná i malé položky k levé lince */
-    margin-left: 5px;      /* Mírné odskočení podpoložek pro přehlednost */
+    padding-left: 0; /* Zarovná i malé položky k levé lince */
+    margin-left: 26px; /* Mírné odskočení podpoložek pro přehlednost */
 }
 button {
     padding: 6px 14px;
@@ -423,6 +430,48 @@ h1.vtipy {
     font-size: 10px; 
     color: #2ecc71; 
 }
+
+.rukopis {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #444;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    /* ANIMACE */
+    overflow: hidden; /* Skryje text, který ještě není "napsaný" */
+    white-space: nowrap; /* Udrží text v jedné lince během psaní */
+    border-right: 2px solid transparent; /* Volitelný kurzor na konci */
+    width: 0; /* Začínáme s nulovou šířkou */
+    
+    animation: 
+        psani 3s steps(40, end) forwards, /* Samotné psaní */
+        vynoreni 1s ease-in forwards;    /* Jemné rozsvícení barvy */
+}
+
+/* Definice pohybu (rozbalování textu) */
+@keyframes psani {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Definice prolnutí barev */
+@keyframes vynoreni {
+    from { opacity: 0; filter: blur(5px); }
+    to { opacity: 1; filter: blur(0); }
+}
+
+/* Efekt při najetí myší - nadpis se jemně zavlní */
+.rukopis:hover {
+    transform: scale(1.05) rotate(-1deg);
+    transition: 0.3s;
+    color: #007bff; /* Barva se změní na tvou modrou */
+}
+
+
 
 input.email {
     padding: 9px; 
@@ -503,46 +552,48 @@ input[type="text"] {
 /* Tato pravidla se aktivují jen když je mobil na šířku nebo má velký displej */
 /* Styl pro široký displej / na ležato */
 @media screen and (min-width: 640px) and (orientation: landscape) {
-  .flex-wrapper {
+.flex-wrapper {
     flex-direction: row;    /* Vedle sebe */
     justify-content: center;
     align-items: flex-start; /* Zarovnat k hornímu okraji */
     gap: 30px;              /* Mezera mezi vizitkou a úkoly */
     padding-top: 20px;
-  }
-
-  .vizitka-cast {
+}
+.vizitka-cast {
     width: 40%;
     text-align: center;
     margin-top: -45px;
-  }
-
-  .container {
+}
+.container {
     width: 50%;
     margin-top: 0;
-  }
 }
+}
+
 /* Tato pravidla se aktivují při otočení na ležato (landscape) */
-@media screen and (orientation: landscape) {
-    
-    /* Sjednocení roviny a zvětšení písma */
-    #datum-vlevo, #svatek-vpravo, #hodiny-stred {
-        top: 20px !important;    /* Všechny posuneme do stejné výšky od horního okraje */
-        font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
-    }
-
-    /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
-    #hodiny-stred {
-        font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    }
-
-    /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
-    .box {
-        padding-top: 60px; /* Vytvoříme víc místa pod horní lištou */
-        width: 95%;
-        max-width: 900px;
-    }
+@media screen and (orientation: landscape) {    
+/* Sjednocení roviny a zvětšení písma */
+#datum-vlevo, #svatek-vpravo, #hodiny-stred {
+    top: 20px !important;    /* Všechny posuneme do stejné výšky od horního okraje */
+    font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
 }
+/* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
+#hodiny-stred {
+    font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
+}
+/* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
+.box {
+    padding-top: 60px; /* Vytvoříme víc místa pod horní lištou */
+    width: 95%;
+    max-width: 900px;
+    width: 86%;
+    margin: 20px 0 20px 0;
+}
+.rukopis{
+    margin-top: 10px;
+}
+}
+
 @media screen and (max-height: 400px) and (orientation: landscape) {
     #datum-vlevo, #svatek-vpravo { font-size: 15px !important; }
 }
@@ -559,20 +610,51 @@ input[type="text"] {
 
 /* Úprava pro malé mobily (na stojato) */
 @media (max-width: 639px) {
-    .horni-lista {
-        flex-direction: column; /* Prvky pod sebou */
-        text-align: center;
-        padding-top: 10px;
+.horni-lista {
+    flex-direction: column; /* Prvky pod sebou */
+    text-align: center;
+    padding-top: 10px;
     }
+#datum-vlevo, #svatek-vpravo, #hodiny-stred {
+    width: 26%; /* Roztáhnou se na celou šířku */
+    margin: 2px 0; /* Jemné rozestupy pod sebou */
+    font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
+    padding: 5px;
+    }    
+.box {
+    padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
+    width: 86%;
+    }
+}
 
-    #datum-vlevo, #svatek-vpravo, #hodiny-stred {
-        width: 26%; /* Roztáhnou se na celou šířku */
-        margin: 2px 0; /* Jemné rozestupy pod sebou */
-        font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
-        padding: 5px;
-    }
-    
-    .box {
-        padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
-    }
+/* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
+@media screen and (max-width: 480px) {
+.modal-obsah, .modal-content {
+    width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
+    padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
+    margin-top: 10px;    /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
+}
+/* Zmenšení písma v nadpisu a nápovědě pro mobil */
+#nadpis-okna, .modal-content h3 {
+    font-size: 18px;     /* O něco menší nadpis */
+    margin-bottom: 10px;
+}
+#napoveda-okna, .modal-content p {
+    font-size: 13px;     /* Menší nápověda */
+}
+/* Úprava tlačítek pro vteřiny, aby nebyla moc vysoká */
+.volba-hodin {
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+/* Zmenšení křížku pro zavření, aby nepřekážel */
+.zavrit, .close-btn {
+    font-size: 24px;
+    right: 10px;
+    top: 5px;
+}
+.box{
+    width: 85%;
+}
 }
