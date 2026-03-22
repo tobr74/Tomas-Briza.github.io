@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tomáš Bříza - programátor</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
+    <!-- <link rel="manifest" href="manifest.json"> -->
 </head>
 <body>
 
@@ -36,26 +36,49 @@
     <!-- LEVÁ ČÁST: Vizitka -->
     <div class="vizitka-cast">
 
-      <div class="kruh">
-      <h3 class="TB">TB</h3>
+      <!-- Modální okno pro zadání hesla -->
+      <div id="adminModal" class="modal">
+        <div class="modal-obsah">
+          <span class="zavrit">&times;</span>
+          <h3 style="margin-top:0">🔐 Chráněná editace</h3>
+          <p>Zadejte heslo pro úpravu vizitky:</p>
+          <input type="password" id="adminHesloInput" placeholder="Heslo..." style="width:80%; padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
+          <button id="potvrditHesloBtn" style="background:#007bff; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; width:85%;">Odemknout</button>
+          <p id="chybaHesla" style="color:red; font-size:12px; margin-top:10px; display:none;">⚠️ Špatné heslo!</p>
+        </div>
       </div>
 
-      <h1 class="jmeno">Tomáš Bříza</h1>
+      <!-- Vizitka s editovatelnými poli -->
+      <div class="kruh">
+      <h3 class="TB" id="edit-inicialy">TB</h3>
+      </div>
 
-      <p class="programator">programátor</p>
+      <h2 class="jmeno" id="edit-jmeno">Tomáš Bříza</h2>
 
-      <button id="kontaktovat">Kontakt</button>
-      <div id="kontakt"></div>
+      <p class="programator" id="edit-profese">programátor</p>
+
+      <div class="ovladani-kontejner">
+        <button id="kontaktovat">Kontakt</button>
+        <div id="edit-kontakt" style="display: none;">
+        </div> <!-- Tady bude kontakt -->
+    
+        <!-- Tlačítka pro přepínání režimů -->
+        <div class="tlacitka-pod-sebou">
+          <button id="zapni-obrazek" onclick="zapniObrazek()">Zapni/Vypni obrázek pozadí</button>
+        </div>
+        <!-- Barevná škála -->
+        <div style="margin-top: 0px;margin-left: 0;">
+            <span>Zvol si barvu:</span>
+            <input type="color" id="barevnaSkala">
+            <button id="zapni-barvu" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
+        </div>
+      </div>
 
       <!-- Tlačítka pro přepínání režimů -->
-      <button id="zapni-obrazek" onclick="zapniObrazek()">Zapni/Vypni obrázek</button>
-      <button id="zapni-barvu" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
+      <!-- <button id="zapni-obrazek" onclick="zapniObrazek()">Zapni/Vypni obrázek</button>
+      <button id="zapni-barvu" onclick="prepniBarvu()">Zapni/Vypni barvu</button> -->
       
-      <!-- Barevná škála -->
-      <div style="margin-bottom: 10px;">
-          <span>Zvol si barvu:</span>
-          <input type="color" id="barevnaSkala">
-      </div>
+      
 
       <!-- SEKCE MOUDRA A HRY -->
       <div id="moudra-hry" style="margin-top: 10px;">
@@ -83,7 +106,6 @@
             <button onclick="ukazVtip()">KLIKNI A POBAV SE!</button>
           </div>
         </div>
-        <h2 class="rukopis">Děkuji za Vaši návštěvu</h2>
       </div>
     </div>
 
@@ -129,6 +151,7 @@
       </div> <!-- Konec pridatSeznam -->
     </div> <!-- Konec container -->
   </div> <!-- Konec flex-wrapper -->
+  <h2 class="rukopis">Děkuji za Vaši návštěvu</h2>
 </div> <!-- Konec box -->
 
 <script src="script.js?v=1.1"></script>

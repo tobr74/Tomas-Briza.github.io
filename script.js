@@ -258,30 +258,199 @@ setInterval(aktualizujCasAKalendar, 1000); // Hodiny běží každou vteřinu
 aktualizujCasAKalendar(); // Spustí se hned po načtení
 
 
+// --- KONFIGURACE ZÁMKU VIZITKY ---
+// --- KONFIGURACE ADMINA ---
+const HASH_HESLO = "UmVuY2luYTE1"; 
+let jeOdemceno = false;
+
+const elJmeno = document.getElementById('edit-jmeno');
+const elProfese = document.getElementById('edit-profese');
+const elInicialy = document.getElementById('edit-inicialy');
+const elKontakt = document.getElementById('edit-kontakt');
+const prvkyVizitky = [elJmeno, elProfese, elInicialy, elKontakt];
+
+// 1. OTEVŘENÍ MODALU HESLA (při kliknutí na kruh)
+// 1. KLIKNUTÍ NA KRUH (Otevírání nebo Odhlášení)
+document.querySelector('.kruh').onclick = function() {
+    if (jeOdemceno) {
+        // Pokud je odemčeno, nabídneme odhlášení
+        const dotaz = confirm("Vizitka je již odemčena pro úpravy. Chcete ji znovu zamknout a ukončit editaci?");
+        if (dotaz) {
+            zamkniVizitku();
+        }
+    } else {
+        // Pokud je zamčeno, otevřeme modal pro heslo
+        const modal = document.getElementById('adminModal');
+        modal.classList.add('videt');
+        const vstup = document.getElementById('adminHesloInput');
+        vstup.value = "";
+        document.getElementById('chybaHesla').style.display = "none";
+        setTimeout(() => vstup.focus(), 100);
+    }
+};
+
+// FUNKCE PRO OPĚTOVNÉ ZAMKNUTÍ
+function zamkniVizitku() {
+    jeOdemceno = false;
+    elKontakt.style.display = 'none'; // Při zamknutí schovat
+    
+    prvkyVizitky.forEach(el => {
+        if (el) {
+            el.contentEditable = "false";
+            el.style.borderBottom = "none";
+        }
+    });
+}
+
+
+// 1. JEDNOTNÁ FUNKCE (zavře všechna ID oken, co máš)
+function zavriVse() {
+    const ids = ['moje-okno', 'taskModal', 'adminModal'];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('videt');
+    });
+}
+
+// 2. KLIKACÍ EVENT (univerzální pro křížky i pozadí)
+document.addEventListener('click', function(e) {
+    // Pokud klikneš na křížek (podle třídy)
+    if (e.target.classList.contains('zavrit') || e.target.classList.contains('close-btn')) {
+        zavriVse();
+    }
+    // Pokud klikneš na šedé pozadí okolo okna
+    if (e.target.classList.contains('modal')) {
+        zavriVse();
+    }
+});
+
+// Agresivnější sledování klávesy ESC
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' || e.keyCode === 27) {
+        zavriVse(); // nebo zavriVsechnaOkna() - podle toho, jak se jmenuje tvoje funkce
+    }
+}, true); // To 'true' zajistí, že se to provede přednostně
+
+// 2. OVĚŘENÍ HESLA
+document.getElementById('potvrditHesloBtn').onclick = provestOvereni;
+document.getElementById('adminHesloInput').onkeypress = (e) => { if (e.key === 'Enter') provestOvereni(); };
+
+// 4. OPRAVA TVÉ FUNKCE PRO HESLO
+// (ve tvém kódu přepiš řádek 'zavriAdminModal()' na 'zavriVse()')
+function provestOvereni() {
+    const zadane = document.getElementById('adminHesloInput').value;
+    if (btoa(zadane) === HASH_HESLO) {
+        odemkniVizitku();
+        zavriVse(); // <--- Tady je ta změna
+    } else {
+        const chyba = document.getElementById('chybaHesla');
+        if (chyba) chyba.style.display = "block";
+        document.getElementById('adminHesloInput').value = "";
+    }
+}
+
+// 3. ODEMČENÍ A EDITACE
+function odemkniVizitku() {
+    jeOdemceno = true;
+    // Automaticky zobrazit kontakt pro editaci
+    elKontakt.style.display = 'block';
+    
+    prvkyVizitky.forEach(el => {
+        if (el) {
+            el.contentEditable = "true";
+            el.style.borderBottom = "2px dashed #007bff";
+            el.style.cursor = "text";
+        }
+    });
+}
+
+// 4. UKLÁDÁNÍ A NAČÍTÁNÍ
+function vytvorOdkazy(text) {
+    if (!text) return "";
+
+    // 1. Ochrana proti HTML - převedeme na čistý text, aby nám tam nezůstaly staré tagy
+    let upravenyText = text;
+
+    // 2. Nahrazení emailů odkazem
+    upravenyText = upravenyText.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi, 
+        '<a href="mailto:$1" style="color:inherit; text-decoration:underline;">$1</a>');
+    
+    // 3. Nahrazení telefonů odkazem
+    upravenyText = upravenyText.replace(/((?:\+420)?\s?\d{3}\s?\d{3}\s?\d{3})/g, 
+        '<a href="tel:$1" style="color:inherit; text-decoration:underline;">$1</a>');
+    
+    return upravenyText;
+}
+
+function ulozVizitku() {
+    if (!jeOdemceno) return;
+    const data = {
+        jmeno: elJmeno.innerText.trim(),
+        profese: elProfese.innerText.trim(),
+        inicialy: elInicialy.innerText.trim(),
+        kontakt: elKontakt ? elKontakt.innerText.trim() : "" // Uložíme kontakt
+    };
+    localStorage.setItem('mojeVizitka', JSON.stringify(data));
+}
+
+function nactiVizitku() {
+    const data = JSON.parse(localStorage.getItem('mojeVizitka'));
+    if (data) {
+        if (elJmeno) elJmeno.innerText = data.jmeno;
+        if (elProfese) elProfese.innerText = data.profese;
+        if (elInicialy) elInicialy.innerText = data.inicialy;
+        
+        if (elKontakt && data.kontakt) {
+            // Přemění uložený text na klikací odkazy (e-mail, tel)
+            elKontakt.innerHTML = vytvorOdkazy(data.kontakt);
+        }
+    }
+    // DŮLEŽITÉ: Po načtení dat vizitku zamkneme (vypneme editaci a schováme kontakt)
+    zamkniVizitku(); 
+}
+
+// Eventy pro uložení při kliknutí jinam
+prvkyVizitky.forEach(el => {
+    if (el) {
+        el.addEventListener('blur', ulozVizitku);
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                // Pokud je to kontakt, dovolíme Enter (nový řádek)
+                if (el.id === 'edit-kontakt') {
+                    // Tady nic neděláme, necháme prohlížeč odřádkovat
+                    return; 
+                }
+                // Pro ostatní pole (jméno, profese) Enter uloží a ukončí editaci
+                e.preventDefault();
+                el.blur();
+            }
+        });
+    }
+});
+
+/* function zavriAdminModal() {
+    document.getElementById('adminModal').classList.remove('videt');
+} */
+
+// Spuštění při načtení
+nactiVizitku();
+
+
 const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
 const tlacitkoZapni = document.querySelector('#zapni-barvu');
 
-tlacitkoKontaktovat.addEventListener('click', () => {
-  const kontaktElement = document.getElementById('kontakt');
-  
-  // HTML kód s interaktivními odkazy
-  const udajeHTML = `
-    Zahradní 50, 280 02, Kolín <br>
-    email: <a href="mailto:tobr74@email.cz" style="color: inherit; text-decoration: underline;">tobr74@email.cz</a> <br>
-    tel: <a href="tel:+420721336515" style="color: inherit; text-decoration: underline;">+420721336515</a>
-  `;
-
-  if (kontaktElement.innerHTML === "") {
-    kontaktElement.innerHTML = udajeHTML;
-    // Styl pro tučné a větší písmo
-    kontaktElement.style.fontWeight = 'bold';
-    kontaktElement.style.fontSize = '18px';
-    kontaktElement.style.lineHeight = '1.4';
-    kontaktElement.style.marginTop = '0px';
-  } else {
-    kontaktElement.innerHTML = "";
-  }
-});
+// 4. TLAČÍTKO KONTAKT (jednoduché přepínání viditelnosti)
+tlacitkoKontaktovat.onclick = () => {
+    // Pokud je schovaný (nebo nemá styl nastaven), zobrazíme ho
+    if (elKontakt.style.display === 'none' || elKontakt.style.display === '') {
+        elKontakt.style.display = 'block';
+        elKontakt.style.fontWeight = 'bold';
+        elKontakt.style.fontSize = '18px';
+    } else {
+        // Pokud už je vidět, schováme ho
+        elKontakt.style.display = 'none';
+    }
+};
 
 
 // 1. NAČTENÍ DAT Z PAMĚTI
@@ -308,7 +477,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -1047,4 +1216,20 @@ function ukazVtip() {
   const index = Math.floor(Math.random() * vtipy.length);
   alert(vtipy[index]);
 }
+
+// --- ANIMACE RUKOPISU PŘI DOSKROLOVÁNÍ ---
+const sledovacRukopisu = new IntersectionObserver((polozky) => {
+    polozky.forEach(polozka => {
+        // Pokud je nadpis vidět aspoň z 50 %
+        if (polozka.isIntersecting) {
+            polozka.target.classList.add('aktivni');
+            // Jakmile se jednou animace spustí, můžeme sledování vypnout
+            sledovacRukopisu.unobserve(polozka.target);
+        }
+    });
+}, { threshold: 0.5 }); // Spustí se, když je vidět polovina prvku
+
+// Spustíme sledování pro všechny prvky s třídou .rukopis
+document.querySelectorAll('.rukopis').forEach(el => sledovacRukopisu.observe(el));
+
 

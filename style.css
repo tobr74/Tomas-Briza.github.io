@@ -63,13 +63,14 @@
     overflow-y: auto;    /* Umožní scrollovat, pokud je okno moc dlouhé */
 }
 /* Třída pro zobrazení okna (použijeme v JS místo .style.display) */
-/* Třída pro zobrazení okna (přidáváme v JS) */
+/* Třída pro zobrazení okna - MUSÍ povolit klikání */
 .modal.videt {
-    display: block;      /* Změna na block umožní marginu pracovat s vrškem */
+    display: block !important; /* Vynutíme zobrazení */
+    pointer-events: auto !important; /* KLÍČOVÉ: Povolí klikání na křížek a tlačítka */
 }
 /* VNITŘNÍ BÍLÉ OKNO */
 .modal-obsah, .modal-content {
-    pointer-events: auto; /* V okně už klikání normálně funguje */
+    pointer-events: auto !important;
     background-color: #fff; 
     padding: 30px 20px;
     border-radius: 15px; 
@@ -101,7 +102,17 @@
     color: #888;
     line-height: 1;
 }
+/* Zarovnání křížku pro okno admina (aby byl vidět) */
+#adminModal .zavrit {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 2001;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
 .zavrit:hover, .close-btn:hover { color: #000; }
+
 /* Efekt pro tlačítko "Přidat" v modálním okně */
 #modalConfirm {
     transition: background-color 0.3s ease, transform 0.1s ease;
@@ -157,12 +168,12 @@
     font-family: sans-serif;
     width: 95%; /* Na mobilu zabere skoro celou šířku */
     max-width: 800px; /* Ale na počítači se neroztáhne do nekonečna */ 
-    padding: 20px; 
+    padding: 10px; 
     border-radius: 15px; 
     background: rgb(255, 255, 235); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.9); 
     text-align: center; 
-    margin: 10px auto; /* Vycentrování */
+    margin: 5px auto; /* Vycentrování */
     position: relative; /* Toto udrží datum a svátek uvnitř - důležité pro to datum a svátek v rozích */
     /* tvoje ostatní styly pro box... */
     padding-top: 40px; /* Přidá místo nahoře, aby texty nezasahovaly do kruhu */
@@ -194,7 +205,8 @@ h3.TB {
     margin: 0;
     color: white;
     font-size: 20px; /* Trochu zmenšíme, aby se v 50px kruhu netísnilo */
-    pointer-events: none; /* Aby klikání na text nebránilo animaci kruhu */
+    pointer-events: auto !important; /* Musí být auto, aby šlo kliknout! */
+    cursor: text;
 }
 /* Efekt při najetí myší (hover) */
 .kruh:hover {
@@ -206,12 +218,12 @@ h3.TB {
     transform: scale(0.9);
 }
 
-h1.jmeno {
+h2.jmeno {
     margin: 0px; 
     margin-top: -6px; 
     color: #333;
     font-weight: bold;
-    font-size: 35px;
+    font-size: 30px;
     /* ANIMACE */
     display: inline-block; /* Nutné, aby se prvek mohl otáčet kolem své osy */ 
     transition: transform 0.8s ease-in-out; /* Doba otočení (0.8 sekundy) a plynulost */
@@ -219,10 +231,16 @@ h1.jmeno {
     backface-visibility: hidden; /* Zabrání rozmazání textu během rotace */
 }
 /* EFEKT PŘI NAJETÍ */
-h1.jmeno:hover {
+h2.jmeno:hover {
     transform: rotateY(360deg); /* Otočení o 360 stupňů kolem svislé osy Y */
-    font-size: 50px;
+    font-size: 45px;
     margin-top: -10px;
+}
+/* Jméno musí mít zrušený rotate, pokud se do něj klikne (focus) */
+h2.jmeno:focus {
+    transform: none !important; /* Zastaví otáčení při psaní */
+    outline: none;
+    font-size: 35px; /* Vrátí původní velikost pro pohodlné psaní */
 }
 
 .programator {
@@ -245,22 +263,76 @@ h1.jmeno:hover {
     border-radius: 4px;
 }
 
+/* Styl pro editační pole */
+[contenteditable="true"] {
+    transition: all 0.3s ease;
+}
+
+[contenteditable="true"]:hover {
+    outline: 1px dashed #007bff;
+    cursor: text; /* Změna na kurzor pro text */
+}
+
+[contenteditable="true"]:focus {
+    outline: 2px solid #007bff;
+    background: rgba(255, 255, 255, 0.2); /* Jemné podbarvení při psaní */
+    border-radius: 5px;
+}
+
+#adminHesloInput:focus {
+    outline: 2px solid #007bff;
+    border-color: transparent;
+}
+
+#potvrditHesloBtn:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+
+
 button#kontaktovat {
-    padding: 10px 20px; 
+    padding: 6px 6px; 
     border-radius: 5px; 
     cursor: pointer; 
     border: 1px solid black;
     margin-top: -6px;
     font-size: 20px;
 }
-div.kontakt {
+/* div.kontakt {
     font-size: 40px;
     font-weight: bold;
+} */
+#edit-kontakt {
+    display: none; /* Po startu schované */
+    text-align: center !important; /* !important pojistí střed Všechno bude na střed */
+    white-space: pre-wrap; /* Zobrazí Entery jako nové řádky */
+    line-height: 1.4; /* Lepší rozestupy mezi řádky */
+    font-size: 18px; /* Upravení velikosti podle potřeby */
+    font-weight: bold; /* Tučné písmo */
+    width: 100%; /* Aby měl text z čeho počítat střed */
+    margin: 10px 0; /* Mezera nahoře/dole a vycentrování bloku */
+}
+#edit-kontakt a {
+    /* display: inline-block; */ /* Aby odkazy nebraly celou šířku a nekazily střed */
+    display: inline; 
+    color: inherit;
+    text-decoration: underline;
+}
+.tlacitka-pod-sebou {
+    display: flex;
+    flex-direction: column; /* Tlačítka pod sebou */
+    gap: 10px; /* Mezera mezi nimi */
+    margin-top: 0px; /* Mezera od kontaktu */
+    align-items: center; /* Zarovnání na střed */
+}
+.tlacitka-pod-sebou button {
+    width: 226px; /* Stejná šířka pro obě */
 }
 
 button#zapni-barvu {
-    padding: 5px 5px; 
-    margin: 6px 5px 11px 5px; 
+    padding: 8px 8px; 
+    margin: 5px 5px 11px 5px; 
     cursor: pointer;
     font-size: 16px;
 }
@@ -286,8 +358,7 @@ body {
     background: rgb(255, 255, 235);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
-    margin-top: -14px;
-    padding: 10px;
+    padding: 5px;
     margin-top: 10px;
 }
 
@@ -304,7 +375,7 @@ h4.pridatNU-nadpis{
     border: 1px solid #ccc;
 }
 #novyUkol {
-    width: 58%; 
+    width: 50%; 
     height: 15px;
 }
 .pridatSeznam {
@@ -411,6 +482,7 @@ li div {
 .moudra, #pocitadlo {
     margin: 0;
     padding: 0;
+    margin-top: -10px;
     min-height: 0px; /* Aby skákající čísla skóre nehýbala s tlačítkem */
 }
 h1.moudra {
@@ -442,14 +514,29 @@ h1.vtipy {
     margin-bottom: 5px;
     
     /* ANIMACE */
+    /* VÝCHOZÍ STAV: Skrytý a rozmazaný */
     overflow: hidden; /* Skryje text, který ještě není "napsaný" */
     white-space: nowrap; /* Udrží text v jedné lince během psaní */
-    border-right: 2px solid transparent; /* Volitelný kurzor na konci */
     width: 0; /* Začínáme s nulovou šířkou */
+    opacity: 0;
+    filter: blur(5px);
+    transition: transform 3s ease, color 3s ease; /* Pro hover efekt */
+
+    /* overflow: hidden; */ /* Skryje text, který ještě není "napsaný" */
+    /* white-space: nowrap; */ /* Udrží text v jedné lince během psaní */
+    /* border-right: 2px solid transparent; */ /* Volitelný kurzor na konci */
+    /* width: 0; */ /* Začínáme s nulovou šířkou */
     
+    /* animation: */ 
+    /* psani 15s steps(400, end) forwards, */ /* Samotné psaní */
+    /* vynoreni 15s ease-in forwards; */ /* Jemné rozsvícení barvy */
+}
+
+/* TATO TŘÍDA SPUSTÍ ANIMACI (přidá ji JS) */
+.rukopis.aktivni {
     animation: 
-        psani 3s steps(40, end) forwards, /* Samotné psaní */
-        vynoreni 1s ease-in forwards;    /* Jemné rozsvícení barvy */
+        psani 6s steps(100, end) forwards,
+        vynoreni 6s ease-in forwards;
 }
 
 /* Definice pohybu (rozbalování textu) */
@@ -470,7 +557,6 @@ h1.vtipy {
     transition: 0.3s;
     color: #007bff; /* Barva se změní na tvou modrou */
 }
-
 
 
 input.email {
@@ -656,5 +742,12 @@ input[type="text"] {
 }
 .box{
     width: 85%;
+}
+.rukopis {
+    font-size: 16px;
+}
+h4.pridatNU-nadpis{
+    font-size: 14px;
+    padding-bottom: 5px;
 }
 }
