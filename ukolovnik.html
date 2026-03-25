@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TB-vizitka hlavní strana</title>
-    <link rel="stylesheet" href="style.css">
+    <title>TB-úkolovník</title>
+    <link rel="stylesheet" href="ukolovnik.css">
     <!-- <link rel="manifest" href="manifest.json"> -->
 </head>
 <body>
-
 <!-- OKNO MODAL -->
 <!-- Rozvržení + Obsah + Zavření -->
 <div id="moje-okno" class="modal">
@@ -28,17 +27,18 @@
 
 <!-- HLAVNÍ CELÁ PLOCHA BOX -->
 <div class="box">
-  <a href="ukolovnik.html" style= "position: absolute; font-size: 16px; top: 10px; right:15px">Úkolovník ></a>
+<a href="index.html" style= "position: absolute; font-size: 16px; top: 10px; left: 15px">&lt Vizitka</a>
+<div class="ukolovnik" >Úkolovník</div>
 
   <!-- HORNÍ LIŠTA -->
   <!-- Datum Vlevo -->
-  <div id="datum-vlevo" style="position: absolute; top: 35px; left: 15px; font-size: 13px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 62px; left: 15px; font-size: 13px; font-weight: bold;"></div>
 
   <!-- Hodiny Uprostřed -->
-  <div id="hodiny-stred" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 32px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
 
   <!-- Svátek Vpravo -->
-  <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 15px; font-size: 13px; font-weight: bold;display: inline-block"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 62px; right: 15px; font-size: 13px; font-weight: bold;display: inline-block"></div>
 
   <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">
@@ -65,16 +65,16 @@
 
       <!-- Vizitka s editovatelnými poli -->
       <!-- Kruh s iniciály -->
-      <div class="kruh">
+      <div class="kruh" style="display:none;">
       <h3 class="TB" id="edit-inicialy">TB</h3>
       </div>
       <!-- Jméno -->
-      <h2 class="jmeno" id="edit-jmeno">Tomáš Bříza</h2>
+      <h2 class="jmeno" id="edit-jmeno" style="display:none;">Tomáš Bříza</h2>
       <!-- Profese -->
-      <p class="programator" id="edit-profese">programátor</p>
+      <p class="programator" id="edit-profese" style="display:none;">programátor</p>
 
       <!-- OVLÁDÁNÍ KONTEJNER -->
-      <div class="ovladani-kontejner">
+      <div class="ovladani-kontejner" style="display:none;">
         <!-- Kontakt -->
         <button id="kontaktovat">Kontakt</button>
         <div id="edit-kontakt" style="display: none;">
@@ -96,11 +96,11 @@
 
 
       <!-- SEKCE MOUDRA A HRY -->
-      <div id="moudra-hry" style="margin-top: 10px;">
+      <div id="moudra-hry" style="margin-top: 10px; display:none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
           <!-- Moudra programátora -->
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <h1 class="moudra" style="font-size: 14px; margin-bottom: 0px;">Moudra<br> programátora</h1>
+            <h1 class="moudra" style="font-size: 14px; margin-bottom: 0px;" >Moudra<br> programátora</h1>
             <button onclick="ukazMoudro()">Chci radu!</button>
           </div>
           <!-- Hra Klikni na mě -->
@@ -112,7 +112,7 @@
       </div>
       
       <!-- SEKCE CITATY A VTIPY -->
-      <div id="citaty-vtipy" style="margin-top: 0px; margin-left: 0px;">
+      <div id="citaty-vtipy" style="margin-top: 0px; margin-left: 0px; display:none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
           <!-- Citáty -->
           <div style="display: flex; flex-direction: column; align-items: center;">
@@ -162,7 +162,7 @@
 
         <!-- FORMULÁŘ -->
         <!-- Method POST -->
-        <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form">
+        <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form" style="display:none;">
           <!-- Nadpis Dotazník spokojenosti -->
           <h2 style="padding: 0; margin: 0;margin-top: 7px; ">Dotazník spokojenosti</h2>
           <!-- Tvé jméno -->
@@ -185,7 +185,7 @@
     </div> <!-- Konec CONTAINER -->
   </div> <!-- Konec FLEX-WRAPPER -->
   <!-- Rukopis Děkuji za Vaši návštěvu -->
-  <h2 class="rukopis">Děkuji za Vaši návštěvu</h2>
+  <h2 class="rukopis">Hodně ptrpělivosti při<br> plnění Vašich úkolů</h2>
 </div> <!-- Konec HLAVNÍ CELÁ PLOCHA BOX -->
 
 <script src="script.js?v=1.1"></script>
