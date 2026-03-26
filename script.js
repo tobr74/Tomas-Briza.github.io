@@ -393,26 +393,24 @@ function ulozVizitku() {
     localStorage.setItem('mojeVizitka', JSON.stringify(data));
 }
 
+// 1. DEFINICE TVÝCH VÝCHOZÍCH ÚDAJŮ
+const VYCHOZI_KONTAKT = "Zahradní 50, 28002, Kolín\ne-mail: tobr74@email.cz\ntel: +420 721 336 515";
+
 function nactiVizitku() {
-    const ulozenaData = JSON.parse(localStorage.getItem('mojeVizitka'));
+    const data = JSON.parse(localStorage.getItem('mojeVizitka'));
     
-    if (ulozenaData) {
-        // Pokud data v paměti JSOU, načteme je
-        if (elJmeno) elJmeno.innerText = ulozenaData.jmeno;
-        if (elProfese) elProfese.innerText = ulozenaData.profese;
-        if (elInicialy) elInicialy.innerText = ulozenaData.inicialy;
-        if (elKontakt && ulozenaData.kontakt) {
-            elKontakt.innerHTML = vytvorOdkazy(ulozenaData.kontakt).replace(/\n/g, '<br>');
-        }
+    if (data) {
+        if (elJmeno) elJmeno.innerText = data.jmeno;
+        if (elProfese) elProfese.innerText = data.profese;
+        if (elInicialy) elInicialy.innerText = data.inicialy;
+        // Pokud jsou data v paměti, použijeme je
+        if (elKontakt) elKontakt.innerHTML = vytvorOdkazy(data.kontakt).replace(/\n/g, '<br>');
     } else {
-        // VÝCHOZÍ DATA PŘED PRVNÍ EDITACÍ
-        if (elKontakt) {
-            const vychoziKontakt = "Zahradní 50, 28002 Kolín\ne-mail: tobr74@email.cz\ntel: +420 721 336 515";
-            elKontakt.innerHTML = vytvorOdkazy(vychoziKontakt).replace(/\n/g, '<br>');
-        }
+        // POKUD JE TO PRVNÍ SPUŠTĚNÍ, vložíme tvoji adresu a maily
+        if (elKontakt) elKontakt.innerHTML = vytvorOdkazy(VYCHOZI_KONTAKT).replace(/\n/g, '<br>');
     }
     
-    // Vizitku po načtení zamkneme
+    // DŮLEŽITÉ: Tady vizitku zamkneme, ale obsah už v elKontakt je připravený (jen schovaný)
     zamkniVizitku(); 
 }
 
@@ -449,13 +447,17 @@ const tlacitkoZapni = document.querySelector('#zapni-barvu');
 
 // 4. TLAČÍTKO KONTAKT (jednoduché přepínání viditelnosti)
 tlacitkoKontaktovat.onclick = () => {
-    // Pokud je schovaný (nebo nemá styl nastaven), zobrazíme ho
+    // Pokud v elementu nic není (pojistka), vložíme výchozí text
+    if (elKontakt.innerHTML.trim() === "") {
+        elKontakt.innerHTML = vytvorOdkazy(VYCHOZI_KONTAKT).replace(/\n/g, '<br>');
+    }
+
     if (elKontakt.style.display === 'none' || elKontakt.style.display === '') {
         elKontakt.style.display = 'block';
         elKontakt.style.fontWeight = 'bold';
         elKontakt.style.fontSize = '18px';
+        elKontakt.style.whiteSpace = 'pre-line'; // Zajistí zobrazení řádků
     } else {
-        // Pokud už je vidět, schováme ho
         elKontakt.style.display = 'none';
     }
 };
