@@ -394,20 +394,28 @@ function ulozVizitku() {
 }
 
 function nactiVizitku() {
-    const data = JSON.parse(localStorage.getItem('mojeVizitka'));
-    if (data) {
-        if (elJmeno) elJmeno.innerText = data.jmeno;
-        if (elProfese) elProfese.innerText = data.profese;
-        if (elInicialy) elInicialy.innerText = data.inicialy;
-        
-        if (elKontakt && data.kontakt) {
-            // Přemění uložený text na klikací odkazy (e-mail, tel)
-            elKontakt.innerHTML = vytvorOdkazy(data.kontakt);
+    const ulozenaData = JSON.parse(localStorage.getItem('mojeVizitka'));
+    
+    if (ulozenaData) {
+        // Pokud data v paměti JSOU, načteme je
+        if (elJmeno) elJmeno.innerText = ulozenaData.jmeno;
+        if (elProfese) elProfese.innerText = ulozenaData.profese;
+        if (elInicialy) elInicialy.innerText = ulozenaData.inicialy;
+        if (elKontakt && ulozenaData.kontakt) {
+            elKontakt.innerHTML = vytvorOdkazy(ulozenaData.kontakt).replace(/\n/g, '<br>');
+        }
+    } else {
+        // VÝCHOZÍ DATA PŘED PRVNÍ EDITACÍ
+        if (elKontakt) {
+            const vychoziKontakt = "Zahradní 50, 28002 Kolín\ne-mail: tobr74@email.cz\ntel: +420 721 336 515";
+            elKontakt.innerHTML = vytvorOdkazy(vychoziKontakt).replace(/\n/g, '<br>');
         }
     }
-    // DŮLEŽITÉ: Po načtení dat vizitku zamkneme (vypneme editaci a schováme kontakt)
+    
+    // Vizitku po načtení zamkneme
     zamkniVizitku(); 
 }
+
 
 // Eventy pro uložení při kliknutí jinam
 prvkyVizitky.forEach(el => {
@@ -477,7 +485,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
