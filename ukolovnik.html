@@ -27,18 +27,22 @@
 
 <!-- HLAVNÍ CELÁ PLOCHA BOX -->
 <div class="box">
-<a href="index.html" style= "position: absolute; font-size: 16px; top: 10px; left: 15px">&lt Vizitka</a>
-<div class="ukolovnik" >Úkolovník</div>
+  <a href="index.html" class="navigace-vizitka">
+    <span>&larr;</span>Vizitka 
+  </a>
+  <a href="ukolovnik.html" class="navigace-ukolovnik">
+    <span>&darr;</span> Úkolovník <span>&darr;</span>
+  </a>
 
   <!-- HORNÍ LIŠTA -->
   <!-- Datum Vlevo -->
-  <div id="datum-vlevo" style="position: absolute; top: 62px; left: 15px; font-size: 13px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 50px; left: 15px; font-size: 13px; font-weight: bold;"></div>
 
   <!-- Hodiny Uprostřed -->
-  <div id="hodiny-stred" style="position: absolute; top: 32px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
 
   <!-- Svátek Vpravo -->
-  <div id="svatek-vpravo" style="position: absolute; top: 62px; right: 15px; font-size: 13px; font-weight: bold;display: inline-block"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 50px; right: 15px; font-size: 13px; font-weight: bold;display: inline-block"></div>
 
   <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">

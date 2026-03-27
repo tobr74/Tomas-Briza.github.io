@@ -1,3 +1,78 @@
+.navigace-ukolovnik {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 2px 10px;
+  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
+  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-color: black;
+  border-radius: 20px;                  /* Kulaté rohy */
+  color: #555;                          /* Barvu si uprav podle svého designu */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;            /* Plynulá animace */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navigace-ukolovnik span {
+  transition: transform 0.3s ease;
+}
+
+/* Efekt při najetí myší */
+.navigace-ukolovnik:hover {
+  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  border-color: #007bff;
+  color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navigace-ukolovnik:hover span {
+  transform: translateX(6px); /* Šipka se lehce pohne doprava */
+}
+
+.navigace-vizitka {
+  position: absolute;
+  top: 0px;
+  left: 50%; 
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
+  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-color: black;
+  border-radius: 20px;                  /* Kulaté rohy */
+  color: #555;                          /* Barvu si uprav podle svého designu */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;            /* Plynulá animace */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navigace-vizitka span {
+  transition: transform 0.3s ease;
+  margin-top: -5px;
+}
+
+/* Efekt při najetí myší */
+.navigace-vizitka:hover {
+  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  border-color: #007bff;
+  color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navigace-vizitka:hover span {
+  transform: translateY(3px); /* Šipka se lehce pohne doprava */
+}
+
+
 /* Styl pro interaktivní hodiny */
 #hodiny-stred {
     display: inline-block;
@@ -652,11 +727,14 @@ input[type="text"] {
 .vizitka-cast {
     width: 40%;
     text-align: center;
-    margin-top: -45px;
+    margin-top: -30px;
 }
 .container {
     width: 50%;
-    margin-top: 0;
+    margin-top: 10px;
+}
+.navigace-ukolovnik{
+    font-size: 20px;
 }
 }
 
@@ -664,16 +742,16 @@ input[type="text"] {
 @media screen and (orientation: landscape) {    
 /* Sjednocení roviny a zvětšení písma */
 #datum-vlevo, #svatek-vpravo, #hodiny-stred {
-    top: 20px !important;    /* Všechny posuneme do stejné výšky od horního okraje */
+    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
 }
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
+    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    padding: 0 0 !important;
 }
-#svatek-vpravo {
-    top: 32px !important;
-}
+
 /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
 .box {
     padding-top: 60px; /* Vytvoříme víc místa pod horní lištou */
@@ -684,6 +762,12 @@ input[type="text"] {
 }
 .rukopis{
     margin-top: 10px;
+}
+.navigace-vizitka {
+    font-size: 20px;
+}
+.navigace-ukolovnik {
+    font-size: 20px;
 }
 }
 
@@ -721,7 +805,7 @@ input[type="text"] {
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 356px) {
 .modal-obsah, .modal-content {
     width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -756,5 +840,15 @@ input[type="text"] {
 h4.pridatNU-nadpis{
     font-size: 16px;
     padding-bottom: 6px;
+}
+#hodiny-stred{
+    padding: 1px 24px;
+    margin-top: -4px;
+}
+.navigace-ukolovnik{
+    font-size: 9px;
+}
+.navigace-vizitka{
+    font-size: 9px;
 }
 }
