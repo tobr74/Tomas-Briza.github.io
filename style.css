@@ -755,6 +755,10 @@ input[type="text"] {
     width: 50%;
     margin-top: 10px;
 }
+.rukopis{
+    margin-top: 5px;
+    font-size: 26px;
+}
 .navigace-vizitka{
     font-size: 22px;
 }
@@ -787,9 +791,6 @@ input[type="text"] {
     max-width: 900px;
     width: 86%;
     margin: 20px 0 20px 0;
-}
-.rukopis{
-    margin-top: 10px;
 }
 .navigace-vizitka {
     font-size: 22px;
@@ -832,11 +833,16 @@ input[type="text"] {
 .box {
     padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
+    margin: 15px 0 20px 0;
     }
+.rukopis{
+    margin-top: 10px;
+    font-size: 24px;
+}
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 410px) {
 .modal-obsah, .modal-content {
     width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -864,9 +870,10 @@ input[type="text"] {
 }
 .box{
     width: 85%;
+    margin: 9px 0 14px 0;
 }
 .rukopis {
-    font-size: 17px;
+    font-size: 15px;
     margin-top: 10px;
 }
 h4.pridatNU-nadpis{

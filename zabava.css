@@ -749,6 +749,10 @@ input[type="text"] {
     width: 95%;
     margin-top: 0px;
 }
+.rukopis{
+    margin-top: 10px;
+    font-size: 26px;
+}
 .navigace-vizitka {
     font-size: 22px;
 }
@@ -783,9 +787,6 @@ input[type="text"] {
     max-width: 700px;
     width: 86%;
     margin: 20px 0 20px 0;
-}
-.rukopis{
-    margin-top: 10px;
 }
 .container {
     width: 95%;
@@ -846,12 +847,14 @@ input[type="text"] {
 .box {
     padding-top: 150px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
+    margin: 15px 0 20px 0;
     }
 .container {
     margin-top: -50px;
 }
 .rukopis{
     margin-top: 10px;
+    font-size: 24px;
 }
 .moudra, #pocitadlo{
     margin-top: -30px;
@@ -859,7 +862,7 @@ input[type="text"] {
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 410px) {
 .modal-obsah, .modal-content {
     width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -887,9 +890,10 @@ input[type="text"] {
 }
 .box{
     width: 85%;
+    margin: 9px 0 14px 0;
 }
 .rukopis {
-    font-size: 17px;
+    font-size: 14px;
     margin-top: 10px;
 }
 h4.pridatNU-nadpis{
