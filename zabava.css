@@ -176,7 +176,7 @@
     padding: 30px 20px;
     border-radius: 15px; 
     width: 90%; 
-    max-width: 350px; 
+    max-width: 335px; 
     position: relative;
     box-shadow: 0 10px 50px rgba(0,0,0,0.3);
     border: 1px solid #ddd;
@@ -758,6 +758,9 @@ input[type="text"] {
 .navigace-ukolovnik{
     font-size: 22px;
 }
+.moudra, #pocitadlo{
+    margin-top: -25px;
+}
 }
 
 /* Tato pravidla se aktivují při otočení na ležato (landscape) */
@@ -838,7 +841,7 @@ input[type="text"] {
     margin: 2px 0; /* Jemné rozestupy pod sebou */
     font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
     padding: 5px;
-    margin-top: 0px;
+    margin-top: 5px;
     }    
 .box {
     padding-top: 150px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
@@ -849,6 +852,9 @@ input[type="text"] {
 }
 .rukopis{
     margin-top: 10px;
+}
+.moudra, #pocitadlo{
+    margin-top: -30px;
 }
 }
 
