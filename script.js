@@ -270,7 +270,7 @@ const elKontakt = document.getElementById('edit-kontakt');
 const prvkyVizitky = [elJmeno, elProfese, elInicialy, elKontakt];
 
 // 1. OTEVŘENÍ MODALU HESLA (při kliknutí na kruh)
-// 1. KLIKNUTÍ NA KRUH (Otevírání nebo Odhlášení)
+// KLIKNUTÍ NA KRUH (Otevírání nebo Odhlášení)
 document.querySelector('.kruh').onclick = function() {
     if (jeOdemceno) {
         // Pokud je odemčeno, nabídneme odhlášení
@@ -303,7 +303,7 @@ function zamkniVizitku() {
 }
 
 
-// 1. JEDNOTNÁ FUNKCE (zavře všechna ID oken, co máš)
+// 2. JEDNOTNÁ FUNKCE (zavře všechna ID oken, co máš)
 function zavriVse() {
     const ids = ['moje-okno', 'taskModal', 'adminModal'];
     ids.forEach(id => {
@@ -312,7 +312,7 @@ function zavriVse() {
     });
 }
 
-// 2. KLIKACÍ EVENT (univerzální pro křížky i pozadí)
+// 3. KLIKACÍ EVENT (univerzální pro křížky i pozadí)
 document.addEventListener('click', function(e) {
     // Pokud klikneš na křížek (podle třídy)
     if (e.target.classList.contains('zavrit') || e.target.classList.contains('close-btn')) {
@@ -331,11 +331,11 @@ window.addEventListener('keydown', function(e) {
     }
 }, true); // To 'true' zajistí, že se to provede přednostně
 
-// 2. OVĚŘENÍ HESLA
+// 4. OVĚŘENÍ HESLA
 document.getElementById('potvrditHesloBtn').onclick = provestOvereni;
 document.getElementById('adminHesloInput').onkeypress = (e) => { if (e.key === 'Enter') provestOvereni(); };
 
-// 4. OPRAVA TVÉ FUNKCE PRO HESLO
+// 5. OPRAVA TVÉ FUNKCE PRO HESLO
 // (ve tvém kódu přepiš řádek 'zavriAdminModal()' na 'zavriVse()')
 function provestOvereni() {
     const zadane = document.getElementById('adminHesloInput').value;
@@ -349,7 +349,7 @@ function provestOvereni() {
     }
 }
 
-// 3. ODEMČENÍ A EDITACE
+// 6. ODEMČENÍ A EDITACE
 function odemkniVizitku() {
     jeOdemceno = true;
     // Automaticky zobrazit kontakt pro editaci
@@ -364,7 +364,7 @@ function odemkniVizitku() {
     });
 }
 
-// 4. UKLÁDÁNÍ A NAČÍTÁNÍ
+// 7. UKLÁDÁNÍ A NAČÍTÁNÍ
 function vytvorOdkazy(text) {
     if (!text) return "";
 
@@ -393,7 +393,7 @@ function ulozVizitku() {
     localStorage.setItem('mojeVizitka', JSON.stringify(data));
 }
 
-// 1. DEFINICE TVÝCH VÝCHOZÍCH ÚDAJŮ
+// DEFINICE VÝCHOZÍCH ÚDAJŮ
 const VYCHOZI_KONTAKT = "Zahradní 50, 28002, Kolín\ne-mail: tobr74@email.cz\ntel: +420 721 336 515";
 
 function nactiVizitku() {
@@ -434,9 +434,6 @@ prvkyVizitky.forEach(el => {
     }
 });
 
-/* function zavriAdminModal() {
-    document.getElementById('adminModal').classList.remove('videt');
-} */
 
 // Spuštění při načtení
 nactiVizitku();
@@ -445,7 +442,7 @@ nactiVizitku();
 const tlacitkoKontaktovat = document.querySelector('#kontaktovat');
 const tlacitkoZapni = document.querySelector('#zapni-barvu');
 
-// 4. TLAČÍTKO KONTAKT (jednoduché přepínání viditelnosti)
+// TLAČÍTKO KONTAKT (jednoduché přepínání viditelnosti)
 tlacitkoKontaktovat.onclick = () => {
     // Pokud v elementu nic není (pojistka), vložíme výchozí text
     if (elKontakt.innerHTML.trim() === "") {
@@ -487,7 +484,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -522,7 +519,7 @@ function nastavBarvuPrvku(text) {
     /* const kruh = document.querySelector('.kruh');
     if (kruh) {
         kruh.style.backgroundColor = text; // Kruh bude mít barvu textu
-        kruh.style.color = pozadi;        // Písmo TB bude mít barvu pozadí
+        kruh.style.color = pozadi; // Písmo TB bude mít barvu pozadí
         
         // Nastavení dynamického stínu pro hover (přidáme přes CSS proměnnou)
         kruh.style.setProperty('--barva-stinu', text);
@@ -564,9 +561,7 @@ if (skala) {
 aplikujStyl();
 
 
-// ==========================================================
 // 1. ZÁKLADNÍ PROMĚNNÉ A NASTAVENÍ MODALU
-// ==========================================================
 const novyUkol = document.getElementById('novyUkol');
 const pridat = document.getElementById('pridat');
 const mujSeznam = document.getElementById('mujSeznam');
@@ -580,11 +575,9 @@ const taskModal = document.getElementById('taskModal');
 const modalInput = document.getElementById('modalInput');
 const modalConfirm = document.getElementById('modalConfirm');
 
-
 // Pomocná proměnná: uchovává, do kterého úkolu zrovna píšeme podpoložku
 let targetList = null; 
 
-// Funkce pro otevření moderního okna (nahrazuje starý prompt)
 // Funkce, kterou volá tlačítko "+" u úkolu
 // Funkce pro otevření okna úkolů
 function openTaskModal(seznamUl) {
@@ -613,8 +606,7 @@ function openTaskModal(seznamUl) {
 // Zavření okna úkolů
 document.querySelector('.close-btn').onclick = () => taskModal.classList.remove('videt');
 
-// --- FUNKCE PRO ZAVÍRÁNÍ ---
-
+// FUNKCE PRO ZAVÍRÁNÍ
 // Funkce, která zavře úplně všechna okna
 function zavriVsechnaOkna() {
     document.getElementById('moje-okno').classList.remove('videt');
@@ -680,7 +672,7 @@ function ulozDoPameti() {
 }
 
 // 3. FUNKCE PRO TVORBU ELEMENTŮ (Úkoly a podpoložky)
-// POMOCNÁ PROMĚNNÁ PRO MODAL (umístit na začátek skriptu) ---
+// POMOCNÁ PROMĚNNÁ PRO MODAL (umístit na začátek skriptu)
 let cilovySeznamProPolozku = null; 
 
 // Vytvoření malé položky (podúkolu)
@@ -802,16 +794,7 @@ if (modalConfirmUkol) {
         }
     };
 }
- 
-// Funkce pro otevření okna (přidat k ostatním funkcím modalů)
-/* function openTaskModal(seznamUl) {
-    cilovySeznamProPolozku = seznamUl;
-    if (taskModal) {
-        taskModal.style.display = "block";
-        modalInputUkol.value = "";
-        setTimeout(() => modalInputUkol.focus(), 100);
-    }
-} */
+
 
 // Přidání nového hlavního úkolu s animací
 function pridatUkol() {
@@ -850,7 +833,6 @@ function nactiZPameti() {
 nactiZPameti();
 pridat.onclick = pridatUkol;
 novyUkol.onkeypress = (e) => { if (e.key === 'Enter') pridatUkol(); };
-
 
 
 // Pole s moudry
@@ -893,6 +875,7 @@ function klikni() {
     document.getElementById('pocitadlo').innerText = `Skóre: ${skore}`;
   }
 }
+
 // Pole s citaty
 const citaty = [
 '„Život je takový, jaký si ho uděláme.“',
