@@ -1,7 +1,7 @@
 .navigace-vizitka {
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
   padding: 2px 10px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
@@ -24,16 +24,16 @@
 
 /* Efekt při najetí myší */
 .navigace-vizitka:hover {
-  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .navigace-vizitka:hover span {
-  transform: translateX(-5px); /* Šipka se lehce pohne doprava */
+  transform: translateX(5px); /* Šipka se lehce pohne doprava */
 }
-.navigace-ukolovnik {
+.navigace-zabava {
   position: absolute;
   top: 0px;
   left: 50%; 
@@ -54,20 +54,20 @@
   gap: 8px;
 }
 
-.navigace-ukolovnik span {
+.navigace-zabava span {
   transition: transform 0.3s ease;
   margin-top: -5px;
 }
 
 /* Efekt při najetí myší */
-.navigace-ukolovnik:hover {
+.navigace-zabava:hover {
   background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.navigace-ukolovnik:hover span {
+.navigace-zabava:hover span {
   transform: translateY(3px); /* Šipka se lehce pohne doprava */
 }
 /* Styl pro interaktivní hodiny */
@@ -705,16 +705,16 @@ input[type="text"] {
 /* Styl pro široký displej / na ležato */
 @media screen and (min-width: 700px) and (orientation: landscape) {
 .flex-wrapper {
-    /* flex-direction: row; */ /* Vedle sebe */
+    flex-direction: row; /* Vedle sebe */ 
     justify-content: center;
     align-items: flex-start; /* Zarovnat k hornímu okraji */
     gap: 30px; /* Mezera mezi vizitkou a úkoly */
     padding-top: 20px;
 }
 .vizitka-cast {
-    width: 40%;
+    width: 100%;
     text-align: center;
-    margin-top: -45px;
+    margin-top: 45px;
 }
 .container {
     width: 95%;
@@ -723,7 +723,7 @@ input[type="text"] {
 .navigace-vizitka {
     font-size: 20px;
 }
-.navigace-ukolovnik {
+.navigace-zabava {
     font-size: 20px;
 }
 }
@@ -761,14 +761,17 @@ input[type="text"] {
 .navigace-vizitka {
     font-size: 20px;
 }
-.navigace-ukolovnik {
+.navigace-zabava {
     font-size: 20px;
 }
 }
 
 @media screen and (max-height: 400px) and (orientation: landscape) {
-    #datum-vlevo, #svatek-vpravo { font-size: 15px !important; }
+    #datum-vlevo, #svatek-vpravo {
+    font-size: 15px !important; 
 }
+}
+
 /* Kontejner, ve kterém je datum, hodiny a svátek */
 .horni-lista {
     display: flex;
@@ -779,6 +782,7 @@ input[type="text"] {
     padding: 10px;
     width: 100%;
 }
+
 
 /* Úprava pro malé mobily (na stojato) */
 @media (max-width: 699px) {
@@ -865,7 +869,7 @@ h4.pridatNU-nadpis{
     padding: 1px 24px;
     margin-top: -4px;
 }
-.navigace-ukolovnik{
+.navigace-zabava{
     font-size: 9px;
 }
 .navigace-vizitka{

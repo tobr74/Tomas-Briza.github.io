@@ -113,7 +113,7 @@ function otevriOkno(typ) {
             napoveda.innerText = "Zadej datum a rok\n (např. 7. března 2026 nebo 7.3.2026)";
         } else {
             nadpis.innerText = "Vyhledat svátek";
-            napoveda.innerText = "Zadejte jméno (např. Tomáš nebo tomáš)\n nebo datum (např. 7. března nebo 7.3.)";
+            napoveda.innerText = "Zadejte jméno\n (např. Tomáš nebo tomáš)\n\n nebo datum\n (např. 7. března nebo 7.3.)";
         }
         setTimeout(() => vstup.focus(), 100);
     }
@@ -164,7 +164,7 @@ function provedVyhledavani() {
             if (!isNaN(dObj.getTime())) {
                 const denVTydnu = dObj.toLocaleDateString('cs-CZ', { weekday: 'long' });
                 vysledekElem.innerHTML = `Den <strong>${den}. ${MESICE_PAD[mesic-1]} ${rok}</strong><br>` +
-                `byl-a, je a nebo bude: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${denVTydnu}</span>`;
+                `byl-a, je a nebo bude: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;"><strong>${denVTydnu}</strong></span>`;
             } else { 
                 vysledekElem.innerText = "Neexistující datum."; 
             }
@@ -198,7 +198,7 @@ function provedVyhledavani() {
             
             if (jmeno) {
                 // Formátování: Tučné datum + modré jméno pod ním (shodné s hledáním podle jména)
-                vysledekElem.innerHTML = `<strong>${d}. ${MESICE_PAD[mI-1]}</strong> má svátek: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${jmeno}</span>`;
+                vysledekElem.innerHTML = `<strong>${d}. ${MESICE_PAD[mI-1]}</strong> má svátek: <span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;"><strong>${jmeno}</strong></span>`;
             } else {
                 vysledekElem.innerText = "Pro toto datum nebyl nalezen svátek.";
             }
@@ -210,7 +210,7 @@ function provedVyhledavani() {
                     let jmenoFinal = SVATKY_DATA[k].charAt(0).toUpperCase() + SVATKY_DATA[k].slice(1);
                     
                     // Tvůj stávající formát pro hledání podle jména (zůstává stejný)
-                    n.push(`<strong>${jmenoFinal}</strong> má svátek:<span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;">${day}. ${MESICE_PAD[parseInt(m)-1]}</span>`);
+                    n.push(`<strong>${jmenoFinal}</strong> má svátek:<span style="color:#007bff; font-size: 1.3em; display:block; margin-top:10px;"><strong>${day}. ${MESICE_PAD[parseInt(m)-1]}</strong></span>`);
                 }
             }
             vysledekElem.innerHTML = n.length > 0 ? n.join('<br><br>') : "Jméno nebylo nalezeno.";
@@ -487,7 +487,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }

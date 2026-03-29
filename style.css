@@ -1,3 +1,39 @@
+.navigace-zabava {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 2px 10px;
+  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
+  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-color: black;
+  border-radius: 20px;                  /* Kulaté rohy */
+  color: #555;                          /* Barvu si uprav podle svého designu */
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;            /* Plynulá animace */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navigace-zabava span {
+  transition: transform 0.3s ease;
+}
+
+/* Efekt při najetí myší */
+.navigace-zabava:hover {
+  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  border-color: #007bff;
+  color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navigace-zabava:hover span {
+  transform: translateX(-5px); /* Šipka se lehce pohne doprava */
+}
+
 .navigace-ukolovnik {
   position: absolute;
   top: 0px;
@@ -10,7 +46,7 @@
   border-radius: 20px;                  /* Kulaté rohy */
   color: #555;                          /* Barvu si uprav podle svého designu */
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.3s ease;            /* Plynulá animace */
   display: flex;
@@ -47,7 +83,7 @@
   border-radius: 20px;                  /* Kulaté rohy */
   color: #555;                          /* Barvu si uprav podle svého designu */
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.3s ease;            /* Plynulá animace */
   display: flex;
@@ -150,7 +186,7 @@
     padding: 30px 20px;
     border-radius: 15px; 
     width: 90%; 
-    max-width: 380px; 
+    max-width: 275px; 
     position: relative;
     box-shadow: 0 10px 50px rgba(0,0,0,0.3);
     border: 1px solid #ddd;
@@ -374,10 +410,6 @@ button#kontaktovat {
     margin-top: -6px;
     font-size: 20px;
 }
-/* div.kontakt {
-    font-size: 40px;
-    font-weight: bold;
-} */
 #edit-kontakt {
     display: none; /* Po startu schované */
     text-align: center !important; /* !important pojistí střed Všechno bude na střed */
@@ -716,7 +748,7 @@ input[type="text"] {
 
 /* Tato pravidla se aktivují jen když je mobil na šířku nebo má velký displej */
 /* Styl pro široký displej / na ležato */
-@media screen and (min-width: 640px) and (orientation: landscape) {
+@media screen and (min-width: 700px) and (orientation: landscape) {
 .flex-wrapper {
     flex-direction: row;    /* Vedle sebe */
     justify-content: center;
@@ -733,8 +765,14 @@ input[type="text"] {
     width: 50%;
     margin-top: 10px;
 }
+.navigace-vizitka{
+    font-size: 22px;
+}
 .navigace-ukolovnik{
-    font-size: 20px;
+    font-size: 22px;
+}
+.navigace-zabava {
+    font-size: 22px;
 }
 }
 
@@ -764,10 +802,13 @@ input[type="text"] {
     margin-top: 10px;
 }
 .navigace-vizitka {
-    font-size: 20px;
+    font-size: 22px;
 }
 .navigace-ukolovnik {
-    font-size: 20px;
+    font-size: 22px;
+}
+.navigace-zabava {
+    font-size: 22px;
 }
 }
 
@@ -786,7 +827,7 @@ input[type="text"] {
 }
 
 /* Úprava pro malé mobily (na stojato) */
-@media (max-width: 639px) {
+@media (max-width: 699px) {
 .horni-lista {
     flex-direction: column; /* Prvky pod sebou */
     text-align: center;
@@ -805,7 +846,7 @@ input[type="text"] {
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 356px) {
+@media screen and (max-width: 375px) {
 .modal-obsah, .modal-content {
     width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -844,6 +885,9 @@ h4.pridatNU-nadpis{
 #hodiny-stred{
     padding: 1px 24px;
     margin-top: -4px;
+}
+.navigace-zabava{
+    font-size: 9px;
 }
 .navigace-ukolovnik{
     font-size: 9px;
