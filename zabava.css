@@ -847,7 +847,7 @@ input[type="text"] {
 .box {
     padding-top: 150px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
-    margin: 15px 0 20px 0;
+    margin: 20px 0 20px 0;
     }
 .container {
     margin-top: -50px;
@@ -862,7 +862,7 @@ input[type="text"] {
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 385px) {
 .modal-obsah, .modal-content {
     width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -890,7 +890,7 @@ input[type="text"] {
 }
 .box{
     width: 85%;
-    margin: 9px 0 14px 0;
+    margin: 15px 0 15px 0;
 }
 .rukopis {
     font-size: 14px;
