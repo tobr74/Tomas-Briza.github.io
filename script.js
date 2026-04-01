@@ -484,7 +484,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -1224,5 +1224,54 @@ const sledovacRukopisu = new IntersectionObserver((polozky) => {
 
 // Spustíme sledování pro všechny prvky s třídou .rukopis
 document.querySelectorAll('.rukopis').forEach(el => sledovacRukopisu.observe(el));
+
+
+async function ziskejPocasi() {
+    if (!navigator.geolocation) return;
+
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        try {
+            // ŘÁDEK 11: Tady je ta kritická oprava s /v1/forecast/
+            const url1 = "https://open-meteo.com" + lat + "&longitude=" + lon + "&current_weather=true";
+            
+            // ŘÁDEK 12: Samotné zavolání
+            const res1 = await fetch(url1);
+            if (!res1.ok) throw new Error("Chyba 404 - spatna adresa");
+            const d1 = await res1.json();
+
+            // Adresa pro získání názvu města
+            const url2 = "https://bigdatacloud.net" + lat + "&longitude=" + lon + "&localityLanguage=cs";
+            const res2 = await fetch(url2);
+            const d2 = await res2.json();
+
+            // Vypsání dat do HTML elementů
+            document.getElementById('lokace').innerText = "Zdravím do: " + (d2.city || d2.locality || "vašeho města");
+            document.getElementById('teplota').innerText = Math.round(d1.current_weather.temperature) + " °C";
+            document.getElementById('popis').innerText = interpretujKod(d1.current_weather.weathercode);
+
+        } catch (e) {
+            console.error("Chyba při načítání:", e);
+            document.getElementById('popis').innerText = "Počasí nedostupné";
+        }
+    });
+}
+function interpretujKod(kod) {
+    if (kod === 0) return "Jasno ☀️";
+    if (kod <= 3) return "Polojasno ⛅";
+    if (kod >= 45 && kod <= 48) return "Mlha 🌫️";
+    if (kod >= 51 && kod <= 67) return "Prší 🌧️";
+    if (kod >= 71 && kod <= 77) return "Sněží ❄️";
+    if (kod >= 80) return "Přeháňky 🌦️";
+    return "Proměnlivo";
+}
+
+// 3. SPUŠTĚNÍ PO NAČTENÍ
+document.addEventListener("DOMContentLoaded", () => {
+    ziskejPocasi();
+    // Tady můžeš zavolat i funkci pro svátky, pokud ji máš
+});
 
 

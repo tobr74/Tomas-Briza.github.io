@@ -818,7 +818,7 @@ input[type="text"] {
 }
 
 /* Úprava pro malé mobily (na stojato) */
-@media (max-width: 699px) {
+@media (max-width: 700px) {
 .horni-lista {
     flex-direction: column; /* Prvky pod sebou */
     text-align: center;
@@ -837,12 +837,12 @@ input[type="text"] {
     }
 .rukopis{
     margin-top: 10px;
-    font-size: 24px;
+    font-size: 21px;
 }
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 385px) {
+@media screen and (max-width: 377px) {
 .modal-obsah, .modal-content {
     width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -873,7 +873,7 @@ input[type="text"] {
     margin: 15px 0 15px 0;
 }
 .rukopis {
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 10px;
 }
 h4.pridatNU-nadpis{
@@ -881,7 +881,61 @@ h4.pridatNU-nadpis{
     padding-bottom: 6px;
 }
 #hodiny-stred{
-    padding: 1px 24px;
+    padding: 1px 2px;
+    margin-top: 2px;
+}
+.navigace-zabava{
+    font-size: 12px;
+}
+.navigace-ukolovnik{
+    font-size: 12px;
+}
+.navigace-vizitka{
+    font-size: 12px;
+}
+}
+
+/* ÚPRAVA PRO EXTRA MALÉ DISPLEJE (Mobily) */
+@media screen and (max-width: 325px) {
+.modal-obsah, .modal-content {
+    width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
+    padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
+    margin-top: 10px;    /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
+}
+/* Zmenšení písma v nadpisu a nápovědě pro mobil */
+#nadpis-okna, .modal-content h3 {
+    font-size: 20px; /* O něco menší nadpis */
+    margin-bottom: 10px;
+}
+#napoveda-okna, .modal-content p {
+    font-size: 15px; /* Menší nápověda */
+}
+/* Úprava tlačítek pro vteřiny, aby nebyla moc vysoká */
+.volba-hodin {
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+/* Zmenšení křížku pro zavření, aby nepřekážel */
+.zavrit, .close-btn {
+    font-size: 24px;
+    right: 10px;
+    top: 5px;
+}
+.box{
+    width: 85%;
+    margin: 15px 0 15px 0;
+}
+.rukopis {
+    font-size: 12px;
+    margin-top: 10px;
+}
+h4.pridatNU-nadpis{
+    font-size: 16px;
+    padding-bottom: 6px;
+}
+#hodiny-stred{
+    padding: 1px 21px;
     margin-top: -4px;
 }
 .navigace-zabava{
@@ -892,5 +946,9 @@ h4.pridatNU-nadpis{
 }
 .navigace-vizitka{
     font-size: 9px;
+}
+#datum-vlevo, #svatek-vpravo{
+    margin-left: -6px;
+    margin-right: -6px;
 }
 }

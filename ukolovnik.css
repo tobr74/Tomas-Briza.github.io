@@ -751,7 +751,8 @@ input[type="text"] {
 }
 .rukopis{
     margin-top: 10px;
-    font-size: 26px;
+    font-size: 50px;
+    margin-left: -15px;
 }
 .navigace-vizitka {
     font-size: 22px;
@@ -817,7 +818,7 @@ input[type="text"] {
 }
 
 /* Úprava pro malé mobily (na stojato) */
-@media (max-width: 699px) {
+@media (max-width: 700px) {
 .ukolovnik {
     position: absolute;
     font-size: 24px;
@@ -846,13 +847,14 @@ input[type="text"] {
     margin-top: -37px;
 }
 .rukopis{
-    margin-top: 10px;
-    font-size: 24px;
+    margin-top: 15px;
+    font-size: 27px;
+    margin-left: -5px;
 }
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 385px) {
+@media screen and (max-width: 377px) {
 .modal-obsah, .modal-content {
     width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
     padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
@@ -883,7 +885,7 @@ input[type="text"] {
     margin: 15px 0 15px 0;
 }
 .rukopis {
-    font-size: 15px;
+    font-size: 24px;
     margin-top: 10px;
 }
 h4.pridatNU-nadpis{
@@ -901,8 +903,72 @@ h4.pridatNU-nadpis{
     transform: translateX(-50%);
 }
 #hodiny-stred{
-    padding: 1px 24px;
-    margin-top: -4px;
+    padding: 1px 2px;
+    margin-top: 2px;
+}
+.navigace-ukolovnik{
+    font-size: 12px;
+}
+.navigace-vizitka{
+    font-size: 12px;
+}
+.navigace-zabava{
+    font-size: 12px;
+}
+}
+
+/* ÚPRAVA PRO EXTRA MALÉ DISPLEJE (Mobily) */
+@media screen and (max-width: 325px) {
+.modal-obsah, .modal-content {
+    width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
+    padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
+    margin-top: 10px; /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
+}
+/* Zmenšení písma v nadpisu a nápovědě pro mobil */
+#nadpis-okna, .modal-content h3 {
+    font-size: 20px; /* O něco menší nadpis */
+    margin-bottom: 10px;
+}
+#napoveda-okna, .modal-content p {
+    font-size: 15px; /* Menší nápověda */
+}
+/* Úprava tlačítek pro vteřiny, aby nebyla moc vysoká */
+.volba-hodin {
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+/* Zmenšení křížku pro zavření, aby nepřekážel */
+.zavrit, .close-btn {
+    font-size: 24px;
+    right: 10px;
+    top: 5px;
+}
+.box{
+    width: 85%;
+    margin: 15px 0 15px 0;
+}
+.rukopis {
+    font-size: 16px;
+    margin-top: 10px;
+}
+h4.pridatNU-nadpis{
+    font-size: 16px;
+    padding-bottom: 6px;
+}
+.container {
+    margin-top: -33px;
+}
+.ukolovnik {
+    position: absolute;
+    top: 2px;
+    font-size: 16px;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+#hodiny-stred{
+    padding: 1px 17px;
+    margin-top: -10px;
 }
 .navigace-ukolovnik{
     font-size: 9px;
@@ -912,5 +978,9 @@ h4.pridatNU-nadpis{
 }
 .navigace-zabava{
     font-size: 9px;
+}
+#datum-vlevo, #svatek-vpravo{
+    margin-top: -11px;
+    margin-bottom: 10px;
 }
 }
