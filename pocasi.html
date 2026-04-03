@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TB-Počasí</title>
-    <link rel="stylesheet" href="pocasi.css">
-    <!-- <link rel="manifest" href="manifest.json"> -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TB-Počasí</title>
+<link rel="stylesheet" href="pocasi.css">
+<!-- <link rel="manifest" href="manifest.json"> -->
 
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; background: #f0f0f0; }
-        #pocasi-box { 
-            background: white; padding: 20px; border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; min-width: 100px;
-        }
-        h2 { margin: 10px 0; color: #333; }
-        p { color: #666; margin: 5px 0; }
-        #teplota { font-size: 2.5rem; font-weight: bold; color: #007bff; }
-    </style>
+<style>
+    body { font-family: sans-serif; display: flex; justify-content: center; background: #f0f0f0; }
+    #pocasi-box { 
+        padding: 20px; border-radius: 15px; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; min-width: 100px;
+    }
+    h2 { margin: 10px 0; color: #333; }
+    p { color: #666; margin: 5px 0; }
+    #teplota { font-size: 2.5rem; font-weight: bold; color: #007bff; }
+</style>
 </head>
 
 <body>
@@ -218,21 +218,21 @@
             <img id="vlajka" src="" style="display:none; vertical-align: middle; margin-right: 8px; margin-top: -8px; width: 25px; border: 1px solid #ccc;"> 
         </p>
         <p id="obyvatele" style="font-size: 1rem; color: #777;"></p>
-        <div id="teplota">-- °C</div>
-        <p id="popis" style="font-size: 20px; font-weight: bold;" >Načítám data...</p>
-        <button onclick="ziskejPocasi()" style="border:none; background:none; cursor:pointer; font-size: 1.6rem; width: 50%; margin-left: auto; margin-right: auto;" title="Obnovit zjištěnou polohu">🔄 Obnovit</button>
+        <div id="teplota" style="margin-top: -5px;">-- °C</div>
+        <p id="popis" style="font-size: 20px; font-weight: bold; margin-top: -5px;" >Načítám data...</p>
+        <button onclick="ziskejPocasi()" style="border:none; background:none; cursor:pointer; font-size: 1.4rem; width: 50%; margin-left: auto; margin-right: auto; color: #777; margin-top: -10px;" title="Obnovit zjištěnou polohu">🔄</button>
     
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0; margin-top: 1px;">
 
         <!-- Sekce pro hodiny (scrolluje se do strany) -->
         <p><strong>Příští hodiny:</strong></p>
-        <div id="hodiny-obal" style="display: flex; overflow-x: auto; gap: 10px; margin-top: 15px; max-width: 830px;">
+        <div id="hodiny-obal" style="display: flex; overflow-x: auto; gap: 10px; margin-top: 1px; max-width: 830px;">
             <!-- Sem skript vloží hodiny -->
         </div><br>
 
         <!-- Sekce pro dny -->
         <p><strong>Předpověď na týden:</strong></p>
-        <div id="dny-obal" style="margin-top: 15px;">
+        <div id="dny-obal" style="margin-top: 1px;">
             <!-- Sem skript vloží dny -->
         </div>
       </div>

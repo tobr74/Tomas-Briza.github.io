@@ -69,10 +69,10 @@
 
 .navigace-vizitka {
   position: absolute;
-  top: 23px;
+  top: 24px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 10.6px;
+  padding: 2px 10.5px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -827,10 +827,16 @@ input[type="text"] {
     margin-top: 0px;
 }
 .navigace-zabava:hover span {
-  transform: translateX(-30px); /* Šipka se lehce pohne doprava */
+  transform: translateX(-14px); /* Šipka se lehce pohne doprava */
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
+}
+.navigace-vizitka:hover span {
+  transform: translateY(3px); /* Šipka se lehce pohne dolu */
 }
 .navigace-ukolovnik:hover span {
-  transform: translateX(15px); /* Šipka se lehce pohne doprava */
+  transform: translateX(5px); /* Šipka se lehce pohne doprava */
 }
 }
 
@@ -848,7 +854,6 @@ input[type="text"] {
     padding: 0 0 !important;
     left: 50% !important;
 }
-
 /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
 .box {
     padding-top: 33px !important; /* Vytvoříme víc místa pod horní lištou */
@@ -872,16 +877,21 @@ input[type="text"] {
 .navigace-pocasi {
     font-size: 22px;
 }
-.navigace-zabava:hover span {
-  transform: translateX(-30px); /* Šipka se lehce pohne doprava */
-}
-.navigace-ukolovnik:hover span {
-  transform: translateX(15px); /* Šipka se lehce pohne doprava */
-}
-.kruh{
+.kruh {
     margin-top: -45px;
 }
-
+.navigace-zabava:hover span {
+  transform: translateX(-26px) !important; /* Šipka se lehce pohne doprava */
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-5px) !important; /* Šipka se lehce pohne nahoru */
+}
+.navigace-vizitka:hover span {
+  transform: translateY(3px) !important; /* Šipka se lehce pohne dolu */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(10px) !important; /* Šipka se lehce pohne doprava */
+}
 }
 
 @media screen and (max-height: 400px) and (orientation: landscape) {
@@ -922,6 +932,18 @@ input[type="text"] {
 }
 .kruh{
     margin-top: -40px;
+}
+.navigace-zabava:hover span {
+  transform: translateX(-14px); /* Šipka se lehce pohne doprava */
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
+}
+.navigace-vizitka:hover span {
+  transform: translateY(3px); /* Šipka se lehce pohne dolu */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(5px); /* Šipka se lehce pohne doprava */
 }
 }
 
@@ -984,6 +1006,18 @@ h4.pridatNU-nadpis{
 }
 .kruh{
     margin-top: -40px;
+}
+.navigace-zabava:hover span {
+  transform: translateX(-12px); /* Šipka se lehce pohne doprava */
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
+}
+.navigace-vizitka:hover span {
+  transform: translateY(3px); /* Šipka se lehce pohne dolu */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(3px); /* Šipka se lehce pohne doprava */
 }
 }
 
@@ -1051,5 +1085,17 @@ h4.pridatNU-nadpis{
 }
 .kruh{
     margin-top: -40px;
+}
+.navigace-zabava:hover span {
+  transform: translateX(-10px); /* Šipka se lehce pohne doprava */
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
+}
+.navigace-vizitka:hover span {
+  transform: translateY(3px); /* Šipka se lehce pohne dolu */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(3px); /* Šipka se lehce pohne doprava */
 }
 }
