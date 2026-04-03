@@ -3,7 +3,7 @@
   top: 0px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 21.7px;
+  padding: 2px 21.8px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -787,7 +787,7 @@ input[type="text"] {
     margin-top: 0px;
 }
 .rukopis{
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 45px;
     margin-left: -25px;
 }
@@ -858,11 +858,11 @@ input[type="text"] {
 }
 .navigace-zabava {
     font-size: 22px !important;
-    margin-top: 32px !important;
+    margin-top: 32.5px !important;
 }
 .navigace-pocasi {
     font-size: 22px !important;
-    padding: 2px 13px !important;
+    padding: 2px 12.95px !important;
 }
 .navigace-ukolovnik:hover span {
   transform: translateX(-14px) !important; /* Šipka se lehce pohne doprava */
@@ -926,7 +926,7 @@ input[type="text"] {
     margin-top: -50px;
 }
 .rukopis {
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 25px;
     margin-left: -13px;
 }
