@@ -1226,141 +1226,174 @@ const sledovacRukopisu = new IntersectionObserver((polozky) => {
 document.querySelectorAll('.rukopis').forEach(el => sledovacRukopisu.observe(el));
 
 
-async function ziskejPocasi() {
-    if (!navigator.geolocation) return;
+// FUNKCE PRO NASTAVENÍ POZADÍ (Mění barvu podle počasí a času)
+function nastavPozadi(k) {
+    let barva = "linear-gradient(to bottom, #f0f0f0, #d7d7d7)"; // Výchozí šedá
+    const hodina = new Date().getHours();
+    const jeNoc = hodina < 6 || hodina > 20;
 
-    navigator.geolocation.getCurrentPosition(async (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-
-        try {
-            // ŘÁDEK 11: Tady je ta kritická oprava s /v1/forecast/
-            const url1 = "https://open-meteo.com" + lat + "&longitude=" + lon + "&current_weather=true";
-            
-            // ŘÁDEK 12: Samotné zavolání
-            const res1 = await fetch(url1);
-            if (!res1.ok) throw new Error("Chyba 404 - spatna adresa");
-            const d1 = await res1.json();
-
-            // Adresa pro získání názvu města
-            const url2 = "https://bigdatacloud.net" + lat + "&longitude=" + lon + "&localityLanguage=cs";
-            const res2 = await fetch(url2);
-            const d2 = await res2.json();
-
-            // Vypsání dat do HTML elementů
-            document.getElementById('lokace').innerText = "Zdravím do: " + (d2.city || d2.locality || "vašeho města");
-            document.getElementById('teplota').innerText = Math.round(d1.current_weather.temperature) + " °C";
-            document.getElementById('popis').innerText = interpretujKod(d1.current_weather.weathercode);
-
-        } catch (e) {
-            console.error("Chyba při načítání:", e);
-            document.getElementById('popis').innerText = "Počasí nedostupné";
-        }
-    });
-}
-function interpretujKod(kod) {
-    if (kod === 0) return "Jasno ☀️";
-    if (kod <= 3) return "Polojasno ⛅";
-    if (kod >= 45 && kod <= 48) return "Mlha 🌫️";
-    if (kod >= 51 && kod <= 67) return "Prší 🌧️";
-    if (kod >= 71 && kod <= 77) return "Sněží ❄️";
-    if (kod >= 80) return "Přeháňky 🌦️";
-    return "Proměnlivo";
-}
-
-// 3. SPUŠTĚNÍ PO NAČTENÍ
-document.addEventListener("DOMContentLoaded", () => {
-    ziskejPocasi();
-    // Tady můžeš zavolat i funkci pro svátky, pokud ji máš
-});
-
-/* 1. FUNKCE PRO VYHLEDÁVÁNÍ MĚSTA PODLE NÁZVU
-Spustí se po kliknutí na tlačítko "Hledat" nebo po stisku Enteru. */
-async function hledatMesto() {
-    // Získáme text, který uživatel napsal do políčka
-    var vstup = document.getElementById('vstup-mesto').value;
-    if (!vstup) return; // Pokud je prázdno, nic neděláme
-
-    // ŠIFROVÁNÍ PRO AVAST: Zakódovaná adresa pro vyhledávací službu (Geocoding API)
-    var b64_geo = "aHR0cHM6Ly9nZW9jb2RpbmctYXBpLm9wZW4tbWV0ZW8uY29tL3YxL3NlYXJjaD9uYW1lPQ==";
-    
-    // Rozbalíme adresu (atob) a přidáme k ní název města ošetřený pro URL (encodeURIComponent)
-    var urlGeo = atob(b64_geo) + encodeURIComponent(vstup) + "&count=1&language=cs&format=json";
-
-    try {
-        const res = await fetch(urlGeo); // Pošleme dotaz na server
-        const data = await res.json();  // Převedeme odpověď na čitelný formát (JSON)
-        
-        // Pokud server město našel (výsledků je víc než 0)
-        if (data.results && data.results.length > 0) {
-            const g = data.results[0]; // Vybereme první nalezený výsledek (index 0)
-            // Předáme souřadnice (lat, lon), název a kód země funkci pro počasí
-            nactiData(g.latitude, g.longitude, g.name, g.country_code);
-        } else {
-            alert("Město nebylo nalezeno!");
-        }
-    } catch (e) { 
-        console.error("Chyba vyhledávání:", e); 
+    if (k <= 2) { // Jasno až polojasno
+        barva = jeNoc ? "linear-gradient(to bottom, #141e30, #243b55)" : "linear-gradient(to bottom, #4da6ff, #1a75ff)";
+    } else if (k === 3 || k === 4) { // Zataženo
+        barva = "linear-gradient(to bottom, #bdc3c7, #2c3e50)";
+    } else if (k >= 45 && k <= 48) { // Mlha
+        barva = "linear-gradient(to bottom, #757f9a, #d7dde8)";
+    } else if ((k >= 51 && k <= 67) || (k >= 80 && k <= 82)) { // Déšť
+        barva = "linear-gradient(to bottom, #616161, #485563)";
+    } else if ((k >= 71 && k <= 77) || k === 66 || k === 67) { // Sníh
+        barva = "linear-gradient(to bottom, #e6e9f0, #eef1f5)";
+    } else if (k >= 95) { // Bouřka
+        barva = "linear-gradient(to bottom, #0f0c29, #302b63, #24243e)";
     }
-}
 
-/* 2. FUNKCE PRO ZOBRAZENÍ POČASÍ A VLAJKY Tuto funkci volá buď vyhledávání, nebo automatická poloha. */
-async function nactiData(lat, lon, nazev, kodZeme) {
-    // ŠIFROVÁNÍ: Adresa pro předpověď počasí (Open-Meteo API)
+    document.body.style.background = barva;
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.minHeight = "100vh";
+    document.body.style.transition = "background 1s ease";
+}
+// 1. HLAVNÍ FUNKCE PRO ZOBRAZENÍ VŠECH DAT (Aktuální + Hodiny + Dny)
+async function nactiData(lat, lon, nazev, kodZeme, pocetObyvatel) {
+    // Šifrovaná adresa pro rozšířenou předpověď (hodiny, dny, časová zóna)
     var b64_pocasi = "aHR0cHM6Ly9hcGkub3Blbi1tZXRlby5jb20vdjEvZm9yZWNhc3Q/bGF0aXR1ZGU9";
-    var urlP = atob(b64_pocasi) + lat + "&longitude=" + lon + "&current_weather=true";
+    var urlP = atob(b64_pocasi) + lat + "&longitude=" + lon + "&current_weather=true&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=auto";
 
     try {
         const res = await fetch(urlP);
         const d = await res.json();
+
+        // Nastavení pozadí hned po načtení dat
+        nastavPozadi(d.current_weather.weathercode);
         
-        // Vypíšeme název města do HTML
+        // --- A. AKTUÁLNÍ POČASÍ ---
         document.getElementById('lokace').innerText = nazev;
+        document.getElementById('teplota').innerText = Math.round(d.current_weather.temperature) + " °C";
+        document.getElementById('popis').innerText = interpretujKod(d.current_weather.weathercode);
         
-        // Práce s vlajkou státu
         const imgVlajka = document.getElementById('vlajka');
         if (kodZeme) {
-            // ŠIFROVÁNÍ: Adresa pro obrázky vlajek (FlagCDN)
-            var b64_flag = "aHR0cHM6Ly9mbGFnY2RuLmNvbS93NDAv";
-            // Sestavíme cestu k obrázku (např. .../cz.png)
-            imgVlajka.src = atob(b64_flag) + kodZeme.toLowerCase() + ".png";
-            imgVlajka.style.display = "inline"; // Zobrazíme obrázek
-        } else {
-            imgVlajka.style.display = "none";   // Schováme obrázek, pokud kód země nemáme
+            // Schováme i doménu vlajek do Base64
+            var b64_flag_base = "aHR0cHM6Ly9mbGFnY2RuLmNvbS93NDAv"; 
+            imgVlajka.src = atob(b64_flag_base) + kodZeme.toLowerCase() + ".png";
+            imgVlajka.style.display = "inline";
+            
+            // Pokud by Avast obrázek zablokoval, skryjeme rozbitou ikonku
+            imgVlajka.onerror = function() { this.style.display = 'none'; };
         }
 
-        // Vypíšeme teplotu (zaokrouhlenou na celá čísla)
-        document.getElementById('teplota').innerText = Math.round(d.current_weather.temperature) + " °C";
-        // Převedeme číselný kód počasí na srozumitelný text a ikonku
-        document.getElementById('popis').innerText = interpretujKod(d.current_weather.weathercode);
-    } catch (e) { 
-        console.error("Chyba počasí:", e); 
-    }
+        // ZOBRAZENÍ POČTU OBYVATEL
+        const elObyv = document.getElementById('obyvatele');
+        if (pocetObyvatel > 0) {
+            // Formátování čísla (přidá mezery pro tisíce: 1 200 000)
+            const formatovane = pocetObyvatel.toLocaleString('cs-CZ');
+            elObyv.innerText = "Počet obyvatel: " + formatovane;
+        } else {
+            elObyv.innerText = ""; // Pokud údaj chybí, text smažeme
+        }
+
+        // --- B. HODINOVÁ PŘEDPOVĚĎ (Příštích 8 hodin) ---
+        // --- B. HODINOVÁ PŘEDPOVĚĎ (Pojistka proti půlnoci) ---
+        const hodinyObal = document.getElementById('hodiny-obal');
+        if (hodinyObal) {
+            hodinyObal.innerHTML = "";
+
+            // 1. Získáme aktuální čas ze serveru (pro dané místo)
+            const casNyni = d.current_weather.time; 
+            
+            // 2. Najdeme nejbližší index (hledáme první čas, který není menší než aktuální)
+            let indexNyni = d.hourly.time.findIndex(t => t >= casNyni);
+            
+            // Pokud se nic nenašlo (např. konec dat), dáme 0
+            if (indexNyni === -1) indexNyni = 0;
+
+            // 3. Vypíšeme 8 hodin
+            for (let i = indexNyni; i < indexNyni + 24; i++) {
+                if (!d.hourly.time[i]) continue;
+
+                // Tady získáme jen ČAS (např. 15:00) bez data
+                let hcasRaw = d.hourly.time[i].split("T")[1]; 
+                // Pokud by tam byly vteřiny (15:00:00), uřízneme je
+                if (hcasRaw.length > 5) hcasRaw = hcasRaw.substring(0, 5);
+
+                const htemp = Math.round(d.hourly.temperature_2m[i]);
+                const celyPopis = interpretujKod(d.hourly.weathercode[i]);
+                const jenIkonka = celyPopis.split(" ").pop();
+                const jenText = celyPopis.replace(jenIkonka, "").trim();
+
+                hodinyObal.innerHTML += `
+                    <div style="text-align:center; min-width:85px; padding: 5px; background: #f8f9fa; border-radius:8px;">
+                        <small style="color:#888; font-weight:bold;">${hcasRaw}</small><br>
+                        <span style="font-size:1.4rem;">${jenIkonka}</span><br>
+                        <small style="display:block; font-size:0.7rem; color:#555; height:20px; overflow:hidden;">${jenText}</small>
+                        <strong>${htemp}°</strong>
+                    </div>`;
+            }
+        }
+
+
+        // --- C. TÝDENNÍ PŘEDPOVĚĎ (Příštích 5 dní) ---
+        const dnyObal = document.getElementById('dny-obal');
+        if (dnyObal) {
+            dnyObal.innerHTML = "";
+            for (let i = 1; i < 6; i++) {
+                const datum = new Date(d.daily.time[i]);
+                const denNazev = datum.toLocaleDateString('cs-CZ', { weekday: 'short' });
+                const dmax = Math.round(d.daily.temperature_2m_max[i]);
+                const dmin = Math.round(d.daily.temperature_2m_min[i]);
+                const dikona = interpretujKod(d.daily.weathercode[i]);
+                dnyObal.innerHTML += `<div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f2f2f2;"><span style="width:40px; font-weight:bold; text-transform:capitalize;">${denNazev}</span><span style="flex-grow:1; text-align:left; margin-left:10px;">${dikona}</span><span><strong style="color:#ff4d4d">${dmax}°</strong> / <span style="color:#4da6ff">${dmin}°</span></span></div>`;
+            }
+        }
+    } catch (e) { console.error("Chyba:", e); }
 }
 
-/* 3. AUTOMATICKÁ DETEKCE POLOHY PŘI STARTU */
+// 2. FUNKCE PRO RUČNÍ VYHLEDÁVÁNÍ (Tlačítko / Enter)
+async function hledatMesto() {
+    var vstup = document.getElementById('vstup-mesto').value;
+    if (!vstup) return;
+    var b64_geo = "aHR0cHM6Ly9nZW9jb2RpbmctYXBpLm9wZW4tbWV0ZW8uY29tL3YxL3NlYXJjaD9uYW1lPQ==";
+    var urlGeo = atob(b64_geo) + encodeURIComponent(vstup) + "&count=1&language=cs&format=json";
+    try {
+        const res = await fetch(urlGeo);
+        const data = await res.json();
+        if (data.results) {
+            const g = data.results[0];
+          // Předáme počet obyvatel jako nový parametr (pokud neexistuje, dáme 0)
+            nactiData(g.latitude, g.longitude, g.name, g.country_code, g.population || 0);
+        } else { alert("Město nebylo nalezeno!"); }
+    } catch (e) { console.error(e); }
+}
+
+// 3. AUTOMATICKÝ START PŘI NAČTENÍ
 function ziskejPocasi() {
-    // Zeptáme se prohlížeče na GPS polohu
     navigator.geolocation.getCurrentPosition(function(pos) {
         var lat = pos.coords.latitude;
         var lon = pos.coords.longitude;
         
-        // ŠIFROVÁNÍ: Adresa, která nám řekne název města podle GPS (BigDataCloud API)
-         var b64_mesto = "aHR0cHM6Ly9hcGkuYmlnZGF0YWNsb3VkLm5ldC9kYXRhL3JldmVyc2UtZ2VvY29kZS1jbGllbnQ/bGF0aXR1ZGU9";
+        var b64_mesto = "aHR0cHM6Ly9hcGkuYmlnZGF0YWNsb3VkLm5ldC9kYXRhL3JldmVyc2UtZ2VvY29kZS1jbGllbnQ/bGF0aXR1ZGU9";
         var urlM = atob(b64_mesto) + lat + "&longitude=" + lon + "&localityLanguage=cs";
 
         fetch(urlM).then(r => r.json()).then(d => {
-            // Tady voláme nactiData, kde musíme mít ten časový posun
-            nactiData(lat, lon, d.city || d.locality, d.countryCode);
+            const nalezeneMesto = d.city || d.locality;
+            
+            // TADY JE TA ZMĚNA: Přidali jsme pomocný dotaz na populaci
+            var b64_geo = "aHR0cHM6Ly9nZW9jb2RpbmctYXBpLm9wZW4tbWV0ZW8uY29tL3YxL3NlYXJjaD9uYW1lPQ==";
+            var urlGeo = atob(b64_geo) + encodeURIComponent(nalezeneMesto) + "&count=1&language=cs&format=json";
+            
+            fetch(urlGeo).then(res => res.json()).then(geoData => {
+                let populace = 0;
+                if (geoData.results && geoData.results.length > 0) {
+                    populace = geoData.results[0].population || 0;
+                }
+                // Teď už voláme nactiData se vším všudy
+                nactiData(lat, lon, nalezeneMesto, d.countryCode, populace);
+            });
+
         }).catch(e => console.log("Lokalita zablokována"));
     }, function(err) {
-        // Pokud uživatel polohu zakáže, napovíme mu, co má dělat
-        document.getElementById('lokace').innerText = "⟵ Zadejte místo ručně";
+        document.getElementById('lokace').innerText = "Zadej město ručně ↑";
     });
 }
 
-/* 4. PŘEVODNÍK KÓDŮ NA TEXT
-API vrací čísla (např. 0), my chceme text (Jasno). */
 function interpretujKod(k) {
     if (k === 0) return "Jasno ☀️";
     if (k === 1) return "Skoro jasno 🌤️"; // Jen pár mráčků
@@ -1380,9 +1413,7 @@ function interpretujKod(k) {
     return "Proměnlivo 🌤️";
 }
 
-// Spustíme celý proces automaticky po načtení stránky
 window.onload = ziskejPocasi;
-
 
 // Automaticky zavolá ziskejPocasi každých 15 minut (900 000 milisekund)
 setInterval(ziskejPocasi, 900000);

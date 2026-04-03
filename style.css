@@ -2,17 +2,17 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  padding: 2px 10px;
+  padding: 2px 19px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
-  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
+  backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-color: black;
-  border-radius: 20px;                  /* Kulaté rohy */
-  color: #555;                          /* Barvu si uprav podle svého designu */
+  border-top-left-radius: 15px; /* Kulaté rohy */
+  color: #555; /* Barvu si uprav podle svého designu */
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
-  transition: all 0.3s ease;            /* Plynulá animace */
+  transition: all 0.3s ease; /* Plynulá animace */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -22,31 +22,68 @@
 }
 /* Efekt při najetí myší */
 .navigace-zabava:hover {
-  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-zabava:hover span {
-  transform: translateX(-5px); /* Šipka se lehce pohne doprava */
+  transform: translateX(-15px); /* Šipka se lehce pohne doprava */
 }
 
-.navigace-vizitka {
+.navigace-pocasi {
   position: absolute;
   top: 0px;
   left: 50%; 
   transform: translateX(-50%);
   padding: 2px 10px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
-  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
+  backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-color: black;
-  border-radius: 20px;                  /* Kulaté rohy */
-  color: #555;                          /* Barvu si uprav podle svého designu */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px; /* Kulaté rohy */
+  color: #555; /* Barvu si uprav podle svého designu */
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
-  transition: all 0.3s ease;            /* Plynulá animace */
+  transition: all 0.3s ease; /* Plynulá animace */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.navigace-pocasi span {
+  transition: transform 0.3s ease;
+  margin-top: -2px;
+}
+/* Efekt při najetí myší */
+.navigace-pocasi:hover {
+  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
+  border-color: #007bff;
+  color: #007bff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.navigace-pocasi:hover span {
+  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
+}
+
+.navigace-vizitka {
+  position: absolute;
+  top: 23px;
+  left: 50%; 
+  transform: translateX(-50%);
+  padding: 2px 10.6px;
+  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
+  backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-color: black;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px; /* Kulaté rohy */
+  color: #555; /* Barvu si uprav podle svého designu */
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease; /* Plynulá animace */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -57,26 +94,26 @@
 }
 /* Efekt při najetí myší */
 .navigace-vizitka:hover {
-  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
+  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-vizitka:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne doprava */
+  transform: translateY(3px); /* Šipka se lehce pohne dolu */
 }
 
 .navigace-ukolovnik {
   position: absolute;
   top: 0px;
   right: 0px;
-  padding: 2px 10px;
+  padding: 2px 9px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-color: black;
-  border-radius: 20px;                  /* Kulaté rohy */
-  color: #555;                          /* Barvu si uprav podle svého designu */
+  border-top-right-radius: 15px; /* Kulaté rohy */
+  color: #555; /* Barvu si uprav podle svého designu */
   text-decoration: none;
   font-size: 15px;
   font-weight: 600;
@@ -301,6 +338,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 3);
     cursor: pointer;
     user-select: none;
+    margin-top: -75px;
 }
 h3.TB {
     margin: 0;
@@ -356,6 +394,7 @@ h2.jmeno:focus {
     background-repeat: no-repeat;
     transition: background-size 0.3s ease, color 0.3s ease;
     font-weight: bold;
+    margin-bottom: 0px;
 }
 .programator:hover {
     color: white; /* Text zbělá, aby byl na barvě vidět */
@@ -397,7 +436,6 @@ button#kontaktovat {
     border-radius: 5px; 
     cursor: pointer; 
     border: 1px solid black;
-    margin-top: -6px;
     font-size: 20px;
 }
 #edit-kontakt {
@@ -579,7 +617,7 @@ li div {
 .moudra, #pocitadlo {
     margin: 0;
     padding: 0;
-    margin-top: -10px;
+    margin-top: -20px;
     min-height: 0px; /* Aby skákající čísla skóre nehýbala s tlačítkem */
 }
 h1.moudra {
@@ -753,20 +791,46 @@ input[type="text"] {
 }
 .container {
     width: 50%;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 .rukopis{
-    margin-top: 5px;
+    margin-top: -5px;
     font-size: 26px;
+    margin-bottom: -5px;
 }
 .navigace-vizitka{
     font-size: 22px;
+    margin-top:8px;
 }
 .navigace-ukolovnik{
     font-size: 22px;
+    padding: 2px 51px;
 }
 .navigace-zabava {
     font-size: 22px;
+    padding: 2px 65.7px;
+}
+.navigace-pocasi {
+    font-size: 22px;
+}
+.kruh{
+    margin-top: -95px;
+}
+.box {
+    padding-top: 50px; /* Vytvoříme víc místa pod horní lištou */
+    width: 95%;
+    max-width: 900px;
+    width: 86%;
+    margin: 20px 0 20px 0;
+}
+#datum-vlevo, #svatek-vpravo {
+    margin-top: 0px;
+}
+.navigace-zabava:hover span {
+  transform: translateX(-30px); /* Šipka se lehce pohne doprava */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(15px); /* Šipka se lehce pohne doprava */
 }
 }
 
@@ -775,18 +839,19 @@ input[type="text"] {
 /* Sjednocení roviny a zvětšení písma */
 #datum-vlevo, #svatek-vpravo, #hodiny-stred {
     top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
-    font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
+    font-size: 14px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
 }
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
-    font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
+    top: 56px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     padding: 0 0 !important;
+    left: 50% !important;
 }
 
 /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
 .box {
-    padding-top: 60px; /* Vytvoříme víc místa pod horní lištou */
+    padding-top: 33px !important; /* Vytvoříme víc místa pod horní lištou */
     width: 95%;
     max-width: 900px;
     width: 86%;
@@ -794,13 +859,29 @@ input[type="text"] {
 }
 .navigace-vizitka {
     font-size: 22px;
+    margin-top:8px;
 }
 .navigace-ukolovnik {
     font-size: 22px;
+    padding: 2px 18px;
 }
 .navigace-zabava {
     font-size: 22px;
+    padding: 2px 33px;
 }
+.navigace-pocasi {
+    font-size: 22px;
+}
+.navigace-zabava:hover span {
+  transform: translateX(-30px); /* Šipka se lehce pohne doprava */
+}
+.navigace-ukolovnik:hover span {
+  transform: translateX(15px); /* Šipka se lehce pohne doprava */
+}
+.kruh{
+    margin-top: -45px;
+}
+
 }
 
 @media screen and (max-height: 400px) and (orientation: landscape) {
@@ -838,6 +919,9 @@ input[type="text"] {
 .rukopis{
     margin-top: 10px;
     font-size: 21px;
+}
+.kruh{
+    margin-top: -40px;
 }
 }
 
@@ -886,12 +970,20 @@ h4.pridatNU-nadpis{
 }
 .navigace-zabava{
     font-size: 12px;
+    padding: 2px 17px;
 }
 .navigace-ukolovnik{
     font-size: 12px;
 }
 .navigace-vizitka{
     font-size: 12px;
+    top: 20px;
+}
+.navigace-pocasi{
+    font-size: 12px;
+}
+.kruh{
+    margin-top: -40px;
 }
 }
 
@@ -940,15 +1032,24 @@ h4.pridatNU-nadpis{
 }
 .navigace-zabava{
     font-size: 9px;
+    padding: 2px 15px;
 }
 .navigace-ukolovnik{
     font-size: 9px;
 }
 .navigace-vizitka{
     font-size: 9px;
+    top: 16px;
+}
+.navigace-pocasi{
+    font-size: 9px;
 }
 #datum-vlevo, #svatek-vpravo{
     margin-left: -6px;
     margin-right: -6px;
+    margin-top: -8px;
+}
+.kruh{
+    margin-top: -40px;
 }
 }

@@ -1,4 +1,5 @@
-const CACHE_NAME = 'verze-1.5'; // Změna verze vynutí aktualizaci
+const CACHE_NAME = 'verze-1.8';
+// Seznam souborů, které chceš mít dostupné offline
 const ASSETS = [
   'index.html',
   'style.css',
@@ -6,21 +7,22 @@ const ASSETS = [
   'ukolovnik.html',
   'ukolovnik.css',
   'zabava.html',
-  'zabava.css'
+  'zabava.css',
+  /* 'ikona.png' */ // Přidej další soubory, které používáš
 ];
 
-// 1. INSTALACE
+// 1. INSTALACE - Uložíme soubory do cache
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('SW: Instaluji novou verzi cache');
+      console.log('SW: Cachování souborů');
       return cache.addAll(ASSETS);
     })
   );
   self.skipWaiting();
 });
 
-// 2. AKTIVACE
+// 2. AKTIVACE - Smažeme staré verze cache
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -29,20 +31,23 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  return self.clients.claim();
 });
 
-// 3. FETCH (Strategie: Síť má přednost, jinak Cache)
+// 3. FETCH - Oprava chyby "Failed to convert value to Response"
 self.addEventListener('fetch', (event) => {
-  // Ignorujeme požadavky na API (počasí), ty nechceme cachovat
-  if (event.request.url.includes('://open-meteo.com') || event.request.url.includes('bigdatacloud')) {
-    return; 
-  }
-
   event.respondWith(
     fetch(event.request).catch(() => {
-      return caches.match(event.request);
+      // Pokud síť selže, zkusíme najít soubor v cache
+      return caches.match(event.request).then((response) => {
+        if (response) {
+          return response;
+        }
+        // Pokud soubor není ani v cache, musíme vrátit chybu nebo náhradní stránku
+        return new Response('Network error and no cache available', {
+          status: 404,
+          statusText: 'Not Found'
+        });
+      });
     })
   );
 });
-

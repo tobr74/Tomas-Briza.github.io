@@ -34,19 +34,22 @@
   <a href="zabava.html" class="navigace-zabava">
     Zábava <span>&rarr; </span>
   </a>
+  <a href="pocasi.html" class="navigace-pocasi">
+    <span>&uarr;</span> Počasí <span>&uarr;</span>
+  </a>
   <a href="ukolovnik.html" class="navigace-ukolovnik">
     <span>&darr;</span> Úkolovník <span>&darr;</span>
   </a>
 
   <!-- HORNÍ LIŠTA -->
   <!-- Datum Vlevo -->
-  <div id="datum-vlevo" style="position: absolute; top: 52px; left: 15px; font-size: 13px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 29px; left: 7px; font-size: 13px; font-weight: bold;"></div>
 
   <!-- Hodiny Uprostřed -->
-  <div id="hodiny-stred" style="position: absolute; top: 28px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace; padding: 0px; margin-top: 7px;"></div>
 
   <!-- Svátek Vpravo -->
-  <div id="svatek-vpravo" style="position: absolute; top: 52px; right: 15px; font-size: 13px; font-weight: bold;display: inline-block"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 29px; right: 7px; font-size: 13px; font-weight: bold;display: inline-block"></div>
 
   <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">
@@ -195,7 +198,7 @@
   <h2 class="rukopis">🍀Hodně trpělivosti při<br>&nbsp;&nbsp;plnění Vašich úkolů🍀</h2>
 </div> <!-- Konec HLAVNÍ CELÁ PLOCHA BOX -->
 
-<script src="script.js?v=1.5"></script>
+<script src="script.js?v=1.8"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
