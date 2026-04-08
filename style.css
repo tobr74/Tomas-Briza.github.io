@@ -72,7 +72,7 @@
   top: 24px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 10.4px;
+  padding: 2px 10.7px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -800,7 +800,7 @@ input[type="text"] {
 }
 .navigace-vizitka{
     font-size: 22px;
-    margin-top:8px;
+    margin-top: 8px;
 }
 .navigace-ukolovnik{
     font-size: 22px;
@@ -850,7 +850,7 @@ input[type="text"] {
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 56px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    top: 64px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     padding: 0 0 !important;
     left: 50% !important;
 }
@@ -864,7 +864,7 @@ input[type="text"] {
 }
 .navigace-vizitka {
     font-size: 22px;
-    margin-top:8px;
+    margin-top: 8px;
 }
 .navigace-ukolovnik {
     font-size: 22px;
@@ -919,8 +919,8 @@ input[type="text"] {
     width: 26%; /* Roztáhnou se na celou šířku */
     margin: 2px 0; /* Jemné rozestupy pod sebou */
     font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
-    padding: 5px;
-    }    
+    padding: 5px 13px;
+    }
 .box {
     padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;

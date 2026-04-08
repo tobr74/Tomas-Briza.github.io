@@ -647,7 +647,7 @@ h1.vtipy {
     text-align: center;
     padding: 0;
     margin: 0;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-bottom: 5px;
     
     /* ANIMACE */
@@ -787,7 +787,7 @@ input[type="text"] {
     margin-top: 0px;
 }
 .rukopis{
-    margin-top: 15px;
+    margin-top: 40px;
     font-size: 45px;
     margin-left: -25px;
 }
@@ -831,7 +831,7 @@ input[type="text"] {
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    padding: 0 0 !important;
+    padding: 0 10px !important;
     margin-top: 11px !important;
 }
 /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
@@ -914,7 +914,7 @@ input[type="text"] {
     width: 26%; /* Roztáhnou se na celou šířku */
     margin: 2px 0; /* Jemné rozestupy pod sebou */
     font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
-    padding: 5px;
+   padding: 5px 13px;
     margin-top: 5px;
     }    
 .box {
@@ -926,7 +926,7 @@ input[type="text"] {
     margin-top: -50px;
 }
 .rukopis {
-    margin-top: 15px;
+    margin-top: 40px;
     font-size: 25px;
     margin-left: -13px;
 }
@@ -1004,7 +1004,7 @@ input[type="text"] {
 }
 .rukopis {
     font-size: 21px;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-left: -11px;
 }
 h4.pridatNU-nadpis {
@@ -1096,7 +1096,7 @@ h4.pridatNU-nadpis {
 }
 .rukopis {
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 40px;
     margin-left: -7px;
 }
 h4.pridatNU-nadpis {

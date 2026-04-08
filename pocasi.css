@@ -837,14 +837,14 @@ input[type="text"] {
 @media screen and (orientation: landscape) {    
 /* Sjednocení roviny a zvětšení písma */
 #datum-vlevo, #svatek-vpravo, #hodiny-stred {
-    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    top: 43px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     font-size: 14px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
 }
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 56px !important; /* Všechny posuneme do stejné výšky od horního okraje */
-    padding: 0 0 !important;
+    top: 59px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    padding: 0 15px !important;
     left: 50% !important;
 }
 
@@ -902,6 +902,7 @@ input[type="text"] {
     margin-top: 60px;
 }
 
+
 /* Úprava pro malé mobily (na stojato) */
 @media (max-width: 700px) {
 .horni-lista {
@@ -913,8 +914,8 @@ input[type="text"] {
     width: 26%; /* Roztáhnou se na celou šířku */
     margin: 2px 0; /* Jemné rozestupy pod sebou */
     font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
-    padding: 5px;
-    }    
+    padding: 5px 13px;
+    }  
 .box {
     padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
