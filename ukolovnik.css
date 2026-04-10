@@ -898,10 +898,10 @@ input[type="text"] {
 .box {
     padding-top: 150px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 120px 0;
     }
 .container {
-    margin-top: -45px;
+    margin-top: -10px;
 }
 .rukopis{
     margin-top: 30px;
@@ -942,10 +942,10 @@ input[type="text"] {
 }
 .box{
     width: 85%;
-    margin: 15px 0 15px 0;
+    margin: 15px 0 140px 0;
 }
 .rukopis {
-    font-size: 24px;
+    font-size: 23px;
     margin-top: 30px;
 }
 h4.pridatNU-nadpis{
@@ -953,7 +953,7 @@ h4.pridatNU-nadpis{
     padding-bottom: 6px;
 }
 .container {
-    margin-top: -55px;
+    margin-top: -10px;
 }
 .ukolovnik {
     position: absolute;
@@ -972,11 +972,11 @@ h4.pridatNU-nadpis{
 }
 .navigace-vizitka{
     font-size: 12px;
-    padding: 2px 17.5px;
+    padding: 2px 14px;
 }
 .navigace-zabava{
     font-size: 12px;
-    padding: 2px 15.7px;
+    padding: 2px 12px;
 }
 .navigace-pocasi{
     font-size: 12px;
@@ -1016,7 +1016,7 @@ h4.pridatNU-nadpis{
 }
 .box{
     width: 85%;
-    margin: 15px 0 15px 0;
+    margin: 15px 0 150px 0;
 }
 .rukopis {
     font-size: 16px;
@@ -1027,7 +1027,7 @@ h4.pridatNU-nadpis{
     padding-bottom: 6px;
 }
 .container {
-    margin-top: -55px;
+    margin-top: -20px;
 }
 .ukolovnik {
     position: absolute;

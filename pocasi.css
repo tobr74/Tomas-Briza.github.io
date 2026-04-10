@@ -843,7 +843,7 @@ input[type="text"] {
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 59px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    top: 45px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     padding: 0 15px !important;
     left: 50% !important;
 }
@@ -930,7 +930,7 @@ input[type="text"] {
 }
 .container {
     width: 95%;
-    margin-top: 60px;
+    margin-top: 105px;
 }
 }
 
@@ -963,7 +963,7 @@ input[type="text"] {
 }
 .box{
     width: 85%;
-    margin: 15px 0 15px 0;
+    margin: 30px 0 15px 0;
 }
 .rukopis {
     font-size: 13px;
@@ -997,7 +997,7 @@ h4.pridatNU-nadpis{
 }
 .container {
     width: 95%;
-    margin-top: 60px;
+    margin-top: 105px;
 }
 }
 
@@ -1030,7 +1030,7 @@ h4.pridatNU-nadpis{
 }
 .box{
     width: 85%;
-    margin: 15px 0 15px 0;
+    margin: 90px 0 15px 0;
 }
 .rukopis {
     font-size: 8px;
@@ -1042,7 +1042,7 @@ h4.pridatNU-nadpis{
 }
 #hodiny-stred{
     padding: 1px 21px;
-    margin-top: -4px;
+    margin-top: 5px;
 }
 .navigace-zabava{
     font-size: 9px;
@@ -1069,6 +1069,6 @@ h4.pridatNU-nadpis{
 }
 .container {
     width: 95%;
-    margin-top: 60px;
+    margin-top: 105px;
 }
 }

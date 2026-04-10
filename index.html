@@ -46,13 +46,13 @@
 
   <!-- HORNÍ LIŠTA -->
   <!-- Datum Vlevo -->
-  <div id="datum-vlevo" style="position: absolute; top: 33px; left: 5px; font-size: 12px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 45px; left: 5px; font-size: 12px; font-weight: bold;"></div>
 
   <!-- Hodiny Uprostřed -->
-  <div id="hodiny-stred" style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace; padding: 0px; margin-top: 7px;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 95px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace; padding: 0px 25px; margin-top: 7px;"></div>
 
   <!-- Svátek Vpravo -->
-  <div id="svatek-vpravo" style="position: absolute; top: 33px; right: 5px; font-size: 12px; font-weight: bold;display: inline-block"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 45px; right: 5px; font-size: 12px; font-weight: bold;display: inline-block"></div>
 
   <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">
@@ -82,7 +82,7 @@
       <div id="pocasi-box">
 
         <!-- LEVÁ STRANA POČASÍ: Popisek, Vstupní pole a Tlačítko hledání -->
-        <div style="margin-top: 50px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+        <div style="margin-top: 105px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
     
           <!-- Popisek -->
           <div style="font-weight: bold; margin-left: -4px;">Počasí:</div>
@@ -111,7 +111,7 @@
           <p id="popis" style="margin: 0; font-style: italic; margin-top: -2px; font-size: 16px; font-weight: bold;">Načítám data...</p>
 
           <!-- Tlačítko pro obnovení v rohu -->
-          <button onclick="ziskejPocasi()" style="border:none; background:none; cursor:pointer; font-size: 1.4rem; margin-right: -20px; margin-top: -5px" title="Obnovit zjištěnou polohu">🔄</button>
+          <button onclick="ziskejPocasi()" style="border:none; background:none; cursor:pointer; font-size: 1.4rem; margin-right: -20px; margin-top: 0px;" title="Obnovit zjištěnou polohu">🔄</button>
 
         </div>
 
@@ -133,7 +133,7 @@
       <div class="ovladani-kontejner">
 
         <!-- Kontakt -->
-        <button id="kontaktovat" style="margin-top: 5px;" >Kontakt</button>
+        <button id="kontaktovat" style="margin-top: 8px;" >Kontakt</button>
         <div id="edit-kontakt" style="display: none;">
         </div> <!-- Tady bude kontakt -->
     
@@ -141,7 +141,7 @@
         <div class="tlacitka-pod-sebou">
 
           <!-- Zapni/Vypni obrázek -->
-          <button id="zapni-obrazek" style="margin-top: 0px;" onclick="zapniObrazek()">Zapni/Vypni obrázek pozadí</button>
+          <button id="zapni-obrazek" style="margin-top: 10px;" onclick="zapniObrazek()">Zapni/Vypni obrázek pozadí</button>
 
         </div>
 
@@ -150,13 +150,13 @@
         <div>
           <span>Zvol si barvu:</span>
           <input type="color" id="barevnaSkala">
-          <button id="zapni-barvu" style="margin-top: 0px;" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
+          <button id="zapni-barvu" style="margin-top: 5px;" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
         </div>
 
       </div>
 
       <!-- SEKCE MOUDRA A HRY -->
-      <div id="moudra-hry" style="margin-top: 15px;">
+      <div id="moudra-hry" style="margin-top: 15px; display: none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
 
           <!-- Moudra programátora -->
@@ -175,7 +175,7 @@
       </div>
       
       <!-- SEKCE CITATY A VTIPY -->
-      <div id="citaty-vtipy" style="margin-top: -5px; margin-left: 0px;">
+      <div id="citaty-vtipy" style="margin-top: -5px; margin-left: 0px; display: none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
 
           <!-- Citáty -->
@@ -200,10 +200,10 @@
     <div class="container">
 
       <!-- Nadpis Přidat nový úkol -->
-      <h4 class="pridatNU-nadpis">📝 Přidat nový úkol 📝</h4>
+      <h4 class="pridatNU-nadpis" style="display: none;">📝 Přidat nový úkol 📝</h4>
 
       <!-- Priorita úkolu + přídání nového úkolu -->
-      <div class="pridprio">
+      <div class="pridprio" style="display: none;">
 
         <!-- Výběr priority -->
         <select id="priorita">

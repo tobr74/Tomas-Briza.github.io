@@ -721,11 +721,9 @@ input[type="text"] {
 .feedback-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 25px;
     margin-top: 0px; /* Mezera od seznamu úkolů */
-    padding: 9px;
-    padding-top: 0px;
-    padding-bottom: 0;
+    padding: 10px 27px;
     background: rgba(0, 0, 0, 0.05); /* Jemné pozadí pro odlišení */
     border-radius: 12px;
 }
@@ -733,7 +731,9 @@ input[type="text"] {
 .feedback-form input, 
 .feedback-form select, 
 .feedback-form textarea {
-    width: 100%;
+    width: 110%;
+    left: 50%; 
+    transform: translateX(-4.5%);
     padding: 8px;
     border: 2px solid #ddd;
     border-radius: 10px; /* Zakulacené rohy jako u tvého boxu */
@@ -791,10 +791,10 @@ input[type="text"] {
 }
 .container {
     width: 50%;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 .rukopis{
-    margin-top: 0px;
+    margin-top: 15px;
     font-size: 26px;
     margin-bottom: -2px;
 }
@@ -844,14 +844,14 @@ input[type="text"] {
 @media screen and (orientation: landscape) {    
 /* Sjednocení roviny a zvětšení písma */
 #datum-vlevo, #svatek-vpravo, #hodiny-stred {
-    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    top: 60px !important; /* Všechny posuneme do stejné výšky od horního okraje */
     font-size: 14px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
 }
 /* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
 #hodiny-stred {
     font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 64px !important; /* Všechny posuneme do stejné výšky od horního okraje */
-    padding: 0 0 !important;
+    top: 74px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    padding: 0 10px !important;
     left: 50% !important;
 }
 /* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
@@ -878,7 +878,7 @@ input[type="text"] {
     font-size: 22px;
 }
 .kruh {
-    margin-top: -45px;
+    margin-top: -35px;
 }
 .navigace-zabava:hover span {
   transform: translateX(-26px) !important; /* Šipka se lehce pohne doprava */
@@ -931,7 +931,7 @@ input[type="text"] {
     font-size: 21px;
 }
 .kruh{
-    margin-top: -40px;
+    margin-top: -35px;
 }
 .navigace-zabava:hover span {
   transform: translateX(-14px); /* Šipka se lehce pohne doprava */
@@ -1005,7 +1005,7 @@ h4.pridatNU-nadpis{
     font-size: 12px;
 }
 .kruh{
-    margin-top: -40px;
+    margin-top: -35px;
 }
 .navigace-zabava:hover span {
   transform: translateX(-12px); /* Šipka se lehce pohne doprava */
@@ -1081,10 +1081,10 @@ h4.pridatNU-nadpis{
 #datum-vlevo, #svatek-vpravo{
     margin-left: -6px;
     margin-right: -6px;
-    margin-top: -8px;
+    margin-top: 0px;
 }
 .kruh{
-    margin-top: -40px;
+    margin-top: -35px;
 }
 .navigace-zabava:hover span {
   transform: translateX(-10px); /* Šipka se lehce pohne doprava */
