@@ -72,7 +72,7 @@
   top: 0px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 10.4px;
+  padding: 2px 10.2px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -799,7 +799,6 @@ input[type="text"] {
 }
 .navigace-vizitka{
     font-size: 22px;
-    top: 0;
 }
 .navigace-ukolovnik{
     font-size: 22px;
@@ -858,7 +857,6 @@ input[type="text"] {
 }
 .navigace-vizitka {
     font-size: 22px;
-    top: 0;
 }
 .navigace-ukolovnik {
     font-size: 22px;
