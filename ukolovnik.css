@@ -853,7 +853,7 @@ input[type="text"] {
 }
 .navigace-pocasi {
     font-size: 22px;
-    padding: 2px 26px;
+    padding: 2px 25px;
 }
 .navigace-vizitka:hover span {
   transform: translateX(-27px); /* Šipka se lehce pohne doprava */
