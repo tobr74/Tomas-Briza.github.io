@@ -1386,3 +1386,44 @@ window.onload = ziskejPocasi;
 
 // Automaticky zavolá ziskejPocasi každých 15 minut (900 000 milisekund)
 setInterval(ziskejPocasi, 900000);
+
+function nactiZpravy(sekce) {
+    if (!sekce) sekce = 'hlavni';
+    var obal = document.getElementById('zpravy-obal');
+    if (obal) obal.innerHTML = "Načítám...";
+    
+    // ZÁKLADNÍ ADRESA
+    var adresa = "https://script.google.com/macros/s/AKfycbz7KziiSNm6uCBIGsq8-piw8e8lBEt2z3K2QCMuqcGrWfIagGFnWYqmgEGTyjWrDik07A/exec";
+    
+    // PŘIDÁNÍ SEKCE (aby skript věděl, co má načíst)
+    var url = adresa + "?s=" + sekce;
+    
+    var stary = document.getElementById('rss-script');
+    if (stary) stary.remove();
+
+    var script = document.createElement('script');
+    script.id = 'rss-script';
+    script.src = url;
+    document.body.appendChild(script);
+}
+
+function zpracujData(data) {
+    var obal = document.getElementById('zpravy-obal');
+    if (!obal || !Array.isArray(data)) return;
+    obal.innerHTML = "";
+
+    var mesice = ["ledna", "února", "března", "dubna", "května", "června", "července", "srpna", "září", "října", "listopadu", "prosince"];
+
+    data.forEach(function(item) {
+        var dText = "";
+        if (item.d) {
+            var d = new Date(item.d);
+            dText = d.getDate() + ". " + mesice[d.getMonth()] + " " + d.getHours() + ":" + d.getMinutes().toString().padStart(2, '0');
+        }
+        obal.innerHTML += '<a href="' + item.l + '" target="_blank" class="polozka">' +
+            (item.img ? '<img src="' + item.img + '">' : '<div style="width:100px;height:75px;background:#eee;border-radius:8px"></div>') +
+            '<div class="polozka-text"><span>' + dText + '</span><h4 style="margin-top: 5px; margin-bottom: 25px">' + item.t + '</h4></div></a>';
+    });
+}
+
+nactiZpravy('idnes');

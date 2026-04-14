@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TB-Vizitka-interaktivní</title>
-  <link rel="stylesheet" href="style.css">
+  <title>TB-Zprávy</title>
+  <link rel="stylesheet" href="zpravy.css">
   <!-- <link rel="manifest" href="manifest.json"> -->
 </head>
 
@@ -37,17 +37,17 @@
   <a href="ukolovnik.html" class="navigace-ukolovnik">
     Úkolovník <span>&rarr;</span>
   </a>
-  <a href="pocasi.html" class="navigace-pocasi">
-    <span>&uarr;</span> Počasí <span>&uarr;</span>
-  </a>
   <a href="index.html" class="navigace-vizitka">
-    <span>&darr;</span> Vizitka <span>&darr;</span>
-  </a>
-  <a href="index.html" class="navigace-vizitka2">
     <span>&uarr;</span> Vizitka <span>&uarr;</span>
   </a>
   <a href="zpravy.html" class="navigace-zpravy">
     <span>&darr;</span> Zprávy <span>&darr;</span>
+  </a>
+  <a href="zpravy.html" class="navigace-zpravy2">
+    <span>&uarr;</span> Zprávy <span>&uarr;</span>
+  </a>
+  <a href="pocasi.html" class="navigace-pocasi">
+    <span>&darr;</span> Počasí <span>&darr;</span>
   </a>
 
   <!-- HORNÍ LIŠTA -->
@@ -85,7 +85,7 @@
       </div>
 
       <!-- Počasi celý box -->
-      <div id="pocasi-box">
+      <div id="pocasi-box" style="display: none;">
 
         <!-- LEVÁ STRANA POČASÍ: Popisek, Vstupní pole a Tlačítko hledání -->
         <div style="margin-top: 105px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
@@ -125,18 +125,18 @@
 
       <!-- Vizitka s editovatelnými poli -->
       <!-- Kruh s iniciály -->
-      <div class="kruh">
+      <div class="kruh" style="display:none;">
         <h3 class="TB" id="edit-inicialy">TB</h3>
       </div>
 
       <!-- Jméno -->
-      <h2 class="jmeno" id="edit-jmeno">Tomáš Bříza</h2>
+      <h2 class="jmeno" id="edit-jmeno" style="display:none;">Tomáš Bříza</h2>
 
       <!-- Profese -->
-      <p class="programator" id="edit-profese">programátor</p>
+      <p class="programator" id="edit-profese" style="display:none;">programátor</p>
 
       <!-- OVLÁDÁNÍ KONTEJNER -->
-      <div class="ovladani-kontejner">
+      <div class="ovladani-kontejner" style="display:none;">
 
         <!-- Kontakt -->
         <button id="kontaktovat" style="margin-top: 8px;" >Kontakt</button>
@@ -203,7 +203,7 @@
 
     <!-- PRAVÁ ČÁST: Úkoly a Formulář -->
     <!-- CONTAINER -->
-    <div class="container">
+    <div class="container" style="display:none;">
 
       <!-- Nadpis Přidat nový úkol -->
       <h4 class="pridatNU-nadpis" style="display: none;">📝 Přidat nový úkol 📝</h4>
@@ -275,12 +275,23 @@
 
   </div> <!-- Konec FLEX-WRAPPER -->
 
+    <div class="kontejner" style="margin-top: 100px;">
+      <h2>Zprávy iROZHLAS Aktuálně</h2>
+      <div class="menu" style="margin-top: -15px;margin-bottom: -10px;">
+        <button onclick="nactiZpravy('hlavni')">Aktuálně</button>
+        <button onclick="nactiZpravy('domov')">Domov</button>
+        <button onclick="nactiZpravy('svet')">Svět</button>
+        <button onclick="nactiZpravy('sport')">Sport</button>
+      </div>
+      <div id="zpravy-obal" style="margin-top: 20px;">Načítám...</div>
+    </div>
+
   <!-- Rukopis Děkuji za Vaši návštěvu -->
-  <h2 class="rukopis">❤️Děkuji za Vaši návštěvu❤️</h2>
+  <h2 class="rukopis">📰Dobré zprávy jsou nejlepší📰</h2>
 
 </div> <!-- Konec HLAVNÍ CELÁ PLOCHA BOX -->
 
-<script src="script.js?v=1.8"></script>
+<script src="zpravy.js?v=1.8"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')

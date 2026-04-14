@@ -1351,12 +1351,14 @@ async function hledatMesto() {
     var vstup = document.getElementById('vstup-mesto').value;
     if (!vstup) return;
     var b64_geo = "aHR0cHM6Ly9nZW9jb2RpbmctYXBpLm9wZW4tbWV0ZW8uY29tL3YxL3NlYXJjaD9uYW1lPQ==";
-    var urlGeo = atob(b64_geo) + encodeURIComponent(vstup) + "&count=1&language=cs&format=json";
+    var urlGeo = atob(b64_geo) + encodeURIComponent(vstup) + "&count=5&language=cs&format=json";
     try {
         const res = await fetch(urlGeo);
         const data = await res.json();
         if (data.results) {
-            const g = data.results[0];
+            // Alternativa: Najít v první pětce ten nejlepší výsledek
+            const g = data.results.find(r => r.name.toLowerCase() === vstup.toLowerCase()) || data.results[0];
+
           // Předáme počet obyvatel jako nový parametr (pokud neexistuje, dáme 0)
             nactiData(g.latitude, g.longitude, g.name, g.country_code, g.population || 0);
         } else { alert("Město nebylo nalezeno!"); }
@@ -1417,6 +1419,3 @@ window.onload = ziskejPocasi;
 
 // Automaticky zavolá ziskejPocasi každých 15 minut (900 000 milisekund)
 setInterval(ziskejPocasi, 900000);
-
-
-
