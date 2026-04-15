@@ -1,4 +1,4 @@
-const CACHE_NAME = 'verze-1.8';
+const CACHE_NAME = 'verze-2.0';
 // Seznam souborů, které chceš mít dostupné offline
 const ASSETS = [
   'index.html',
@@ -8,6 +8,12 @@ const ASSETS = [
   'ukolovnik.css',
   'zabava.html',
   'zabava.css',
+  'pocasi.html',
+  'pocasi.css',
+  'pocasi.js',
+  'zpravy.html',
+  'zpravy.css',
+  'zpravy.js',
   /* 'ikona.png' */ // Přidej další soubory, které používáš
 ];
 
