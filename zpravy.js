@@ -1422,7 +1422,7 @@ function zpracujData(data) {
         }
         obal.innerHTML += '<a href="' + item.l + '" target="_blank" class="polozka">' +
             (item.img ? '<img src="' + item.img + '">' : '<div style="width:100px;height:75px;background:#eee;border-radius:8px"></div>') +
-            '<div class="polozka-text"><span>' + dText + '</span><h4 style="margin-top: 5px; margin-bottom: 25px">' + item.t + '</h4></div></a>';
+            '<div class="polozka-text"><span>' + dText + '</span><h4 style="margin-top: 5px; margin-bottom: 30px">' + item.t + '</h4></div></a>';
     });
 }
 
