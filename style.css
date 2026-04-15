@@ -2,7 +2,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  padding: 2px 19px;
+  padding: 2px 17px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -54,7 +54,7 @@
 }
 .navigace-pocasi span {
   transition: transform 0.3s ease;
-  margin-top: -2px;
+  margin-top: -5px;
 }
 /* Efekt při najetí myší */
 .navigace-pocasi:hover {
@@ -64,7 +64,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-pocasi:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
 .navigace-vizitka {
@@ -107,7 +107,7 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  padding: 2px 9px;
+  padding: 2px 7px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -137,7 +137,7 @@
 }
 .navigace-vizitka2 {
   position: absolute;
-  bottom: 25px;
+  bottom: 26px;
   left: 50%; 
   transform: translateX(-50%);
   padding: 2px 10px;
@@ -158,17 +158,17 @@
 }
 .navigace-vizitka2 span {
   transition: transform 0.3s ease;
-  margin-top: -2px;
+  margin-top: -5px;
 }
 /* Efekt při najetí myší */
-.navigace-Vizitka2:hover {
+.navigace-vizitka2:hover {
   background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-vizitka2:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
 .navigace-zpravy {
@@ -866,7 +866,7 @@ input[type="text"] {
 }
 .rukopis{
     margin-top: 10px;
-    font-size: 26px;
+    font-size: 40px;
     margin-bottom: -2px;
 }
 .navigace-vizitka{
@@ -874,11 +874,9 @@ input[type="text"] {
 }
 .navigace-ukolovnik{
     font-size: 22px;
-    padding: 2px 51px;
 }
 .navigace-zabava {
     font-size: 22px;
-    padding: 2px 65.7px;
 }
 .navigace-pocasi {
     font-size: 22px;
@@ -940,22 +938,22 @@ input[type="text"] {
 }
 .navigace-vizitka {
     font-size: 22px;
-    top: 33px;
+    top: 35px;
 }
 .navigace-ukolovnik {
     font-size: 22px;
-    padding: 2px 18px;
+    padding: 2px 13px;
 }
 .navigace-zabava {
     font-size: 22px;
-    padding: 2px 33px;
+    padding: 2px 28px;
 }
 .navigace-pocasi {
     font-size: 22px;
 }
 .navigace-vizitka2 {
     font-size: 22px;
-    bottom: 33px
+    bottom: 35px
 }
 .navigace-zpravy {
     font-size: 22px;
@@ -1011,7 +1009,7 @@ input[type="text"] {
     margin: 20px 0 20px 0;
     }
 .rukopis{
-    margin-top: 30px;
+    margin-top: 25px;
     font-size: 21px;
 }
 .kruh{
@@ -1070,28 +1068,36 @@ input[type="text"] {
 }
 .rukopis {
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 40px;
 }
-h4.pridatNU-nadpis{
+h4.pridatNU-nadpis {
     font-size: 16px;
     padding-bottom: 6px;
 }
-#hodiny-stred{
+#hodiny-stred {
     padding: 1px 2px;
     margin-top: 2px;
 }
-.navigace-zabava{
+.navigace-zabava {
     font-size: 12px;
-    padding: 2px 17px;
+    padding: 2px 16px;
 }
-.navigace-ukolovnik{
+.navigace-ukolovnik {
+    font-size: 12px;
+    padding: 2px 8px;
+}
+.navigace-vizitka {
+    font-size: 12px;
+    top: 22px;
+}
+.navigace-pocasi {
     font-size: 12px;
 }
-.navigace-vizitka{
+.navigace-vizitka2 {
     font-size: 12px;
-    top: 20px;
+    bottom: 22px;
 }
-.navigace-pocasi{
+.navigace-zpravy {
     font-size: 12px;
 }
 .kruh{
@@ -1144,7 +1150,7 @@ h4.pridatNU-nadpis{
 }
 .rukopis {
     font-size: 12px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 h4.pridatNU-nadpis{
     font-size: 16px;
@@ -1163,9 +1169,16 @@ h4.pridatNU-nadpis{
 }
 .navigace-vizitka{
     font-size: 9px;
-    top: 16px;
+    top: 18px;
 }
 .navigace-pocasi{
+    font-size: 9px;
+}
+.navigace-vizitka2{
+    font-size: 9px;
+    bottom: 18px;
+}
+.navigace-zpravy{
     font-size: 9px;
 }
 #datum-vlevo, #svatek-vpravo{
