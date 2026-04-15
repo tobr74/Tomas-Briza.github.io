@@ -2,7 +2,7 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  padding: 2px 19px;
+  padding: 2px 17px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -107,7 +107,7 @@
   position: absolute;
   top: 0px;
   right: 0px;
-  padding: 2px 9px;
+  padding: 2px 7px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -168,7 +168,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-pocasi2:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
 .navigace-vizitka {
@@ -864,24 +864,6 @@ input[type="text"] {
     width: 100%;
     margin-top: 30px;
 }
-.rukopis{
-    margin-top: 15px;
-    font-size: 28px;
-}
-.navigace-vizitka{
-    font-size: 22px;
-}
-.navigace-ukolovnik{
-    font-size: 22px;
-    padding: 2px 51px;
-}
-.navigace-zabava {
-    font-size: 22px;
-    padding: 2px 65.7px;
-}
-.navigace-pocasi {
-    font-size: 22px;
-}
 .kruh{
     margin-top: -95px;
 }
@@ -931,24 +913,35 @@ input[type="text"] {
 }
 .navigace-ukolovnik {
     font-size: 22px;
-    padding: 2px 18px;
+    padding: 2px 13px;
 }
 .navigace-zabava {
     font-size: 22px;
-    padding: 2px 33px;
+    padding: 2px 28px;
 }
 .navigace-pocasi {
     font-size: 22px;
-    top: 32.5px;
+    top: 35px;
+}
+.navigace-pocasi2 {
+    font-size: 22px;
+    bottom: 35px;
+}
+.navigace-zpravy {
+    font-size: 22px;
 }
 .navigace-zabava:hover span {
-  transform: translateX(-30px); /* Šipka se lehce pohne doprava */
+  transform: translateX(-25px); /* Šipka se lehce pohne doprava */
 }
 .navigace-ukolovnik:hover span {
-  transform: translateX(15px); /* Šipka se lehce pohne doprava */
+  transform: translateX(10px); /* Šipka se lehce pohne doprava */
 }
 .kruh{
     margin-top: -45px;
+}
+.rukopis{
+    margin-top: 20px;
+    font-size: 28px;
 }
 
 }
@@ -991,7 +984,7 @@ input[type="text"] {
     margin: 20px 0 20px 0;
     }
 .rukopis{
-    margin-top: 13px;
+    margin-top: 25px;
     font-size: 15px;
 }
 .kruh{
@@ -1031,12 +1024,13 @@ input[type="text"] {
     top: 5px;
 }
 .box{
+    padding-top: 35px;
     width: 85%;
-    margin: 30px 0 15px 0;
+    margin: 20px 0 20px 0;
 }
 .rukopis {
     font-size: 13px;
-    margin-top: 10px;
+    margin-top: 40px;
 }
 h4.pridatNU-nadpis{
     font-size: 16px;
@@ -1046,27 +1040,34 @@ h4.pridatNU-nadpis{
     padding: 1px 2px;
     margin-top: 2px;
 }
-.navigace-zabava{
-    font-size: 12px;
-    padding: 2px 17px;
-}
-.navigace-ukolovnik{
-    font-size: 12px;
-}
-.navigace-vizitka{
-    font-size: 12px;
-    top: 0;
-}
-.navigace-pocasi{
-    font-size: 12px;
-    top: 21px;
-}
 .kruh{
     margin-top: -40px;
 }
 .container {
     width: 95%;
     margin-top: 105px;
+}
+.navigace-zabava {
+    font-size: 12px;
+    padding: 2px 16px
+}
+.navigace-zpravy {
+    font-size: 12px;
+}
+.navigace-pocasi {
+    font-size: 12px;
+    top: 22px;
+}
+.navigace-ukolovnik {
+    font-size: 12px;
+    padding: 2px 7.8px;
+}
+.navigace-pocasi2 {
+    font-size: 12px;
+    bottom: 22px;
+}
+.navigace-vizitka {
+    font-size: 12px;
 }
 }
 
@@ -1098,12 +1099,13 @@ h4.pridatNU-nadpis{
     top: 5px;
 }
 .box{
+    padding-top: 35px;
     width: 85%;
-    margin: 90px 0 15px 0;
+    margin: 20px 0 20px 0;
 }
 .rukopis {
     font-size: 8px;
-    margin-top: 10px;
+    margin-top: 50px;
 }
 h4.pridatNU-nadpis{
     font-size: 16px;
@@ -1112,21 +1114,6 @@ h4.pridatNU-nadpis{
 #hodiny-stred{
     padding: 1px 21px;
     margin-top: 5px;
-}
-.navigace-zabava{
-    font-size: 9px;
-    padding: 2px 15px;
-}
-.navigace-ukolovnik{
-    font-size: 9px;
-}
-.navigace-vizitka{
-    font-size: 9px;
-    top: 0px;
-}
-.navigace-pocasi{
-    font-size: 9px;
-    top: 17px;
 }
 #datum-vlevo, #svatek-vpravo{
     margin-left: -6px;
@@ -1139,5 +1126,25 @@ h4.pridatNU-nadpis{
 .container {
     width: 95%;
     margin-top: 105px;
+}
+.navigace-zabava {
+    font-size: 9px;
+}
+.navigace-zpravy {
+    font-size: 9px;
+}
+.navigace-pocasi {
+    font-size: 9px;
+    top: 18px;
+}
+.navigace-ukolovnik {
+    font-size: 9px;
+}
+.navigace-pocasi2 {
+    font-size: 9px;
+    bottom: 18px;
+}
+.navigace-vizitka {
+    font-size: 9px;
 }
 }
