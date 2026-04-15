@@ -54,7 +54,7 @@
 }
 .navigace-pocasi span {
   transition: transform 0.3s ease;
-  margin-top: -2px;
+  margin-top: -5px;
 }
 /* Efekt při najetí myší */
 .navigace-pocasi:hover {
@@ -64,7 +64,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-pocasi:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
+  transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
 .navigace-ukolovnik {
@@ -841,15 +841,15 @@ input[type="text"] {
 }
 .navigace-vizitka {
     font-size: 22px;
-    padding: 2px 31px;
+    padding: 2px 27px;
 }
 .navigace-ukolovnik {
     font-size: 22px;
-    top: 32.5px;
+    top: 35px;
 }
 .navigace-zabava {
     font-size: 22px;
-    padding: 2px 27.5px;
+    padding: 2px 24px;
 }
 .navigace-pocasi {
     font-size: 22px;
