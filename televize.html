@@ -1,65 +1,55 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="referrer" content="no-referrer">
-  <title>TB-Zprávy</title>
-  <link rel="stylesheet" href="zpravy.css">
-  <!-- <link rel="manifest" href="manifest.json"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TB-Televize</title>
+    <link rel="stylesheet" href="televize.css">
+    <!-- <link rel="manifest" href="manifest.json"> -->
 </head>
 
 <body>
 <!-- OKNO MODAL -->
 <!-- Rozvržení + Obsah + Zavření -->
 <div id="moje-okno" class="modal">
-  <div class="modal-obsah">
-    <span class="zavrit">&times;</span>
-    
-    <!-- Nadpis okna + Nápověda - TYTO DVA ŘÁDKY JSOU KLÍČOVÉ PRO PŘEPISOVÁNÍ TEXTU -->
-    <h3 id="nadpis-okna"></h3>
-    <p id="napoveda-okna"></p>
-    
-    <!-- Vyplnění + Hledání + Výsledek -->
-    <input type="text" id="vstup-hledani" placeholder="Napište sem">
-    <button id="tlacitko-hledat">Vyhledat</button>
-    <div id="vysledek-hledani"></div>
-      
-  </div>
+    <div class="modal-obsah">
+        <span class="zavrit">&times;</span>
+        
+        <!-- Nadpis okna + Nápověda - TYTO DVA ŘÁDKY JSOU KLÍČOVÉ PRO PŘEPISOVÁNÍ TEXTU -->
+        <h3 id="nadpis-okna"></h3>
+        <p id="napoveda-okna"></p>
+        
+        <!-- Vyplnění + Hledání + Výsledek -->
+        <input type="text" id="vstup-hledani" placeholder="Napište sem">
+        <button id="tlacitko-hledat">Vyhledat</button>
+        <div id="vysledek-hledani"></div>    
+    </div>
 </div>
 
 <!-- HLAVNÍ CELÁ PLOCHA BOX -->
 <div class="box">
-
-  <!-- Moderní odkaz jako tlačítko navigace -->
-  <a href="zabava.html" class="navigace-zabava">
-    <span>&larr; </span> Zábava 
+  <a href="zpravy.html" class="navigace-zpravy">
+    <span>&larr; </span>Zprávy 
   </a>
-  <a href="televize.html" class="navigace-televize">
-    Televize <span>&rarr;</span>
+  <a href="zabava.html" class="navigace-zabava">
+    Zábava <span>&rarr; </span>
   </a>
   <a href="index.html" class="navigace-vizitka">
     <span>&uarr;</span> Vizitka <span>&uarr;</span>
   </a>
-  <a href="zpravy.html" class="navigace-zpravy">
-    <span>&darr;</span> Zprávy <span>&darr;</span>
-  </a>
-  <a href="zpravy.html" class="navigace-zpravy2">
-    <span>&uarr;</span> Zprávy <span>&uarr;</span>
-  </a>
-  <a href="pocasi.html" class="navigace-pocasi">
-    <span>&darr;</span> Počasí <span>&darr;</span>
+  <a href="televize.html" class="navigace-televize">
+    <span>&darr;</span> Televize <span>&darr;</span>
   </a>
 
   <!-- HORNÍ LIŠTA -->
   <!-- Datum Vlevo -->
-  <div id="datum-vlevo" style="position: absolute; top: 35px; left: 5px; font-size: 12px; font-weight: bold;"></div>
+  <div id="datum-vlevo" style="position: absolute; top: 35px; left: 4px; font-size: 12px; font-weight: bold;"></div>
 
   <!-- Hodiny Uprostřed -->
-  <div id="hodiny-stred" style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace; padding: 0px 25px; margin-top: 7px;"></div>
+  <div id="hodiny-stred" style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); font-size: 16px; font-weight: bold; font-family: monospace; padding: 0 21px; margin-top: 7px;"></div>
 
   <!-- Svátek Vpravo -->
-  <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 5px; font-size: 12px; font-weight: bold;display: inline-block"></div>
+  <div id="svatek-vpravo" style="position: absolute; top: 35px; right: 4px; font-size: 12px; font-weight: bold;display: inline-block"></div>
 
   <!-- HLAVNÍ OBSAH (FLEX WRAPPER) -->
   <div class="flex-wrapper">
@@ -70,7 +60,7 @@
       <!-- MODÁLNÍ OKNO PRO ZADÁNÍ HESLA -->
       <!-- Rozvržení + Obsah + Zavření -->
       <div id="adminModal" class="modal">
-        <div class="modal-obsah">
+        <div class="modal-obsah" style="display: none;">
           <span class="zavrit">&times;</span>
 
           <!-- Nadpis okna + Nápověda -->
@@ -81,154 +71,93 @@
           <input type="password" id="adminHesloInput" placeholder="Heslo..." style="width:80%; padding:10px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;">
           <button id="potvrditHesloBtn" style="background:#007bff; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; width:85%;">Odemknout</button>
           <p id="chybaHesla" style="color:red; font-size:12px; margin-top:10px; display:none;">⚠️ Špatné heslo!</p>
-
         </div>
-      </div>
-
-      <!-- Počasi celý box -->
-      <div id="pocasi-box" style="display: none;">
-
-        <!-- LEVÁ STRANA POČASÍ: Popisek, Vstupní pole a Tlačítko hledání -->
-        <div style="margin-top: 105px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
-    
-          <!-- Popisek -->
-          <div style="font-weight: bold; margin-left: -4px;">Počasí:</div>
-        
-          <!-- Vstupní pole -->
-          <input type="text" id="vstup-mesto" placeholder="Zadejte město, stát..." 
-                style="padding: 0px 4px; width: 140px; font-size: 13px; height: 25px; box-sizing: border-box; margin-top: -5px; margin-left: -5px; font-weight: bold;" 
-                onkeydown="if(event.key==='Enter') hledatMesto()">
-    
-          <!-- Tlačítko -->
-          <button onclick="hledatMesto()" style="padding: 4px 10px; cursor: pointer; margin-top: -5px; margin-left: -5px;">Hledat</button>
-          
-        </div>
-        
-        <!-- PRAVÁ STRANA POČASÍ: Poloha, Teplota a Obnovení -->
-        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end;margin-top: -82px; margin-right: -5px;">
-
-          <!-- Lokace (Poloha) -->
-          <div>
-            <span id="lokace" style="font-weight: bold;">Zjišťuji polohu...</span>
-            <img id="vlajka" src="" style="display:none; vertical-align: middle; margin-right: 0px; width: 20px; border: 1px solid #ccc; text-align: center; margin-top: -3px;">
-          </div>
-
-          <!-- Teplota a Popis -->
-          <div id="teplota" style="font-size: 1.6rem; font-weight: bold; color: #333;">-- °C</div>
-          <p id="popis" style="margin: 0; font-style: italic; margin-top: -2px; font-size: 16px; font-weight: bold;">Načítám data...</p>
-
-          <!-- Tlačítko pro obnovení v rohu -->
-          <button onclick="ziskejPocasi()" style="border:none; background:none; cursor:pointer; font-size: 1.4rem; margin-right: -20px; margin-top: 0px;" title="Obnovit zjištěnou polohu">🔄</button>
-
-        </div>
-
       </div>
 
       <!-- Vizitka s editovatelnými poli -->
       <!-- Kruh s iniciály -->
       <div class="kruh" style="display:none;">
-        <h3 class="TB" id="edit-inicialy">TB</h3>
+      <h3 class="TB" id="edit-inicialy">TB</h3>
       </div>
-
       <!-- Jméno -->
       <h2 class="jmeno" id="edit-jmeno" style="display:none;">Tomáš Bříza</h2>
-
       <!-- Profese -->
       <p class="programator" id="edit-profese" style="display:none;">programátor</p>
 
       <!-- OVLÁDÁNÍ KONTEJNER -->
       <div class="ovladani-kontejner" style="display:none;">
-
         <!-- Kontakt -->
-        <button id="kontaktovat" style="margin-top: 8px;" >Kontakt</button>
+        <button id="kontaktovat">Kontakt</button>
         <div id="edit-kontakt" style="display: none;">
         </div> <!-- Tady bude kontakt -->
     
         <!-- Tlačítka pro přepínání režimů -->
         <div class="tlacitka-pod-sebou">
-
           <!-- Zapni/Vypni obrázek -->
-          <button id="zapni-obrazek" style="margin-top: 10px;" onclick="zapniObrazek()">Zapni/Vypni obrázek pozadí</button>
-
+          <button id="zapni-obrazek" onclick="zapniObrazek()">Zapni/Vypni obrázek pozadí</button>
         </div>
-
         <!-- Barevná škála -->
         <!-- Zvol si barvu + Zapni/Vypni barvu -->
         <div>
-          <span>Zvol si barvu:</span>
-          <input type="color" id="barevnaSkala">
-          <button id="zapni-barvu" style="margin-top: 5px;" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
+            <span>Zvol si barvu:</span>
+            <input type="color" id="barevnaSkala">
+            <button id="zapni-barvu" onclick="prepniBarvu()">Zapni/Vypni barvu</button>
         </div>
-
       </div>
 
       <!-- SEKCE MOUDRA A HRY -->
-      <div id="moudra-hry" style="margin-top: 15px; display: none;">
+      <div id="moudra-hry" style="margin-top: 10px; display:none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
-
           <!-- Moudra programátora -->
           <div style="display: flex; flex-direction: column; align-items: center;">
-            <h1 class="moudra" style="font-size: 14px; margin-bottom: 0px; margin-top: -25px" >Moudra<br> programátora</h1>
-            <button style="margin-top: 0px;" onclick="ukazMoudro()">Chci radu!</button>
+            <h1 class="moudra" style="font-size: 14px; margin-bottom: 0px;" >Moudra<br> programátora</h1>
+            <button onclick="ukazMoudro()">Chci radu!</button>
           </div>
-
           <!-- Hra Klikni na mě -->
           <div style="display: flex; flex-direction: column; align-items: center;">
             <h1 id="pocitadlo" style="font-size: 24px; margin-bottom: 0px;">Skóre: 0</h1>
-            <button style="margin-top: 0px;" onclick="klikni()">KLIKNI NA MĚ!</button>
+            <button onclick="klikni()">KLIKNI NA MĚ!</button>
           </div>
-
         </div>
       </div>
       
       <!-- SEKCE CITATY A VTIPY -->
-      <div id="citaty-vtipy" style="margin-top: -5px; margin-left: 0px; display: none;">
+      <div id="citaty-vtipy" style="margin-top: 0px; margin-left: 0px; display:none;">
         <div style="display: flex; justify-content: space-around; align-items: flex-end; gap: 10px;">
-
           <!-- Citáty -->
           <div style="display: flex; flex-direction: column; align-items: center;">
             <h1 class="citaty" style="font-size: 14px; margin-bottom: 0px;">Pravdivé citáty</h1>
-            <button style="margin-top: 0px;" onclick="ukazCitat()">Chci poučit!</button>
+            <button onclick="ukazCitat()">Chci poučit!</button>
           </div>
-
           <!-- Vtipy -->
           <div style="display: flex; flex-direction: column; align-items: center;">
             <h1 class="vtipy" style="font-size: 14px; margin-bottom: 0px;">Vtipy pro zasmání</h1>
-            <button style="margin-top: 0px;" onclick="ukazVtip()">KLIKNI A POBAV SE!</button>
+            <button onclick="ukazVtip()">KLIKNI A POBAV SE!</button>
           </div>
-
         </div>
       </div>
-
     </div>
 
     <!-- PRAVÁ ČÁST: Úkoly a Formulář -->
     <!-- CONTAINER -->
-    <div class="container" style="display:none;">
-
+    <div class="container" style="display: none;">
       <!-- Nadpis Přidat nový úkol -->
       <h4 class="pridatNU-nadpis" style="display: none;">📝 Přidat nový úkol 📝</h4>
-
       <!-- Priorita úkolu + přídání nového úkolu -->
       <div class="pridprio" style="display: none;">
-
         <!-- Výběr priority -->
-        <select id="priorita">
+        <select id="priorita" style="display: none;">
           <option value="green">🟢 Normální</option>
           <option value="orange">🟡 Spěchá</option>
           <option value="red">🔴 Důležité</option>
         </select>
-
         <!-- Nový úkol + tlačítko přidat úkol -->
-        <input type="text" id="novyUkol" placeholder="Nový úkol...">
-        <button id="pridat">Přidat úkol</button>
-
+        <input type="text" id="novyUkol" placeholder="Nový úkol..." style="display: none;">
+        <button id="pridat" style="display: none;">Přidat úkol</button>
       </div>
-
       <!-- Přidat seznam úkolů -->
-      <div class="pridatSeznam">
+      <div class="pridatSeznam" style="display: none;">
         <ul id="mujSeznam"></ul>
-
         <!-- Položka úkolu + okno pro přídání -->
         <div id="taskModal" class="modal hidden">
         <div class="modal-overlay"></div>
@@ -238,61 +167,55 @@
             <input type="text" id="modalInput" placeholder="Napište sem položku úkolu">
             <button id="modalConfirm" style="background:#28a745; color:white; border:none; padding: 5px; width:85%; border-radius:5px; cursor:pointer; font-weight:bold;margin:10px 0 0 0;"><b>Přidat položku úkolu</b></button><br>
             <div id="zavreniKrizkem" style="font-size: 16px;" ><i>(zavřete prosím křížkem, aby bylo možné přidat více položek za sebou)</i></div>
-
           </div>
         </div>
 
         <!-- FORMULÁŘ -->
         <!-- Method POST -->
-        <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form">
-
+        <form action="https://formspree.io/f/mqeydyly" method="POST" class="feedback-form" style="display:none;">
           <!-- Nadpis Dotazník spokojenosti -->
           <h2 style="padding: 0; margin: 0;margin-top: 7px; ">Dotazník spokojenosti</h2>
-
           <!-- Tvé jméno -->
           <input type="text" name="jmeno" placeholder="Tvé jméno">
-
           <!-- Výběr Líbí/Nelíbí -->
           <select name="hodnoceni" required>
             <option value="" disabled selected>Líbí se ti web?</option>
             <option value="libi">👍 Líbí</option>
             <option value="nelibi">👎 Nelíbí</option>
           </select>
-
           <!-- Co se ti líbí nebo co vylepšit -->
           <textarea name="zprava" placeholder="Co se ti líbí nebo co vylepšit?" rows="3"></textarea>
-
           <!-- Tvůj e-mail -->
           <input type="email" name="email" placeholder="Tvůj e-mail" required>
-
           <!-- Tlačítko Odeslat zpětnou vazbu -->
           <button type="submit" id="odeslat-feedback">Odeslat zpětnou vazbu</button>
-
         </form>
-        
+
       </div> <!-- Konec Přidat seznam úkolů -->
-      
     </div> <!-- Konec CONTAINER -->
+    
+    <div class="televize">
+		
+		  <div class="tvSekce">TV program</div>
+      <div id="tv-buttons" class="grid"></div>
+
+      <div class="tvSekce">Vysílání ČT</div>
+      <div id="ct-buttons" class="grid"></div>
+
+      <div class="tvSekce">Komerční televize</div>
+      <div id="komercni-buttons" class="grid"></div>
+
+      <div class="tvSekce">Ostatní</div>
+      <div id="ostatni-buttons" class="grid"></div>
+
+    </div>
 
   </div> <!-- Konec FLEX-WRAPPER -->
-
-  <div class="kontejner" style="margin-top: 100px;">
-      <h2>Zprávy iROZHLAS Aktuálně</h2>
-      <div class="menu" style="margin-top: -15px;margin-bottom: -10px;">
-        <button onclick="nactiZpravy('hlavni')">Aktuálně</button>
-        <button onclick="nactiZpravy('domov')">Domov</button>
-        <button onclick="nactiZpravy('svet')">Svět</button>
-        <button onclick="nactiZpravy('sport')">Sport</button>
-      </div>
-      <div id="zpravy-obal" style="margin-top: 25px;">Načítám...</div>
-  </div>
-
   <!-- Rukopis Děkuji za Vaši návštěvu -->
-  <h2 class="rukopis">📰Snad budou dobré zprávy📰</h2>
-
+  <h2 class="rukopis">📺Relaxace u televize<br>&nbsp;&nbsp;je občas potřeba📺</h2>
 </div> <!-- Konec HLAVNÍ CELÁ PLOCHA BOX -->
 
-<script src="zpravy.js?v=2.0"></script>
+<script src="script.js?v=2.0"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')

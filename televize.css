@@ -1,8 +1,8 @@
-.navigace-zabava {
+.navigace-zpravy {
   position: absolute;
   top: 0px;
   left: 0px;
-  padding: 2px 18px;
+  padding: 2px 16px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -17,18 +17,18 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-zabava span {
+.navigace-zpravy span {
   transition: transform 0.3s ease;
 }
 /* Efekt při najetí myší */
-.navigace-zabava:hover {
-  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
+.navigace-zpravy:hover {
+  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navigace-zabava:hover span {
-  transform: translateX(-10px); /* Šipka se lehce pohne doprava */
+.navigace-zpravy:hover span {
+  transform: translateX(-13px); /* Šipka se lehce pohne doprava */
 }
 
 .navigace-vizitka {
@@ -36,7 +36,7 @@
   top: 0px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 10px;
+  padding: 2px 15px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -67,7 +67,7 @@
   transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
-.navigace-zpravy {
+.navigace-televize {
   position: absolute;
   top: 26px;
   left: 50%; 
@@ -88,42 +88,9 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-zpravy span {
-  transition: transform 0.3s ease;
-  margin-top: -5px;
-}
-/* Efekt při najetí myší */
-.navigace-zpravy:hover {
-  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
-  border-color: #007bff;
-  color: #007bff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.navigace-zpravy:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne dolu */
-}
-
-.navigace-televize {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  padding: 2px 8px;
-  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
-  backdrop-filter: blur(5px);           /* Rozmazání pozadí (skleněný efekt) */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-color: black;
-  border-top-right-radius: 15px; /* Kulaté rohy */
-  color: #555; /* Barvu si uprav podle svého designu */
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease;            /* Plynulá animace */
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 .navigace-televize span {
   transition: transform 0.3s ease;
+  margin-top: -5px;
 }
 /* Efekt při najetí myší */
 .navigace-televize:hover {
@@ -133,20 +100,18 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .navigace-televize:hover span {
-  transform: translateX(5px); /* Šipka se lehce pohne doprava */
+  transform: translateY(3px); /* Šipka se lehce pohne doprava */
 }
 
-.navigace-zpravy2 {
+.navigace-zabava {
   position: absolute;
-  bottom: 26px;
-  left: 50%; 
-  transform: translateX(-50%);
-  padding: 2px 11px;
+  top: 0px;
+  right: 0px;
+  padding: 2px 13.5px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-color: black;
-  border-top-left-radius: 15px;
   border-top-right-radius: 15px; /* Kulaté rohy */
   color: #555; /* Barvu si uprav podle svého designu */
   text-decoration: none;
@@ -157,55 +122,18 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-zpravy2 span {
+.navigace-zabava span {
   transition: transform 0.3s ease;
-  margin-top: -2px;
 }
 /* Efekt při najetí myší */
-.navigace-zpravy2:hover {
-  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
+.navigace-zabava:hover {
+  background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navigace-zpravy2:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
-}
-
-.navigace-pocasi {
-  position: absolute;
-  bottom: 0px;
-  left: 50%; 
-  transform: translateX(-50%);
-  padding: 2px 11px;
-  background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
-  backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-color: black;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px; /* Kulaté rohy */
-  color: #555; /* Barvu si uprav podle svého designu */
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease; /* Plynulá animace */
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.navigace-pocasi span {
-  transition: transform 0.3s ease;
-  margin-top: -5px;
-}
-/* Efekt při najetí myší */
-.navigace-pocasi:hover {
-  background: rgba(0, 123, 255, 0.1); /* Lehké modré podbarvení */
-  border-color: #007bff;
-  color: #007bff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-.navigace-pocasi:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne dolu */
+.navigace-zabava:hover span {
+  transform: translateX(8px); /* Šipka se lehce pohne doprava */
 }
 
 /* Styl pro interaktivní hodiny */
@@ -235,7 +163,7 @@
 }
 .volba-hodin:hover {
     border-color: #007bff;
-    background-color:green;
+    background-color: green;
 }
 
 /* Společný styl pro klikatelná tlačítka v hlavičce */
@@ -270,7 +198,7 @@
     height: 100%; 
     background: transparent; 
     pointer-events: none; /* Kliknutí propustí skrz na pozadí webu */
-    overflow-y: auto; /* Umožní scrollovat, pokud je okno moc dlouhé */
+    overflow-y: auto;    /* Umožní scrollovat, pokud je okno moc dlouhé */
 }
 /* Třída pro zobrazení okna (použijeme v JS místo .style.display) */
 /* Třída pro zobrazení okna - MUSÍ povolit klikání */
@@ -283,9 +211,9 @@
     pointer-events: auto !important;
     background-color: #fff; 
     padding: 30px 20px;
-    border-radius: 15px; 
-    width: 90%; 
-    max-width: 335px; 
+    border-radius: 15px;
+    width: 90%;
+    max-width: 335px;
     position: relative;
     box-shadow: 0 10px 50px rgba(0,0,0,0.3);
     border: 1px solid #ddd;
@@ -378,8 +306,8 @@
     font-family: sans-serif;
     width: 95%; /* Na mobilu zabere skoro celou šířku */
     max-width: 800px; /* Ale na počítači se neroztáhne do nekonečna */ 
-    padding: 80px 10px; 
-    border-radius: 15px; 
+    padding: 10px; 
+    border-radius: 15px;
     background: rgb(255, 255, 235); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.9); 
     text-align: center; 
@@ -410,7 +338,6 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 3);
     cursor: pointer;
     user-select: none;
-    margin-top: -75px;
 }
 h3.TB {
     margin: 0;
@@ -466,7 +393,6 @@ h2.jmeno:focus {
     background-repeat: no-repeat;
     transition: background-size 0.3s ease, color 0.3s ease;
     font-weight: bold;
-    margin-bottom: 0px;
 }
 .programator:hover {
     color: white; /* Text zbělá, aby byl na barvě vidět */
@@ -502,14 +428,18 @@ h2.jmeno:focus {
     transition: 0.2s;
 }
 
-
 button#kontaktovat {
     padding: 6px 6px; 
     border-radius: 5px; 
     cursor: pointer; 
     border: 1px solid black;
+    margin-top: -6px;
     font-size: 20px;
 }
+/* div.kontakt {
+    font-size: 40px;
+    font-weight: bold;
+} */
 #edit-kontakt {
     display: none; /* Po startu schované */
     text-align: center !important; /* !important pojistí střed Všechno bude na střed */
@@ -689,7 +619,7 @@ li div {
 .moudra, #pocitadlo {
     margin: 0;
     padding: 0;
-    margin-top: -20px;
+    margin-top: -10px;
     min-height: 0px; /* Aby skákající čísla skóre nehýbala s tlačítkem */
 }
 h1.moudra {
@@ -728,15 +658,6 @@ h1.vtipy {
     opacity: 0;
     filter: blur(5px);
     transition: transform 3s ease, color 3s ease; /* Pro hover efekt */
-
-    /* overflow: hidden; */ /* Skryje text, který ještě není "napsaný" */
-    /* white-space: nowrap; */ /* Udrží text v jedné lince během psaní */
-    /* border-right: 2px solid transparent; */ /* Volitelný kurzor na konci */
-    /* width: 0; */ /* Začínáme s nulovou šířkou */
-    
-    /* animation: */ 
-    /* psani 15s steps(400, end) forwards, */ /* Samotné psaní */
-    /* vynoreni 15s ease-in forwards; */ /* Jemné rozsvícení barvy */
 }
 
 /* TATO TŘÍDA SPUSTÍ ANIMACI (přidá ji JS) */
@@ -793,9 +714,11 @@ input[type="text"] {
 .feedback-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 12px;
     margin-top: 0px; /* Mezera od seznamu úkolů */
-    padding: 10px 27px;
+    padding: 9px;
+    padding-top: 0px;
+    padding-bottom: 0;
     background: rgba(0, 0, 0, 0.05); /* Jemné pozadí pro odlišení */
     border-radius: 12px;
 }
@@ -803,9 +726,7 @@ input[type="text"] {
 .feedback-form input, 
 .feedback-form select, 
 .feedback-form textarea {
-    width: 110%;
-    left: 50%; 
-    transform: translateX(-4.5%);
+    width: 100%;
     padding: 8px;
     border: 2px solid #ddd;
     border-radius: 10px; /* Zakulacené rohy jako u tvého boxu */
@@ -833,7 +754,7 @@ input[type="text"] {
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s, background 0.2s;
-    margin-top: -5px;
+    margin-top: -4px;
     margin-bottom: 10px;
 }
 #odeslat-feedback:hover {
@@ -850,124 +771,95 @@ input[type="text"] {
 /* Styl pro široký displej / na ležato */
 @media screen and (min-width: 700px) and (orientation: landscape) {
 .flex-wrapper {
-    flex-direction: row;    /* Vedle sebe */
+    /* flex-direction: row; */ /* Vedle sebe */
     justify-content: center;
     align-items: flex-start; /* Zarovnat k hornímu okraji */
-    gap: 30px;              /* Mezera mezi vizitkou a úkoly */
+    gap: 30px; /* Mezera mezi vizitkou a úkoly */
     padding-top: 20px;
 }
 .vizitka-cast {
     width: 40%;
     text-align: center;
-    margin-top: -30px;
+    margin-top: -45px;
 }
 .container {
-    width: 50%;
-    margin-top: 70px;
+    width: 95%;
+    margin-top: 10px;
 }
 .rukopis{
-    margin-top: -10px;
-    font-size: 36px;
-    margin-bottom: -2px;
-}
-.kruh{
-    margin-top: -95px;
-}
-.box {
-    padding-top: 50px; /* Vytvoříme víc místa pod horní lištou */
-    width: 95%;
-    max-width: 900px;
-    width: 86%;
-    margin: 20px 0 20px 0;
-}
-#datum-vlevo, #svatek-vpravo {
     margin-top: 0px;
-}
-.navigace-zabava:hover span {
-  transform: translateX(-14px); /* Šipka se lehce pohne doprava */
-}
-.navigace-vizitka:hover span {
-  transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
-}
-.navigace-zpravy:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne dolu */
-}
-.navigace-televize:hover span {
-  transform: translateX(5px); /* Šipka se lehce pohne doprava */
-}
-.navigace-zpravy2:hover span {
-  transform: translateY(-5px); /* Šipka se lehce pohne nahoru */
-}
-.navigace-pocasi:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne dolu */
-}
-}
-
-/* Tato pravidla se aktivují při otočení na ležato (landscape) */
-@media screen and (orientation: landscape) {    
-/* Sjednocení roviny a zvětšení písma */
-#datum-vlevo, #svatek-vpravo, #hodiny-stred {
-    top: 60px !important; /* Všechny posuneme do stejné výšky od horního okraje */
-    font-size: 14px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
-}
-/* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
-#hodiny-stred {
-    font-size: 19px !important; /* Hodiny můžou být ještě o kousek dominantnější */
-    top: 74px !important; /* Všechny posuneme do stejné výšky od horního okraje */
-    padding: 0 10px !important;
-    left: 50% !important;
-}
-/* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
-.box {
-    padding-top: 33px !important; /* Vytvoříme víc místa pod horní lištou */
-    width: 95%;
-    max-width: 900px;
-    width: 86%;
-    margin: 20px 0 15px 0;
+    font-size: 50px;
+    margin-left: -15px;
 }
 .navigace-zpravy {
     font-size: 22px;
-    top: 35px;
 }
 .navigace-televize {
     font-size: 22px;
-    padding: 2px 15px;
 }
 .navigace-zabava {
     font-size: 22px;
-    padding: 2px 30px;
 }
 .navigace-vizitka {
     font-size: 22px;
 }
-.navigace-zpravy2 {
+#datum-vlevo, #svatek-vpravo {
+    margin-top: 13px;
+}
+#hodiny-stred {
+    margin-top: -10px !important;
+}
+}
+
+/* Tato pravidla se aktivují při otočení na ležato (landscape) */
+@media screen and (orientation: landscape) {
+
+/* Sjednocení roviny a zvětšení písma */
+#datum-vlevo, #svatek-vpravo, #hodiny-stred {
+    top: 37px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+    font-size: 18px !important; /* Zvětšíme písmo (původně bylo 13px a 16px) */
+}
+/* Úprava hodin, aby nebyly moc nalepené, pokud je text dlouhý */
+#hodiny-stred {
+    font-size: 22px !important; /* Hodiny můžou být ještě o kousek dominantnější */
+    padding: 0 10px !important;
+    top: 80px !important; /* Všechny posuneme do stejné výšky od horního okraje */
+}
+/* Zajištění, že se box roztáhne, aby se texty nepřekrývaly */
+.box {
+    padding-top: 100px; /* Vytvoříme víc místa pod horní lištou */
+    width: 95%;
+    max-width: 700px;
+    width: 86%;
+    margin: 20px 0 20px 0;
+}
+.container {
+    width: 95%;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.navigace-zpravy {
     font-size: 22px;
-    bottom: 35px;
+    padding: 2px 27px;
 }
-.navigace-pocasi {
+.navigace-televize {
     font-size: 22px;
-    bottom: 0px;
+    top: 35px;
 }
-.kruh {
-    margin-top: -35px;
+.navigace-zabava {
+    font-size: 22px;
+    padding: 2px 24px;
 }
-.navigace-zabava:hover span {
-  transform: translateX(-26px) !important; /* Šipka se lehce pohne doprava */
-}
-.navigace-vizitka:hover span {
-  transform: translateY(-2px) !important; /* Šipka se lehce pohne nahoru */
+.navigace-vizitka {
+    font-size: 22px;
+    padding: 2px 17px;
 }
 .navigace-zpravy:hover span {
-  transform: translateY(3px) !important; /* Šipka se lehce pohne dolu */
+  transform: translateX(-27px); /* Šipka se lehce pohne doprava */
 }
-.navigace-televize:hover span {
-  transform: translateX(10px) !important; /* Šipka se lehce pohne doprava */
-}
-.navigace-zpravy2:hover span {
-  transform: translateY(-5px) !important; /* Šipka se lehce pohne nahoru */
-}
-.navigace-pocasi:hover span {
-  transform: translateY(3px) !important; /* Šipka se lehce pohne dolu */
+.navigace-zabava:hover span {
+  transform: translateX(22px); /* Šipka se lehce pohne doprava */
 }
 }
 
@@ -987,6 +879,13 @@ input[type="text"] {
 
 /* Úprava pro malé mobily (na stojato) */
 @media (max-width: 700px) {
+.ukolovnik {
+    position: absolute;
+    font-size: 24px;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .horni-lista {
     flex-direction: column; /* Prvky pod sebou */
     text-align: center;
@@ -997,115 +896,35 @@ input[type="text"] {
     margin: 2px 0; /* Jemné rozestupy pod sebou */
     font-size: 14px; /* Mírné zmenšení písma, aby se to vešlo */
     padding: 5px 13px;
+    margin-top: 7px;
     }
+    #hodiny-stred {
+    margin-top: -10px !important;
+}
 .box {
-    padding-top: 35px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
+    padding-top: 140px; /* Zvětšíme prostor nad vizitkou, protože lišta je teď vyšší */
     width: 86%;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 120px 0;
     }
-.rukopis {
-    margin-top: 20px;
-    font-size: 20px;
+.container {
+    margin-top: -10px;
 }
-.kruh {
-    margin-top: -35px;
-}
-.navigace-zabava:hover span {
-  transform: translateX(-14px); /* Šipka se lehce pohne doprava */
-}
-.navigace-pocasi:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne nahoru */
+.rukopis{
+    margin-top: 0px;
+    font-size: 27px;
+    margin-left: -5px;
 }
 .navigace-vizitka:hover span {
-  transform: translateY(-3px); /* Šipka se lehce pohne dolu */
-}
-.navigace-televize:hover span {
-  transform: translateX(5px); /* Šipka se lehce pohne doprava */
-}
-.navigace-zpravy2:hover span {
   transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
-}
-.navigace-zpravy:hover span {
-  transform: translateY(3px); /* Šipka se lehce pohne dolu */
 }
 }
 
 /* ÚPRAVA PRO MALÉ DISPLEJE (Mobily) */
 @media screen and (max-width: 377px) {
 .modal-obsah, .modal-content {
-    width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
-    padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
-    margin-top: 10px;    /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
-}
-/* Zmenšení písma v nadpisu a nápovědě pro mobil */
-#nadpis-okna, .modal-content h3 {
-    font-size: 20px; /* O něco menší nadpis */
-    margin-bottom: 10px;
-}
-#napoveda-okna, .modal-content p {
-    font-size: 15px; /* Menší nápověda */
-}
-/* Úprava tlačítek pro vteřiny, aby nebyla moc vysoká */
-.volba-hodin {
-    padding: 10px;
-    font-size: 14px;
-    margin: 5px 0;
-}
-/* Zmenšení křížku pro zavření, aby nepřekážel */
-.zavrit, .close-btn {
-    font-size: 24px;
-    right: 10px;
-    top: 5px;
-}
-.box {
-    width: 85%;
-    margin: 15px 0 15px 0;
-}
-.rukopis {
-    font-size: 17px;
-    margin-top: 40px;
-}
-h4.pridatNU-nadpis {
-    font-size: 16px;
-    padding-bottom: 6px;
-}
-#hodiny-stred {
-    padding: 1px 2px;
-    margin-top: 2px;
-}
-.navigace-zabava {
-    font-size: 12px;
-    padding: 2px 16px;
-}
-.navigace-televize {
-    font-size: 12px;
-}
-.navigace-vizitka {
-    font-size: 12px;
-    top: 0px;
-}
-.navigace-pocasi {
-    font-size: 12px;
-}
-.navigace-zpravy {
-    font-size: 12px;
-    top: 22px;
-}
-.navigace-zpravy2 {
-    font-size: 12px;
-    bottom: 22px;
-}
-.kruh {
-    margin-top: -35px;
-}
-}
-
-/* ÚPRAVA PRO EXTRA MALÉ DISPLEJE (Mobily) */
-@media screen and (max-width: 325px) {
-.modal-obsah, .modal-content {
-    width: 80%;          /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
-    padding: 20px 15px;  /* Menší vnitřní odsazení, aby zbyl prostor pro text */
-    margin-top: 10px;    /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
+    width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
+    padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
+    margin-top: 10px; /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
 }
 /* Zmenšení písma v nadpisu a nápovědě pro mobil */
 #nadpis-okna, .modal-content h3 {
@@ -1129,47 +948,122 @@ h4.pridatNU-nadpis {
 }
 .box{
     width: 85%;
-    margin: 15px 0 15px 0;
+    margin: 15px 0 120px 0;
 }
 .rukopis {
-    font-size: 11px;
-    margin-top: 50px;
+    font-size: 23px;
+    margin-top: 0px;
 }
-h4.pridatNU-nadpis {
+h4.pridatNU-nadpis{
     font-size: 16px;
     padding-bottom: 6px;
 }
-#hodiny-stred {
-    padding: 1px 21px;
-    margin-top: -4px;
+.container {
+    margin-top: 0px;
 }
-.navigace-zabava {
-    font-size: 9px;
-    padding: 2px 15px;
+.ukolovnik {
+    position: absolute;
+    top: 2px;
+    font-size: 16px;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+#hodiny-stred {
+    padding: 1px 2px;
+    margin-top: 2px;
 }
 .navigace-televize {
+    font-size: 12px;
+    margin-top: -3px;
+}
+.navigace-zpravy {
+    font-size: 12px;
+    padding: 2px 14px;
+}
+.navigace-zabava {
+    font-size: 12px;
+    padding: 2px 12px;
+}
+.navigace-vizitka {
+    font-size: 12px;
+    padding: 2px 14px;
+}
+.navigace-vizitka:hover span {
+  transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
+}
+}
+
+/* ÚPRAVA PRO EXTRA MALÉ DISPLEJE (Mobily) */
+@media screen and (max-width: 325px) {
+.modal-obsah, .modal-content {
+    width: 80%; /* Okno zabere téměř celou šířku (zbydou jen malé okraje) */
+    padding: 20px 15px; /* Menší vnitřní odsazení, aby zbyl prostor pro text */
+    margin-top: 10px; /* Ještě blíž k hornímu okraji (místo 20px jen 10px) */
+}
+/* Zmenšení písma v nadpisu a nápovědě pro mobil */
+#nadpis-okna, .modal-content h3 {
+    font-size: 20px; /* O něco menší nadpis */
+    margin-bottom: 10px;
+}
+#napoveda-okna, .modal-content p {
+    font-size: 15px; /* Menší nápověda */
+}
+/* Úprava tlačítek pro vteřiny, aby nebyla moc vysoká */
+.volba-hodin {
+    padding: 10px;
+    font-size: 14px;
+    margin: 5px 0;
+}
+/* Zmenšení křížku pro zavření, aby nepřekážel */
+.zavrit, .close-btn {
+    font-size: 24px;
+    right: 10px;
+    top: 5px;
+}
+.box {
+    width: 85%;
+    margin: 15px 0 120px 0;
+}
+.rukopis {
+    font-size: 15px;
+    margin-top: 0px;
+}
+h4.pridatNU-nadpis{
+    font-size: 16px;
+    padding-bottom: 6px;
+}
+.container {
+    margin-top: 0px;
+}
+.ukolovnik {
+    position: absolute;
+    top: 2px;
+    font-size: 16px;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+#hodiny-stred{
+    padding: 1px 17px;
+}
+.navigace-televize{
+    font-size: 9px;
+    margin-top: -7px;
+}
+.navigace-zpravy {
+    font-size: 9px;
+}
+.navigace-zabava {
     font-size: 9px;
 }
 .navigace-vizitka {
     font-size: 9px;
-}
-.navigace-zpravy {
-    font-size: 9px;
-    top: 18px;
-}
-.navigace-zpravy2 {
-    font-size: 9px;
-    bottom: 18px;
-}
-.navigace-pocasi {
-    font-size: 9px;
+    padding: 2px 13px;
 }
 #datum-vlevo, #svatek-vpravo {
-    margin-left: -6px;
-    margin-right: -6px;
-    margin-top: 0px;
+    margin-top: 2px;
+    margin-bottom: 10px;
 }
-.kruh {
-    margin-top: -35px;
+.navigace-vizitka:hover span {
+  transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
 }
 }
