@@ -484,7 +484,7 @@ function aplikujStyl() {
     } 
     else if (aktivniRezim === 'image') {
         // REŽIM OBRÁZEK: Načte soubor
-        document.body.style.backgroundImage = "url('https://github.com/user-attachments/assets/0116b61b-24b5-49ba-a4c7-743c419b3ba2')";
+        document.body.style.backgroundImage = "url('img/pozadi6.jpg')";
         // Zde nastavujeme modrou barvu textu pro režim obrázku
         barvaTextu = "#1e3a8a"; // Tmavě modrá (změň na svou oblíbenou)
     }
@@ -1383,6 +1383,70 @@ function interpretujKod(k) {
 // Spustíme celý proces automaticky po načtení stránky
 window.onload = ziskejPocasi;
 
-
 // Automaticky zavolá ziskejPocasi každých 15 minut (900 000 milisekund)
 setInterval(ziskejPocasi, 900000);
+
+
+// Databáze odkazů v Base64
+const tvProgram = [
+	{ n: "TV Program Seznam", u: "aHR0cHM6Ly90di5zZXpuYW0uY3ov", s: "btn-program"},
+	{ n: "Stream.cz", u: "aHR0cHM6Ly93d3cuc3RyZWFtLmN6Lw==", s: "btn-program" },
+	{ n: "iVysílání ČT Archiv", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei9pdnlzaWxhbmkv", s: "btn-program" },
+];
+
+const kanalyCT = [
+    { n: "ČT1", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei96aXZlL2N0MS8=" },
+    { n: "ČT2", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei96aXZlL2N0Mi8=" },
+    { n: "ČT24", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei96aXZlL2N0MjQv" },
+    { n: "ČT Sport", u: "aHR0cHM6Ly9zcG9ydC5jZXNrYXRlbGV2aXplLmN6L3ppdmUtdnlzaWxhbmk=" },
+	{ n: "ČT sport Plus", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei96aXZlL2NoLTMxLw==" },
+    { n: "ČT :D / art", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei96aXZlL2RlY2tvLw==" },
+];
+
+const kanalyKomercni = [
+	{ n: "Nova", u: "aHR0cHM6Ly90di5ub3ZhLmN6L3NsZWR1anRlLXppdmUvMS1ub3Zh" },
+    { n: "Nova Cinema", u: "aHR0cHM6Ly90di5ub3ZhLmN6L3NsZWR1anRlLXppdmUvMi1ub3ZhLWNpbmVtYQ==" },
+    { n: "Prima", u: "aHR0cHM6Ly93d3cucHJpbWFwbHVzLmN6L3ppdmUvcHJpbWE=" },
+	{ n: "TV Seznam", u: "aHR0cHM6Ly93d3cudGVsZXZpemVzZXpuYW0uY3ovdHY/dGY9MTc3NjQ2MzIwMCZkb3RJZD01MzA3NDIy" },
+	{ n: "CNN Prima News", u: "aHR0cHM6Ly9jbm4uaXByaW1hLmN6L3Z5c2lsYW5p" },
+	{ n: "TN Live", u: "aHR0cHM6Ly90bi5ub3ZhLmN6L3RubGl2ZQ==" },
+	{ n: "JOJ Family", u: "aHR0cHM6Ly9qb2pmYW1pbHkuam9qLmN6L2xpdmU=" },
+	{ n: "Óčko", u: "aHR0cHM6Ly9vY2tvLnR2L3ppdmUv" },
+];
+
+const ostatniOdkazy = [
+	{ n: "TV Noe", u: "aHR0cHM6Ly93d3cudHZub2UuY3ovbGl2ZQ==" },
+	{ n: "iDNES.tv", u: "aHR0cHM6Ly90di5pZG5lcy5jei8=" },
+    /* { n: "Tipsport TV", u: "aHR0cHM6Ly93d3cudGlwc3BvcnQuY3ovdHY=" },
+    { n: "Chance TV", u: "aHR0cHM6Ly93d3cuY2hhbmNlLmN6L3R2" }, */
+	{ n: "Euronews", u: "aHR0cHM6Ly93d3cuZXVyb25ld3MuY29tL2xpdmU=" },
+	{ n: "NASA+", u: "aHR0cHM6Ly9wbHVzLm5hc2EuZ292Lw==" },
+];
+
+// Funkce pro vytvoření tlačítka
+function vytvorTlacitko(data, kontejnerId) {
+    const box = document.getElementById(kontejnerId);
+    
+    data.forEach(polozka => {
+        const btn = document.createElement('button');
+        btn.className = 'tv-btn';
+        if (polozka.s) btn.classList.add(polozka.s);
+        btn.innerText = polozka.n;
+        
+        btn.onclick = () => {
+            // Dekódování URL z Base64 a otevření
+            const url = atob(polozka.u);
+            window.open(url, '_blank');
+        };
+        
+        box.appendChild(btn);
+    });
+}
+
+// Spuštění generování po načtení stránky
+window.onload = () => {
+	vytvorTlacitko(tvProgram, 'tv-buttons')
+    vytvorTlacitko(kanalyCT, 'ct-buttons');
+	vytvorTlacitko(kanalyKomercni, 'komercni-buttons');
+    vytvorTlacitko(ostatniOdkazy, 'ostatni-buttons');
+};
