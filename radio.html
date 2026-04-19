@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TB-Úkolovník</title>
-    <link rel="stylesheet" href="ukolovnik.css">
+    <title>TB-Televize</title>
+    <link rel="stylesheet" href="radio.css">
     <!-- <link rel="manifest" href="manifest.json"> -->
 </head>
 
@@ -28,17 +28,17 @@
 
 <!-- HLAVNÍ CELÁ PLOCHA BOX -->
 <div class="box">
+  <a href="televize.html" class="navigace-televize">
+    <span>&larr; </span>Televize
+  </a>
+  <a href="zpravy.html" class="navigace-zpravy">
+    Zprávy <span>&rarr; </span>
+  </a>
   <a href="index.html" class="navigace-vizitka">
-    <span>&larr; </span>Vizitka 
+    <span>&uarr;</span> Vizitka <span>&uarr;</span>
   </a>
-  <a href="zabava.html" class="navigace-zabava">
-    Zábava <span>&rarr; </span>
-  </a>
-  <a href="pocasi.html" class="navigace-pocasi">
-    <span>&uarr;</span> Počasí <span>&uarr;</span>
-  </a>
-  <a href="ukolovnik.html" class="navigace-ukolovnik">
-    <span>&darr;</span> Úkolovník <span>&darr;</span>
+  <a href="radio.html" class="navigace-radio">
+    <span>&darr;</span> Rádia <span>&darr;</span>
   </a>
 
   <!-- HORNÍ LIŠTA -->
@@ -60,7 +60,7 @@
       <!-- MODÁLNÍ OKNO PRO ZADÁNÍ HESLA -->
       <!-- Rozvržení + Obsah + Zavření -->
       <div id="adminModal" class="modal">
-        <div class="modal-obsah">
+        <div class="modal-obsah" style="display: none;">
           <span class="zavrit">&times;</span>
 
           <!-- Nadpis okna + Nápověda -->
@@ -140,23 +140,23 @@
 
     <!-- PRAVÁ ČÁST: Úkoly a Formulář -->
     <!-- CONTAINER -->
-    <div class="container">
+    <div class="container" style="display: none;">
       <!-- Nadpis Přidat nový úkol -->
-      <h4 class="pridatNU-nadpis">📝 Přidat nový úkol 📝</h4>
+      <h4 class="pridatNU-nadpis" style="display: none;">📝 Přidat nový úkol 📝</h4>
       <!-- Priorita úkolu + přídání nového úkolu -->
-      <div class="pridprio">
+      <div class="pridprio" style="display: none;">
         <!-- Výběr priority -->
-        <select id="priorita">
+        <select id="priorita" style="display: none;">
           <option value="green">🟢 Normální</option>
           <option value="orange">🟡 Spěchá</option>
           <option value="red">🔴 Důležité</option>
         </select>
         <!-- Nový úkol + tlačítko přidat úkol -->
-        <input type="text" id="novyUkol" placeholder="Nový úkol...">
-        <button id="pridat">Přidat úkol</button>
+        <input type="text" id="novyUkol" placeholder="Nový úkol..." style="display: none;">
+        <button id="pridat" style="display: none;">Přidat úkol</button>
       </div>
       <!-- Přidat seznam úkolů -->
-      <div class="pridatSeznam">
+      <div class="pridatSeznam" style="display: none;">
         <ul id="mujSeznam"></ul>
         <!-- Položka úkolu + okno pro přídání -->
         <div id="taskModal" class="modal hidden">
@@ -193,12 +193,55 @@
 
       </div> <!-- Konec Přidat seznam úkolů -->
     </div> <!-- Konec CONTAINER -->
+    
+    <div class="televize" style="font-weight: bold; font-size: 18px; margin-top: -10px; display: none;">
+		
+		  <div class="tvSekce" style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">TV program</div>
+      <div id="tv-buttons" class="grid"></div>
+
+      <div class="tvSekce" style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Vysílání ČT</div>
+      <div id="ct-buttons" class="grid"></div>
+
+      <div class="tvSekce" style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Komerční televize</div>
+      <div id="komercni-buttons" class="grid"></div>
+
+      <div class="tvSekce" style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Ostatní</div>
+      <div id="ostatni-buttons" class="grid"></div>
+
+    </div>
+
+    <div class="radio" style="font-weight: bold; font-size: 18px; margin-top: -10px;">
+      <section>
+          <div style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Komplet</div>
+          <div id="complete-radios" class="grid-box"></div>
+      </section>
+
+      <section>
+          <div style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Hlavní a zpravodajská</div>
+          <div id="main-radios" class="grid-box"></div>
+      </section>
+
+      <section>
+          <div style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Hudební a Pop</div>
+          <div id="music-radios" class="grid-box"></div>
+      </section>
+
+      <section>
+          <div style="margin-bottom: -2px; margin-top: 5px; border-bottom: 1.5px solid #002d57;">Rock a Oldies</div>
+          <div id="rock-radios" class="grid-box"></div>
+      </section>
+      
+      <!-- <div class="footer">
+          <p>Kliknutím otevřete přehrávač v novém okně.</p>
+      </div> -->
+    </div>
+
   </div> <!-- Konec FLEX-WRAPPER -->
   <!-- Rukopis Děkuji za Vaši návštěvu -->
-  <h2 class="rukopis">🍀Hodně trpělivosti při<br>&nbsp;&nbsp;plnění Vašich úkolů🍀</h2>
+  <h2 class="rukopis">📻Relaxace u rádia<br>&nbsp;&nbsp;s dobrou muzikou📻</h2>
 </div> <!-- Konec HLAVNÍ CELÁ PLOCHA BOX -->
 
-<script src="script.js?v=2.1"></script>
+<script src="radio.js?v=2.1"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')

@@ -1,4 +1,4 @@
-.navigace-zpravy {
+.navigace-televize {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -17,17 +17,17 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-zpravy span {
+.navigace-televize span {
   transition: transform 0.3s ease;
 }
 /* Efekt při najetí myší */
-.navigace-zpravy:hover {
+.navigace-televize:hover {
   background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navigace-zpravy:hover span {
+.navigace-televize:hover span {
   transform: translateX(-13px); /* Šipka se lehce pohne doprava */
 }
 
@@ -36,7 +36,7 @@
   top: 0px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 15px;
+  padding: 2px 10px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -67,12 +67,12 @@
   transform: translateY(-3px); /* Šipka se lehce pohne nahoru */
 }
 
-.navigace-televize {
+.navigace-radio {
   position: absolute;
   top: 26px;
   left: 50%; 
   transform: translateX(-50%);
-  padding: 2px 10px;
+  padding: 2px 13px;
   background: rgba(102, 97, 97, 0.1); /* Jemné pozadí */
   backdrop-filter: blur(5px); /* Rozmazání pozadí (skleněný efekt) */
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -88,22 +88,22 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-televize span {
+.navigace-radio span {
   transition: transform 0.3s ease;
   margin-top: -5px;
 }
 /* Efekt při najetí myší */
-.navigace-televize:hover {
+.navigace-radio:hover {
   background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navigace-televize:hover span {
+.navigace-radio:hover span {
   transform: translateY(3px); /* Šipka se lehce pohne doprava */
 }
 
-.navigace-radio {
+.navigace-zpravy {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -122,17 +122,17 @@
   align-items: center;
   gap: 8px;
 }
-.navigace-radio span {
+.navigace-zpravy span {
   transition: transform 0.3s ease;
 }
 /* Efekt při najetí myší */
-.navigace-radio:hover {
+.navigace-zpravy:hover {
   background: rgba(0, 123, 255, 0.1);   /* Lehké modré podbarvení */
   border-color: #007bff;
   color: #007bff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.navigace-radio:hover span {
+.navigace-zpravy:hover span {
   transform: translateX(8px); /* Šipka se lehce pohne doprava */
 }
 
@@ -791,13 +791,13 @@ input[type="text"] {
     font-size: 47px;
     margin-left: -15px;
 }
-.navigace-zpravy {
-    font-size: 22px;
-}
 .navigace-televize {
     font-size: 22px;
 }
 .navigace-radio {
+    font-size: 22px;
+}
+.navigace-zpravy {
     font-size: 22px;
 }
 .navigace-vizitka {
@@ -829,7 +829,7 @@ input[type="text"] {
 .box {
     padding-top: 100px; /* Vytvoříme víc místa pod horní lištou */
     width: 95%;
-    max-width: 700px;
+    max-width: 600px;
     width: 86%;
     margin: 20px 0 20px 0;
 }
@@ -839,26 +839,27 @@ input[type="text"] {
     margin-left: auto;
     margin-right: auto;
 }
-.navigace-zpravy {
+.navigace-televize {
     font-size: 22px;
     padding: 2px 27px;
 }
-.navigace-televize {
+.navigace-radio {
     font-size: 22px;
     top: 35px;
+    padding: 2px 15px;
 }
-.navigace-radio {
+.navigace-zpravy {
     font-size: 22px;
     padding: 2px 24px;
 }
 .navigace-vizitka {
     font-size: 22px;
-    padding: 2px 17px;
+    padding: 2px 10px;
 }
-.navigace-zpravy:hover span {
+.navigace-televize:hover span {
   transform: translateX(-27px); /* Šipka se lehce pohne doprava */
 }
-.navigace-radio:hover span {
+.navigace-zpravy:hover span {
   transform: translateX(22px); /* Šipka se lehce pohne doprava */
 }
 }
@@ -910,7 +911,7 @@ input[type="text"] {
     margin-top: -10px;
 }
 .rukopis{
-    margin-top: 0px;
+    margin-top: 5px;
     font-size: 27px;
     margin-left: -5px;
 }
@@ -952,7 +953,7 @@ input[type="text"] {
 }
 .rukopis {
     font-size: 23px;
-    margin-top: 0px;
+    margin-top: 5px;
 }
 h4.pridatNU-nadpis{
     font-size: 16px;
@@ -972,21 +973,22 @@ h4.pridatNU-nadpis{
     padding: 1px 2px;
     margin-top: 2px;
 }
-.navigace-televize {
+.navigace-radio {
     font-size: 12px;
-    margin-top: -3px;
+    top: 22px;
+    padding: 2px 13px;
 }
-.navigace-zpravy {
+.navigace-televize {
     font-size: 12px;
     padding: 2px 14px;
 }
-.navigace-radio {
+.navigace-zpravy {
     font-size: 12px;
     padding: 2px 12px;
 }
 .navigace-vizitka {
     font-size: 12px;
-    padding: 2px 14px;
+    padding: 2px 10px;
 }
 .navigace-vizitka:hover span {
   transform: translateY(-2px); /* Šipka se lehce pohne nahoru */
@@ -1026,7 +1028,7 @@ h4.pridatNU-nadpis{
 }
 .rukopis {
     font-size: 15px;
-    margin-top: 0px;
+    margin-top: 5px;
 }
 h4.pridatNU-nadpis{
     font-size: 16px;
@@ -1045,19 +1047,21 @@ h4.pridatNU-nadpis{
 #hodiny-stred{
     padding: 1px 17px;
 }
-.navigace-televize{
+.navigace-radio{
     font-size: 9px;
-    margin-top: -7px;
+    top: 18px;
+    padding: 2px 12px
+}
+.navigace-televize {
+    font-size: 9px;
+    top: 0px;
 }
 .navigace-zpravy {
     font-size: 9px;
 }
-.navigace-radio {
-    font-size: 9px;
-}
 .navigace-vizitka {
     font-size: 9px;
-    padding: 2px 13px;
+    padding: 2px 10px;
 }
 #datum-vlevo, #svatek-vpravo {
     margin-top: 2px;

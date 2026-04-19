@@ -1388,7 +1388,7 @@ setInterval(ziskejPocasi, 900000);
 
 
 // Databáze televizí - odkazů v Base64
-const tvProgram = [
+/* const tvProgram = [
 	{ n: "TV Program Seznam", u: "aHR0cHM6Ly90di5zZXpuYW0uY3ov", s: "btn-program"},
 	{ n: "Stream.cz", u: "aHR0cHM6Ly93d3cuc3RyZWFtLmN6Lw==", s: "btn-program" },
 	{ n: "iVysílání ČT Archiv", u: "aHR0cHM6Ly93d3cuY2Vza2F0ZWxldml6ZS5jei9pdnlzaWxhbmkv", s: "btn-program" },
@@ -1416,15 +1416,15 @@ const kanalyKomercni = [
 
 const ostatniOdkazy = [
 	{ n: "TV Noe", u: "aHR0cHM6Ly93d3cudHZub2UuY3ovbGl2ZQ==" },
-	{ n: "iDNES.tv", u: "aHR0cHM6Ly90di5pZG5lcy5jei8=" },
+	{ n: "iDNES.tv", u: "aHR0cHM6Ly90di5pZG5lcy5jei8=" }, */
     /* { n: "Tipsport TV", u: "aHR0cHM6Ly93d3cudGlwc3BvcnQuY3ovdHY=" },
     { n: "Chance TV", u: "aHR0cHM6Ly93d3cuY2hhbmNlLmN6L3R2" }, */
-	{ n: "Euronews", u: "aHR0cHM6Ly93d3cuZXVyb25ld3MuY29tL2xpdmU=" },
+/* 	{ n: "Euronews", u: "aHR0cHM6Ly93d3cuZXVyb25ld3MuY29tL2xpdmU=" },
 	{ n: "NASA+", u: "aHR0cHM6Ly9wbHVzLm5hc2EuZ292Lw==" },
-];
+]; */
 
 // Funkce pro vytvoření tlačítka
-function vytvorTlacitko(data, kontejnerId) {
+/* function vytvorTlacitko(data, kontejnerId) {
     const box = document.getElementById(kontejnerId);
     
     data.forEach(polozka => {
@@ -1441,12 +1441,67 @@ function vytvorTlacitko(data, kontejnerId) {
         
         box.appendChild(btn);
     });
-}
+} */
 
 // Spuštění generování po načtení stránky
-window.onload = () => {
+/* window.onload = () => {
 	vytvorTlacitko(tvProgram, 'tv-buttons')
     vytvorTlacitko(kanalyCT, 'ct-buttons');
 	vytvorTlacitko(kanalyKomercni, 'komercni-buttons');
     vytvorTlacitko(ostatniOdkazy, 'ostatni-buttons');
+}; */
+
+
+// Databáze rádií - odkazy v Base64
+const completeRadios = [
+	{ n: "Všechna Rádia (Play.cz)", u: "aHR0cHM6Ly93d3cucGxheS5jei8=" },
+];
+
+const mainRadios = [
+    { n: "Radiožurnál", u: "aHR0cHM6Ly93d3cubXVqcm96aGxhcy5jei96aXZlL3JhZGlvenVybmFs" },
+    { n: "Radiožurnál Sport", u: "aHR0cHM6Ly93d3cubXVqcm96aGxhcy5jei96aXZlL3JhZGlvenVybmFsLXNwb3J0" },
+    { n: "ČRo Dvojka", u: "aHR0cHM6Ly93d3cubXVqcm96aGxhcy5jei96aXZlL2R2b2prYQ==" },
+    { n: "Impuls", u: "aHR0cHM6Ly93d3cuaW1wdWxzLmN6L3ByZWhyYXZhYw==" },
+    { n: "Frekvence 1", u: "aHR0cHM6Ly93d3cuZnJla3ZlbmNlMS5jei9saXZl" },
+];
+
+const musicRadios = [
+    { n: "Evropa 2", u: "aHR0cHM6Ly93d3cuZXZyb3BhMi5jei9wbGF5ZXIv" },
+    { n: "Blaník", u: "aHR0cHM6Ly9yYWRpYS5jei9yYWRpYS9yYWRpby1ibGFuaWs=" },
+    { n: "Kiss", u: "aHR0cHM6Ly93d3cua2lzcy5jei9vbmxpbmUv" },
+    { n: "Fajn rádio", u: "aHR0cHM6Ly9yYWRpYS5jei9yYWRpYS9mYWpuLXJhZGlv" },
+    { n: "Hit rádio", u: "aHR0cHM6Ly9yYWRpYS5jei9yYWRpYS9oaXRyYWRpby1jaXR5LXByYWhh" },
+];
+
+const rockRadios = [
+    { n: "Rádio Beat", u: "aHR0cHM6Ly93d3cucmFkaW9iZWF0LmN6L3BsYXllci8=" },
+    { n: "Rock Rádio", u: "aHR0cHM6Ly9yYWRpYS5jei9yYWRpYS9yb2NrLXJhZGlv" },
+    { n: "Country Rádio", u: "aHR0cHM6Ly93d3cuY291bnRyeXJhZGlvLmN6L29ubGluZS8=" },
+    { n: "Oldies Radio", u: "aHR0cHM6Ly9yYWRpYS5jei9yYWRpYS9vbGRpZXMtcmFkaW8=" },
+];
+
+// Funkce pro generování tlačítek
+function renderRadios(data, containerId) {
+    const container = document.getElementById(containerId);
+    
+    data.forEach(radio => {
+        const btn = document.createElement('button');
+        btn.className = 'radio-btn';
+        btn.innerText = radio.n;
+        
+        btn.onclick = () => {
+            const url = atob(radio.u);
+            window.open(url, '_blank');
+        };
+        
+        container.appendChild(btn);
+    });
+}
+
+// Spuštění po načtení
+window.onload = () => {
+    renderRadios(completeRadios, 'complete-radios');
+    renderRadios(mainRadios, 'main-radios');
+    renderRadios(musicRadios, 'music-radios');
+    renderRadios(rockRadios, 'rock-radios');
 };
